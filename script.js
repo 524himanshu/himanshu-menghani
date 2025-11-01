@@ -71,10 +71,13 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      message: document.getElementById("message").value,
-    }),
+  name: document.getElementById("name").value,
+  email: document.getElementById("email").value,
+  phone: document.getElementById("phone").value,
+  subject: document.getElementById("subject").value,
+  message: document.getElementById("message").value,
+}),
+
   });
 
   const data = await res.json();
