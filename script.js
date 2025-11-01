@@ -66,32 +66,105 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
 
 document.getElementById("contactForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  
-  const res = await fetch("https://five24himanshu-github-io.onrender.com/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-  name: document.getElementById("name").value,
-  email: document.getElementById("email").value,
-  phone: document.getElementById("phone").value,
-  subject: document.getElementById("subject").value,
-  message: document.getElementById("message").value,
-}),
 
-  });
+  const formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+    phone: e.target.phone.value,
+    subject: e.target.subject.value,
+    message: e.target.message.value,
+  };
 
-  const data = await res.json();
-  showToast(data.message);
-document.getElementById("contactForm").reset();
-;
+  try {
+    const res = await fetch("https://five24himanshu-github-io.onrender.com/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    showToast(data.message || "Message sent successfully!");
+    document.getElementById("contactForm").reset();
+  } catch (err) {
+    console.error(err);
+    showToast("Failed to send message. Please try again later.");
+  }
 });
 
 function showToast(message) {
-  const toast = document.getElementById("toast");
+  let toast = document.getElementById("toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    toast.style.position = "fixed";
+    toast.style.bottom = "30px";
+    toast.style.right = "30px";
+    toast.style.padding = "15px 25px";
+    toast.style.background = "#333";
+    toast.style.color = "#fff";
+    toast.style.borderRadius = "8px";
+    toast.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+    toast.style.opacity = "0";
+    toast.style.transition = "opacity 0.3s ease-in-out";
+    document.body.appendChild(toast);
+  }
+
   toast.textContent = message;
-  toast.classList.add("show");
+  toast.style.opacity = "1";
 
   setTimeout(() => {
-    toast.classList.remove("show");
+    toast.style.opacity = "0";
+  }, 3000);
+}
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+    phone: e.target.phone.value,
+    subject: e.target.subject.value,
+    message: e.target.message.value,
+  };
+
+  try {
+    const res = await fetch("https://five24himanshu-github-io.onrender.com/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    showToast(data.message || "Message sent successfully!");
+    document.getElementById("contactForm").reset();
+  } catch (err) {
+    console.error(err);
+    showToast("Failed to send message. Please try again later.");
+  }
+});
+
+function showToast(message) {
+  let toast = document.getElementById("toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    toast.style.position = "fixed";
+    toast.style.bottom = "30px";
+    toast.style.right = "30px";
+    toast.style.padding = "15px 25px";
+    toast.style.background = "#333";
+    toast.style.color = "#fff";
+    toast.style.borderRadius = "8px";
+    toast.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+    toast.style.opacity = "0";
+    toast.style.transition = "opacity 0.3s ease-in-out";
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.style.opacity = "1";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
   }, 3000);
 }
