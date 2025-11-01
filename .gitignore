@@ -1,7 +1,5 @@
 # Ignore .qodo (custom folder - explain its purpose here)
 .qodo
 node_modules
-package-lock.json
-package.json
 .env
 backend/.env

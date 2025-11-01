@@ -1,0 +1,18 @@
+{
+  "name": "524himanshu.github.io",
+  "version": "1.0.0",
+  "description": "This is a responsive portfolio website showcasing my projects, skills, and contact information. The website is designed to be fully responsive, ensuring it looks great on all devices, from desktops to mobile phones.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.2"
+  }
+}
