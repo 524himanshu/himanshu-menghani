@@ -784,26 +784,28 @@
         </div>
 
         <!-- Contact Form on the right -->
-        <div style="flex: 1; text-align: right">
-          <form action="">
-            <div class="input-box">
-              <input type="text" placeholder="Full Name" />
-              <input type="email" placeholder="Email Address" />
-            </div>
-            <div class="input-box">
-              <input type="number" placeholder="Mobile Number" />
-              <input type="text" placeholder="Email Subject" />
-            </div>
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Your Message"
-            ></textarea>
-            <input type="submit" value="Send Message" class="btn" />
-          </form>
-        </div>
+       <!-- Contact Form on the right -->
+<div style="flex: 1; text-align: right">
+  <form id="contactForm">
+    <div class="input-box">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+    </div>
+    <div class="input-box">
+      <input type="number" id="phone" placeholder="Mobile Number" />
+      <input type="text" id="subject" placeholder="Email Subject" />
+    </div>
+    <textarea
+      id="message"
+      cols="30"
+      rows="10"
+      placeholder="Your Message"
+      required
+    ></textarea>
+    <input type="submit" value="Send Message" class="btn" />
+  </form>
+</div>
+
       </div>
     </section>
 
