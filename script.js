@@ -78,5 +78,17 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
   });
 
   const data = await res.json();
-  alert(data.message);
+  showToast(data.message);
+document.getElementById("contactForm").reset();
+;
 });
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
