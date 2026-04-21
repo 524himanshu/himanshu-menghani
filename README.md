@@ -1,8 +1,10 @@
-# Responsive-Portfolio
+# Himanshu-Menghani-Portfolio
+
+Live: https://himanshu-menghani.vercel.app
 
 ## Description
 
-This is a responsive portfolio website showcasing my projects, skills, and contact information. The website is designed to be fully responsive, ensuring it looks great on all devices, from desktops to mobile phones.
+Source code for my personal portfolio, showcasing full-stack and AI projects with live deployments, built using Next.js, React, Flask, and MongoDB.
 
 ## Features
 
@@ -16,18 +18,6 @@ This is a responsive portfolio website showcasing my projects, skills, and conta
 - HTML
 - CSS
 - JavaScript
-
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/524himanshu/524himanshu.github.io.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd 524himanshu.github.io
-    ```
-3. Open `index.html` in your preferred web browser.
 
 ## Usage
 
