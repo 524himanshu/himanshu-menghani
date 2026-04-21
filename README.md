@@ -28,4 +28,4 @@ Feel free to explore the portfolio to learn more about my work and skills. You c
 - Email: [himanshumenghani524@gmail.com](mailto:himanshumenghani524@gmail.com)
 - LinkedIn: [himanshumenghani524](https://www.linkedin.com/in/himanshumenghani524/)
 - GitHub: [524himanshu](https://github.com/524himanshu)
-- Website: [524himanshu.github.io](https://524himanshu.github.io)
+- Website: [https://524himanshu.github.io](https://himanshu-menghani.vercel.app/)
