@@ -78,6 +78,24 @@
           <li>Focus on <span>clean UI, performance, and real usability</span></li>
           <li>Consistent project building and self-learning mindset</li>
         </ul>
+        <div class="tech-stack">
+          <span class="tech-stack-label">Tech Stack</span>
+          <div class="tech-icons">
+            <div class="tech-icon" title="Next.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" /></div>
+            <div class="tech-icon" title="React"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" /></div>
+            <div class="tech-icon" title="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /></div>
+            <div class="tech-icon" title="Flask"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" /></div>
+            <div class="tech-icon" title="MongoDB"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /></div>
+            <div class="tech-icon" title="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /></div>
+            <div class="tech-icon" title="TypeScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" /></div>
+            <div class="tech-icon" title="Firebase"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" /></div>
+            <div class="tech-icon" title="PostgreSQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" /></div>
+            <div class="tech-icon" title="Django"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" /></div>
+            <div class="tech-icon" title="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" /></div>
+            <div class="tech-icon" title="Flutter"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" /></div>
+          </div>
+        </div>
+
         <a href="https://www.linkedin.com/in/himanshumenghani524" target="_blank" rel="noopener" class="btn">Connect on LinkedIn</a>
       </div>
     </section>
@@ -292,9 +310,19 @@
     <!-- portfolio / projects section -->
     <section class="portfolio" id="portfolio">
       <h2 class="heading">My <span>Projects</span></h2>
+
+      <!-- filter tabs -->
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ai">AI</button>
+        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+        <button class="filter-btn" data-filter="ml">ML</button>
+      </div>
+
       <div class="portfolio-container">
 
-        <div class="portfolio-box">
+        <div class="portfolio-box" data-category="ai fullstack">
+          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
           <div class="portfolio-placeholder" data-label="Next.js · Flask · Gemini AI">
             <i class="bx bx-brain placeholder-icon"></i>
           </div>
@@ -311,7 +339,8 @@
           </div>
         </div>
 
-        <div class="portfolio-box">
+        <div class="portfolio-box" data-category="ai">
+          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
           <div class="portfolio-placeholder" data-label="Cloudflare · Workers AI · Llama 3.3">
             <i class="bx bx-bot placeholder-icon"></i>
           </div>
@@ -328,7 +357,7 @@
           </div>
         </div>
 
-        <div class="portfolio-box">
+        <div class="portfolio-box" data-category="fullstack">
           <div class="portfolio-placeholder" data-label="React · Node.js · MongoDB">
             <i class="bx bx-graduation placeholder-icon"></i>
           </div>
@@ -344,7 +373,7 @@
           </div>
         </div>
 
-        <div class="portfolio-box">
+        <div class="portfolio-box" data-category="ml">
           <div class="portfolio-placeholder" data-label="Python · Scikit-learn · ML">
             <i class="bx bx-line-chart placeholder-icon"></i>
           </div>
@@ -360,7 +389,7 @@
           </div>
         </div>
 
-        <div class="portfolio-box">
+        <div class="portfolio-box" data-category="fullstack">
           <div class="portfolio-placeholder" data-label="Django · Celery · PostgreSQL">
             <i class="bx bx-task placeholder-icon"></i>
           </div>
@@ -376,7 +405,8 @@
           </div>
         </div>
 
-        <div class="portfolio-box">
+        <div class="portfolio-box" data-category="fullstack">
+          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
           <div class="portfolio-placeholder" data-label="HTML · CSS · JavaScript">
             <i class="bx bx-code-alt placeholder-icon"></i>
           </div>
@@ -447,5 +477,6 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="script.js"></script>
     <div id="toast" class="toast"></div>
+    <div id="cursor-glow"></div>
   </body>
 </html>
