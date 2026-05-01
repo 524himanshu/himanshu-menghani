@@ -874,6 +874,60 @@ span {
   display: none;
 }
 
+
+/* ===== live badge ===== */
+.live-badge {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 10;
+  background: rgba(0, 20, 15, 0.85);
+  border: 1px solid #00e676;
+  color: #00e676;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.05rem;
+}
+
+.live-badge i {
+  font-size: 1.1rem;
+  animation: livePulse 1.8s ease-in-out infinite;
+  color: #00e676;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+
+/* ===== cursor glow ===== */
+#cursor-glow {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 238, 255, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  will-change: transform;
+}
+
+#cursor-glow.hovering {
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(circle, rgba(0, 238, 255, 0.2) 0%, transparent 70%);
+}
+
+
 /* ===== breakpoints ===== */
 @media (max-width: 1200px) {
   html { font-size: 55%; }
