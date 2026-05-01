@@ -110,7 +110,43 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
   }
 });
 
-/* ==================== toast notification ==================== */
+/* ==================== project filter tabs ==================== */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const portfolioBoxes = document.querySelectorAll('.portfolio-box');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    portfolioBoxes.forEach(box => {
+      const categories = box.dataset.category || '';
+      if (filter === 'all' || categories.includes(filter)) {
+        box.classList.remove('hidden');
+      } else {
+        box.classList.add('hidden');
+      }
+    });
+  });
+});
+
+/* ==================== cursor glow ==================== */
+const cursorGlow = document.getElementById('cursor-glow');
+
+document.addEventListener('mousemove', (e) => {
+  cursorGlow.style.left = e.clientX + 'px';
+  cursorGlow.style.top = e.clientY + 'px';
+});
+
+document.addEventListener('mouseover', (e) => {
+  if (e.target.closest('a, button, .portfolio-box, .filter-btn, .tech-icon, .nft')) {
+    cursorGlow.classList.add('hovering');
+  } else {
+    cursorGlow.classList.remove('hovering');
+  }
+});
 function showToast(message) {
   const toast = document.getElementById('toast');
   toast.textContent = message;
