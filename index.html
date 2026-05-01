@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <!-- scroll progress bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- open to work badge -->
+    <div class="otw-badge">
+      <span class="otw-dot"></span>
+      Available for hire
+    </div>
+
     <!-- header -->
     <header class="header">
       <a href="#" class="logo"><span>Himanshu.</span></a>
@@ -19,6 +28,7 @@
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
         <a href="#stats-card">Statistics</a>
         <a href="#certificates">Certificates</a>
         <a href="#portfolio">Projects</a>
@@ -128,6 +138,70 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- experience / timeline section -->
+    <section class="experience" id="experience">
+      <h2 class="heading">My <span>Experience</span></h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">May 2025 – Present</div>
+          <div class="timeline-content">
+            <h3>AI for Bharat Hackathon <span class="tl-badge">Hackathon</span></h3>
+            <h4>Government of Karnataka & PAN IIT Alumni Association</h4>
+            <p>Building PulseWatch — an AI-powered healthcare signal intelligence platform under Theme 6. Selected for prototype phase with grand finale at Taj Yeshwantpur, Bengaluru.</p>
+            <div class="tl-tags"><span>AI</span><span>Healthcare</span><span>Next.js</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025</div>
+          <div class="timeline-content">
+            <h3>Founding Engineer Challenge <span class="tl-badge">Contract</span></h3>
+            <h4>Playto</h4>
+            <p>Completed a full-stack engineering challenge for a Founding Engineer role — Django, PostgreSQL, and Celery task queue system built from scratch and deployed to Railway.</p>
+            <div class="tl-tags"><span>Django</span><span>PostgreSQL</span><span>Celery</span><span>Railway</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024 – Present</div>
+          <div class="timeline-content">
+            <h3>Full Stack & AI Developer <span class="tl-badge">Self-employed</span></h3>
+            <h4>Independent</h4>
+            <p>Built and deployed multiple production projects — AI Health Diagnostics Platform (Next.js + Flask + Gemini API), CF AI Career Coach (Cloudflare Workers AI + Llama 3.3 70B), and a Parkinson's ML pipeline with 94.87% accuracy.</p>
+            <div class="tl-tags"><span>Next.js</span><span>Flask</span><span>Cloudflare</span><span>ML</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep – Oct 2023</div>
+          <div class="timeline-content">
+            <h3>Web Development Intern <span class="tl-badge">Internship</span></h3>
+            <h4>OctaNet Services Pvt Ltd</h4>
+            <p>Worked on real web development projects during a 2-month internship. Gained hands-on experience with frontend and backend development in a professional environment.</p>
+            <div class="tl-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2023</div>
+          <div class="timeline-content">
+            <h3>INVICTUS24 Hackathon <span class="tl-badge">Hackathon</span></h3>
+            <h4>QuestIT Cell × ISTE VESIT</h4>
+            <p>Participated in a 24-hour hackathon, building under pressure and collaborating on a technical solution from ideation to demo.</p>
+            <div class="tl-tags"><span>Hackathon</span><span>24hr</span><span>Team</span></div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -465,15 +539,39 @@
 
     <!-- footer -->
     <footer class="footer">
-      <div class="footer-text">
-        <p>
-          Copyright &copy;
-          <a href="https://www.linkedin.com/in/himanshumenghani524/" target="_blank" rel="noopener"><span>Himanshu Menghani</span></a>
-          | All Rights Reserved
-        </p>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="logo"><span>Himanshu.</span></a>
+          <p>Full Stack & AI Developer based in Mumbai.</p>
+          <div class="footer-socials">
+            <a href="https://github.com/524himanshu" target="_blank" rel="noopener"><i class="bx bxl-github"></i></a>
+            <a href="https://www.linkedin.com/in/himanshumenghani524/" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
+            <a href="https://www.instagram.com/himanshumenghani524/" target="_blank" rel="noopener"><i class="bx bxl-instagram"></i></a>
+            <a href="https://discord.gg/dFHYPdjw" target="_blank" rel="noopener"><i class="bx bxl-discord"></i></a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#portfolio">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Get In Touch</h4>
+          <p><i class="bx bx-map"></i> Mumbai, Maharashtra, India</p>
+          <p><i class="bx bx-globe"></i> <a href="https://himanshu-menghani.vercel.app/" target="_blank" rel="noopener">himanshu-menghani.vercel.app</a></p>
+          <a href="Himanshu Professional Resume.pdf" download class="btn footer-btn">Download CV</a>
+        </div>
       </div>
-      <div class="footer-iconTop">
-        <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
+      <div class="footer-bottom">
+        <p>
+          Copyright &copy; <a href="https://www.linkedin.com/in/himanshumenghani524/" target="_blank" rel="noopener"><span>Himanshu Menghani</span></a> | All Rights Reserved
+        </p>
+        <div class="footer-iconTop">
+          <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
+        </div>
       </div>
     </footer>
 
