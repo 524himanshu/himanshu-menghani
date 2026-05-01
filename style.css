@@ -780,6 +780,100 @@ span {
   transform: translateY(0);
 }
 
+
+/* ===== tech stack icon row ===== */
+.tech-stack {
+  margin: 2rem 0 2.5rem;
+}
+
+.tech-stack-label {
+  display: block;
+  font-size: 1.3rem;
+  color: var(--main-color);
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tech-icon {
+  width: 4.2rem;
+  height: 4.2rem;
+  background: var(--bg-color);
+  border: 1px solid rgba(0, 238, 255, 0.2);
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+  cursor: default;
+}
+
+.tech-icon img {
+  width: 2.4rem;
+  height: 2.4rem;
+  object-fit: contain;
+  filter: brightness(0.85);
+  transition: 0.3s ease;
+}
+
+.tech-icon:hover {
+  border-color: var(--main-color);
+  box-shadow: 0 0 10px rgba(0, 238, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+.tech-icon:hover img {
+  filter: brightness(1.1);
+}
+
+/* ===== portfolio filter tabs ===== */
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+
+.filter-btn {
+  padding: 0.7rem 2.2rem;
+  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  border-radius: 3rem;
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: 0.3s ease;
+  letter-spacing: 0.05rem;
+}
+
+.filter-btn:hover {
+  border-color: var(--main-color);
+  color: var(--main-color);
+}
+
+.filter-btn.active {
+  background: var(--main-color);
+  color: var(--bg-color);
+  border-color: var(--main-color);
+  box-shadow: 0 0 12px rgba(0, 238, 255, 0.35);
+}
+
+/* hidden state for filtered-out cards */
+.portfolio-box.hidden {
+  display: none;
+}
+
 /* ===== breakpoints ===== */
 @media (max-width: 1200px) {
   html { font-size: 55%; }
