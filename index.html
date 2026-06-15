@@ -131,7 +131,13 @@
     <!-- skills section -->
     <section class="skills" id="skills">
       <h2 class="heading">My <span>Skills</span></h2>
-      <div class="skills-container">
+      
+      <div class="skills-toggle-wrapper">
+        <button class="skills-toggle active" id="btn-skills-list"><i class="bx bx-list-ul"></i> Standard List</button>
+        <button class="skills-toggle" id="btn-skills-graph"><i class="bx bx-network-chart"></i> Interactive Graph</button>
+      </div>
+
+      <div class="skills-container" id="skills-container">
 
         <div class="skills-card">
           <div class="skills-card-header">
@@ -229,6 +235,11 @@
         </div>
 
       </div>
+
+      <div class="skills-canvas-container" id="skills-canvas-container" style="display: none;">
+        <canvas id="skills-canvas"></canvas>
+        <div class="canvas-instruction">Drag nodes to explore relations. Hovering over a node highlights its dependencies.</div>
+      </div>
     </section>
 
 
@@ -293,6 +304,30 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- Git Activity Contribution Section -->
+      <div class="git-activity-container">
+        <h3>Development Activity</h3>
+        <div class="git-grid-wrapper">
+          <div class="git-grid-scroll">
+            <div id="git-contribution-grid" class="git-contribution-grid">
+              <!-- Cells generated dynamically by JS -->
+            </div>
+          </div>
+          <div class="git-grid-footer">
+            <div class="git-grid-legend">
+              <span>Less</span>
+              <span class="legend-cell level-0"></span>
+              <span class="legend-cell level-1"></span>
+              <span class="legend-cell level-2"></span>
+              <span class="legend-cell level-3"></span>
+              <span class="legend-cell level-4"></span>
+              <span>More</span>
+            </div>
+            <span class="git-info-text"><i class="bx bx-info-circle"></i> Hover on cells to inspect daily commits. Click to view diff logs.</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -548,6 +583,110 @@
       </div>
     </section>
 
+    <!-- AI Playground Section -->
+    <section class="playground" id="playground">
+      <h2 class="heading">AI <span>Playground</span></h2>
+      <p class="playground-subheading">Interactive simulation of a RAG (Retrieval-Augmented Generation) query pipeline</p>
+      
+      <div class="playground-container">
+        <!-- Control Panel -->
+        <div class="playground-panel controls-panel">
+          <h3>RAG Settings</h3>
+          
+          <div class="control-group">
+            <label for="rag-query">User Search Query</label>
+            <input type="text" id="rag-query" value="Show Python asynchronous project details" placeholder="Type a search query...">
+          </div>
+          
+          <div class="control-group">
+            <label for="rag-chunk-size">Chunk Size (characters)</label>
+            <select id="rag-chunk-size">
+              <option value="100">100 (Fine-grained chunks)</option>
+              <option value="200" selected>200 (Balanced chunks)</option>
+              <option value="400">400 (Coarse-grained chunks)</option>
+            </select>
+          </div>
+          
+          <div class="control-group">
+            <label for="rag-overlap">Chunk Overlap (characters)</label>
+            <div class="slider-container">
+              <input type="range" id="rag-overlap" min="0" max="100" value="30">
+              <span id="overlap-val">30</span>
+            </div>
+          </div>
+          
+          <button id="btn-run-rag" class="btn"><i class="bx bx-play-circle"></i> Run Pipeline</button>
+          
+          <div class="playground-console">
+            <h4>Pipeline Logs</h4>
+            <div class="console-output" id="rag-console-logs">
+              <span class="log-line text-muted">[System] Ready to run RAG pipeline simulation.</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pipeline Flow Visualization -->
+        <div class="playground-panel visualization-panel">
+          <div class="rag-stages-flow">
+            
+            <!-- Stage 1: Source Document -->
+            <div class="rag-stage-card" id="stage-doc">
+              <div class="stage-header">
+                <span class="stage-num">1</span>
+                <h4>Source Document</h4>
+              </div>
+              <div class="stage-content doc-viewer" id="rag-doc-viewer">
+                <!-- Source document content shown here -->
+              </div>
+            </div>
+            
+            <!-- Stage 2: Chunking & Embedding -->
+            <div class="rag-stage-card" id="stage-chunks">
+              <div class="stage-header">
+                <span class="stage-num">2</span>
+                <h4>Chunking &amp; Embeddings</h4>
+              </div>
+              <div class="stage-content chunks-viewer" id="rag-chunks-viewer">
+                <span class="text-muted italic">Click 'Run Pipeline' to see chunks.</span>
+              </div>
+            </div>
+            
+            <!-- Stage 3: Vector Db Similarity Ranker -->
+            <div class="rag-stage-card" id="stage-db">
+              <div class="stage-header">
+                <span class="stage-num">3</span>
+                <h4>Vector DB Matching</h4>
+              </div>
+              <div class="stage-content ranker-viewer" id="rag-ranker-viewer">
+                <span class="text-muted italic">Awaiting document indexing...</span>
+              </div>
+            </div>
+            
+            <!-- Stage 4: LLM Context Synthesis -->
+            <div class="rag-stage-card" id="stage-llm">
+              <div class="stage-header">
+                <span class="stage-num">4</span>
+                <h4>LLM Synthesis</h4>
+              </div>
+              <div class="stage-content llm-viewer">
+                <div class="llm-prompt-context" id="rag-llm-context">
+                  <span class="label">Context prompt:</span>
+                  <div class="context-data text-muted italic">No context loaded.</div>
+                </div>
+                <div class="llm-response">
+                  <span class="label">AI Answer:</span>
+                  <div class="response-text" id="rag-llm-response">
+                    <span class="cursor-typing">|</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- contact section -->
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me</span></h2>
@@ -697,6 +836,23 @@
               <!-- Inline SVG injected here -->
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retro Git Terminal Modal -->
+    <div id="git-terminal-overlay" class="git-terminal-overlay">
+      <div id="git-terminal-modal" class="git-terminal-modal">
+        <div class="terminal-header">
+          <div class="terminal-buttons">
+            <span class="term-btn close" id="term-close-btn"></span>
+            <span class="term-btn minimize"></span>
+            <span class="term-btn expand"></span>
+          </div>
+          <span class="terminal-title">bash - git log --git-dir=himanshu-menghani.git</span>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <!-- Commit log output injected here -->
         </div>
       </div>
     </div>

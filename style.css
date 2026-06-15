@@ -2166,3 +2166,657 @@ body.dark-theme .arch-drawer {
   .footer { flex-direction: column-reverse; }
   .footer p { text-align: center; margin-top: 2rem; }
 }
+
+/* ===== Skills View Toggle & Canvas Graph ===== */
+.skills-toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: -1rem;
+  margin-bottom: 3rem;
+}
+
+.skills-toggle {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-heading);
+  outline: none;
+}
+
+.skills-toggle i {
+  font-size: 1.6rem;
+  color: var(--text-muted);
+}
+
+.skills-toggle:hover {
+  border-color: var(--main-color);
+  background: rgba(0, 238, 255, 0.05);
+}
+
+.skills-toggle.active {
+  background: var(--main-color);
+  color: var(--bg-color);
+  border-color: var(--main-color);
+  box-shadow: var(--btn-shadow);
+}
+
+.skills-toggle.active i {
+  color: var(--bg-color);
+}
+
+.skills-canvas-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+}
+
+body.dark-theme .skills-canvas-container {
+  background: rgba(10, 10, 10, 0.6);
+}
+
+#skills-canvas {
+  width: 100%;
+  height: 450px;
+  display: block;
+  cursor: grab;
+}
+
+#skills-canvas:active {
+  cursor: grabbing;
+}
+
+.canvas-instruction {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--card-border);
+  padding-top: 1.2rem;
+}
+
+/* ===== Git Contribution Calendar ===== */
+.git-activity-container {
+  margin-top: 5rem;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.git-activity-container h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.git-grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.git-grid-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.git-contribution-grid {
+  display: grid;
+  grid-template-rows: repeat(7, 10px);
+  grid-auto-flow: column;
+  gap: 3px;
+  width: max-content;
+}
+
+.git-day-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.1s ease, border-color 0.2s;
+}
+
+.git-day-cell:hover {
+  transform: scale(1.3);
+  outline: 1px solid var(--main-color);
+  z-index: 2;
+}
+
+.git-day-cell.level-0 { background: rgba(255, 255, 255, 0.05); }
+.git-day-cell.level-1 { background: rgba(0, 238, 255, 0.2); }
+.git-day-cell.level-2 { background: rgba(0, 238, 255, 0.45); }
+.git-day-cell.level-3 { background: rgba(0, 238, 255, 0.7); }
+.git-day-cell.level-4 { background: rgba(0, 238, 255, 0.95); box-shadow: 0 0 5px rgba(0, 238, 255, 0.6); }
+
+.git-grid-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.git-grid-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-cell.level-0 { background: rgba(255, 255, 255, 0.05); }
+.legend-cell.level-1 { background: rgba(0, 238, 255, 0.2); }
+.legend-cell.level-2 { background: rgba(0, 238, 255, 0.45); }
+.legend-cell.level-3 { background: rgba(0, 238, 255, 0.7); }
+.legend-cell.level-4 { background: rgba(0, 238, 255, 0.95); }
+
+.git-info-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.git-info-text i {
+  color: var(--main-color);
+  font-size: 1.4rem;
+}
+
+/* Tooltip */
+.git-tooltip {
+  position: absolute;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(4px);
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+/* Retro Terminal Modal */
+.git-terminal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 10010;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.git-terminal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.git-terminal-modal {
+  width: 100%;
+  max-width: 700px;
+  background: #0d0e12;
+  border: 1px solid #1f2937;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.git-terminal-overlay.active .git-terminal-modal {
+  transform: scale(1);
+}
+
+.terminal-header {
+  background: #181920;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #282a36;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.term-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.term-btn.close { background: #ff5f56; }
+.term-btn.minimize { background: #ffbd2e; }
+.term-btn.expand { background: #27c93f; }
+
+.terminal-title {
+  color: #a9b2c3;
+  font-size: 1.2rem;
+  font-family: monospace;
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.3rem;
+  color: #50fa7b;
+  line-height: 1.5;
+  background: #0f1015;
+  text-align: left;
+}
+
+.terminal-body pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Git Diff Highlighting */
+.diff-added { color: #8be9fd; }
+.diff-removed { color: #ff5555; }
+.diff-meta { color: #bd93f9; }
+.diff-commit { color: #f1fa8c; }
+
+/* ===== AI RAG Playground Section ===== */
+.playground {
+  background: var(--second-bg-color);
+  padding: 10rem 9% 8rem;
+}
+
+.playground-subheading {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  margin-top: -1rem;
+  margin-bottom: 4rem;
+}
+
+.playground-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.playground-panel {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+}
+
+body.dark-theme .playground-panel {
+  background: rgba(10, 10, 10, 0.6);
+}
+
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.controls-panel h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.control-group label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: left;
+}
+
+.control-group input[type="text"],
+.control-group select {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.control-group input[type="text"]:focus,
+.control-group select:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 10px rgba(0, 238, 255, 0.1);
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.slider-container input[type="range"] {
+  flex: 1;
+  accent-color: var(--main-color);
+  height: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.slider-container span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--main-color);
+  min-width: 30px;
+}
+
+.playground-console {
+  margin-top: 2rem;
+  border-top: 1px solid var(--card-border);
+  padding-top: 1.5rem;
+  text-align: left;
+}
+
+.playground-console h4 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--text-color);
+  margin-bottom: 0.8rem;
+}
+
+.console-output {
+  background: #0a0b0f;
+  border: 1px solid var(--card-border);
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  height: 100px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.log-line {
+  color: #50fa7b;
+}
+
+.log-line.system {
+  color: #ffb86c;
+}
+
+.log-line.error {
+  color: #ff5555;
+}
+
+/* Visualization Panel Stages */
+.rag-stages-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.rag-stage-card {
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.01);
+  padding: 1.5rem;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.rag-stage-card.active {
+  border-color: var(--main-color);
+  background: rgba(0, 238, 255, 0.03);
+  box-shadow: 0 0 15px rgba(0, 238, 255, 0.1);
+}
+
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.stage-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--card-border);
+  transition: all 0.3s;
+}
+
+.rag-stage-card.active .stage-num {
+  background: var(--main-color);
+  color: var(--bg-color);
+  border-color: var(--main-color);
+}
+
+.stage-header h4 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.stage-content {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Stage Specifics */
+.doc-viewer {
+  max-height: 80px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.6rem;
+  padding: 0.8rem;
+  font-family: var(--font-body);
+}
+
+.chunks-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-height: 110px;
+  overflow-y: auto;
+  padding: 0.2rem;
+}
+
+.rag-chunk-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+  font-size: 1.1rem;
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.rag-chunk-item.highlight-chunk {
+  border-color: var(--main-color);
+  background: rgba(0, 238, 255, 0.08);
+}
+
+.chunk-id {
+  font-size: 0.9rem;
+  color: var(--main-color);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.ranker-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-height: 110px;
+  overflow-y: auto;
+}
+
+.rank-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  border-left: 3px solid transparent;
+}
+
+.rank-item.match {
+  border-left-color: var(--main-color);
+}
+
+.rank-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.rank-score {
+  color: var(--main-color);
+}
+
+.score-bar-bg {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background: var(--main-color);
+  width: 0%;
+  transition: width 0.8s ease-out;
+}
+
+.llm-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.llm-prompt-context {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+}
+
+.llm-prompt-context .label,
+.llm-response .label {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.context-data {
+  max-height: 60px;
+  overflow-y: auto;
+  font-family: monospace;
+}
+
+.llm-response {
+  background: #07090d;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--card-border);
+}
+
+.response-text {
+  font-size: 1.3rem;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: #fff;
+}
+
+.cursor-typing {
+  font-weight: bold;
+  animation: cursor-blink 0.8s step-end infinite;
+  color: var(--main-color);
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 991px) {
+  .playground {
+    padding: 8rem 5% 6rem;
+  }
+  .playground-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+

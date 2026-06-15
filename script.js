@@ -762,4 +762,830 @@ async function fetchVisitorAnalytics() {
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchVisitorAnalytics();
+  initSkillsCanvasView();
+  initGitCalendar();
+  initRagPlayground();
 });
+
+/* ==================== Interactive Canvas Tech Stack Node Graph ==================== */
+function initSkillsCanvasView() {
+  const btnList = document.getElementById('btn-skills-list');
+  const btnGraph = document.getElementById('btn-skills-graph');
+  const listContainer = document.getElementById('skills-container');
+  const canvasContainer = document.getElementById('skills-canvas-container');
+  const canvas = document.getElementById('skills-canvas');
+
+  if (!btnList || !btnGraph || !listContainer || !canvasContainer || !canvas) return;
+
+  let animationFrameId = null;
+  let isInitialized = false;
+
+  // Toggle handlers
+  btnList.addEventListener('click', () => {
+    btnList.classList.add('active');
+    btnGraph.classList.remove('active');
+    listContainer.style.display = 'grid';
+    canvasContainer.style.display = 'none';
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+  });
+
+  btnGraph.addEventListener('click', () => {
+    btnGraph.classList.add('active');
+    btnList.classList.remove('active');
+    listContainer.style.display = 'none';
+    canvasContainer.style.display = 'block';
+    
+    // Initialize or restart simulation
+    resizeCanvas();
+    if (!isInitialized) {
+      initPhysics();
+      isInitialized = true;
+    }
+    startSimulation();
+  });
+
+  // Physics Variables
+  const ctx = canvas.getContext('2d');
+  let nodes = [];
+  let links = [];
+  let dragNode = null;
+  let hoverNode = null;
+  let mouse = { x: 0, y: 0 };
+
+  const skillNodesData = [
+    // Languages
+    { id: 'javascript', label: 'JavaScript' },
+    { id: 'python', label: 'Python' },
+    { id: 'sql', label: 'SQL' },
+    // AI/ML
+    { id: 'llms', label: 'LLMs' },
+    { id: 'agentic-ai', label: 'Agentic AI' },
+    { id: 'rag-pipelines', label: 'RAG' },
+    { id: 'prompt-engineering', label: 'Prompt Eng' },
+    { id: 'scikit-learn', label: 'Scikit-learn' },
+    { id: 'pandas-numpy', label: 'Pandas/NumPy' },
+    // Backend
+    { id: 'fastapi', label: 'FastAPI' },
+    { id: 'django-drf', label: 'Django DRF' },
+    { id: 'flask', label: 'Flask' },
+    { id: 'node-express', label: 'Node/Express' },
+    { id: 'rest-apis', label: 'REST APIs' },
+    { id: 'jwt-auth', label: 'JWT Auth' },
+    { id: 'celery', label: 'Celery' },
+    { id: 'redis', label: 'Redis' },
+    // Frontend
+    { id: 'react-js', label: 'React.js' },
+    { id: 'next-js', label: 'Next.js' },
+    { id: 'tailwind-css', label: 'Tailwind CSS' },
+    { id: 'html-css', label: 'HTML/CSS' },
+    // Databases
+    { id: 'postgresql', label: 'PostgreSQL' },
+    { id: 'mongodb', label: 'MongoDB' },
+    // Tools
+    { id: 'docker', label: 'Docker' },
+    { id: 'git-github', label: 'Git/GitHub' },
+    { id: 'postman', label: 'Postman' },
+    { id: 'vercel-render', label: 'Vercel/Render' },
+    { id: 'cloudflare-workers', label: 'CF Workers' },
+    // Concepts
+    { id: 'rbac', label: 'RBAC' },
+    { id: 'async-processing', label: 'Async Queue' },
+    { id: 'api-design', label: 'API Design' }
+  ];
+
+  function resizeCanvas() {
+    canvas.width = canvasContainer.clientWidth - 40;
+    canvas.height = 450;
+  }
+
+  window.addEventListener('resize', () => {
+    if (canvasContainer.style.display !== 'none') {
+      resizeCanvas();
+    }
+  });
+
+  function initPhysics() {
+    nodes = skillNodesData.map(d => ({
+      ...d,
+      x: canvas.width / 4 + Math.random() * (canvas.width / 2),
+      y: canvas.height / 4 + Math.random() * (canvas.height / 2),
+      vx: 0,
+      vy: 0,
+      radius: d.label.length * 4.5 + 14,
+      isTarget: false
+    }));
+
+    // Create links based on skillRelations mapping
+    links = [];
+    nodes.forEach(source => {
+      const targets = skillRelations[source.id] || [];
+      targets.forEach(targetId => {
+        const target = nodes.find(n => n.id === targetId);
+        if (target) {
+          links.push({ source, target });
+        }
+      });
+    });
+  }
+
+  function startSimulation() {
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    
+    function step() {
+      updatePhysics();
+      drawGraph();
+      animationFrameId = requestAnimationFrame(step);
+    }
+    step();
+  }
+
+  function updatePhysics() {
+    // 1. Repulsion between all nodes
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const n1 = nodes[i];
+        const n2 = nodes[j];
+        const dx = n2.x - n1.x;
+        const dy = n2.y - n1.y;
+        const dist = Math.hypot(dx, dy) || 1;
+        const minDist = n1.radius + n2.radius + 35;
+        
+        if (dist < minDist) {
+          const force = (minDist - dist) * 0.08;
+          const fx = (dx / dist) * force;
+          const fy = (dy / dist) * force;
+          
+          if (!n1.fixed) { n1.vx -= fx; n1.vy -= fy; }
+          if (!n2.fixed) { n2.vx += fx; n2.vy += fy; }
+        }
+      }
+    }
+
+    // 2. Link Attraction forces
+    links.forEach(link => {
+      const dx = link.target.x - link.source.x;
+      const dy = link.target.y - link.source.y;
+      const dist = Math.hypot(dx, dy) || 1;
+      const desiredDist = 120;
+      
+      const force = (dist - desiredDist) * 0.02;
+      const fx = (dx / dist) * force;
+      const fy = (dy / dist) * force;
+      
+      if (!link.source.fixed) { link.source.vx += fx; link.source.vy += fy; }
+      if (!link.target.fixed) { link.target.vx -= fx; link.target.vy -= fy; }
+    });
+
+    // 3. Gravity pulling toward center
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    nodes.forEach(n => {
+      if (n.fixed) return;
+      n.vx += (cx - n.x) * 0.003;
+      n.vy += (cy - n.y) * 0.003;
+
+      // Friction
+      n.vx *= 0.88;
+      n.vy *= 0.88;
+
+      // Update positions
+      n.x += n.vx;
+      n.y += n.vy;
+
+      // Boundary Collisions
+      if (n.x < n.radius) { n.x = n.radius; n.vx *= -0.5; }
+      if (n.x > canvas.width - n.radius) { n.x = canvas.width - n.radius; n.vx *= -0.5; }
+      if (n.y < n.radius) { n.y = n.radius; n.vy *= -0.5; }
+      if (n.y > canvas.height - n.radius) { n.y = canvas.height - n.radius; n.vy *= -0.5; }
+    });
+  }
+
+  function drawGraph() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Get Active Theme Colors
+    const style = getComputedStyle(document.body);
+    const mainColor = style.getPropertyValue('--main-color').trim();
+    const cardBorder = style.getPropertyValue('--card-border').trim();
+    const textColor = style.getPropertyValue('--text-color').trim();
+    const textMuted = style.getPropertyValue('--text-muted').trim();
+    const bgSec = style.getPropertyValue('--second-bg-color').trim();
+
+    // 1. Draw Links
+    links.forEach(link => {
+      const isHighlighted = hoverNode && (hoverNode === link.source || hoverNode === link.target);
+      
+      ctx.beginPath();
+      ctx.moveTo(link.source.x, link.source.y);
+      ctx.lineTo(link.target.x, link.target.y);
+      
+      if (isHighlighted) {
+        ctx.strokeStyle = mainColor;
+        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = 0.8;
+      } else {
+        ctx.strokeStyle = cardBorder;
+        ctx.lineWidth = 1.0;
+        ctx.globalAlpha = hoverNode ? 0.15 : 0.4;
+      }
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1.0;
+
+    // 2. Draw Nodes
+    nodes.forEach(n => {
+      const isHovered = n === hoverNode;
+      const isRelated = hoverNode && (hoverNode === n || (skillRelations[hoverNode.id] || []).includes(n.id) || (skillRelations[n.id] || []).includes(hoverNode.id));
+
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      
+      // Fill Node Card Background
+      ctx.fillStyle = bgSec;
+      ctx.fill();
+
+      // Stroke Node Outline
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      
+      if (hoverNode) {
+        if (isHovered) {
+          ctx.strokeStyle = mainColor;
+          ctx.lineWidth = 2.5;
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = mainColor;
+        } else if (isRelated) {
+          ctx.strokeStyle = mainColor;
+          ctx.lineWidth = 2.0;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = mainColor;
+        } else {
+          ctx.strokeStyle = cardBorder;
+          ctx.lineWidth = 1;
+          ctx.globalAlpha = 0.25;
+        }
+      } else {
+        ctx.strokeStyle = cardBorder;
+        ctx.lineWidth = 1.5;
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0; // Reset shadow
+      ctx.globalAlpha = 1.0;
+
+      // Draw Label
+      ctx.font = `600 12px "Poppins", sans-serif`;
+      ctx.fillStyle = hoverNode && !isHovered && !isRelated ? textMuted : textColor;
+      if (hoverNode && (isHovered || isRelated)) {
+        ctx.fillStyle = mainColor;
+      }
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(n.label, n.x, n.y);
+    });
+  }
+
+  // Interactivity Handlers
+  function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+
+  function getNodeAt(pos) {
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      const dist = Math.hypot(nodes[i].x - pos.x, nodes[i].y - pos.y);
+      if (dist < nodes[i].radius) return nodes[i];
+    }
+    return null;
+  }
+
+  canvas.addEventListener('mousemove', (e) => {
+    mouse = getMousePos(e);
+    
+    if (dragNode) {
+      dragNode.x = mouse.x;
+      dragNode.y = mouse.y;
+    } else {
+      hoverNode = getNodeAt(mouse);
+    }
+  });
+
+  canvas.addEventListener('mousedown', (e) => {
+    mouse = getMousePos(e);
+    const node = getNodeAt(mouse);
+    if (node) {
+      dragNode = node;
+      node.fixed = true;
+    }
+  });
+
+  canvas.addEventListener('mouseup', () => {
+    if (dragNode) {
+      dragNode.fixed = false;
+      dragNode = null;
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    if (dragNode) {
+      dragNode.fixed = false;
+      dragNode = null;
+    }
+    hoverNode = null;
+  });
+
+  // Touch Support
+  canvas.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 0) return;
+    const t = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    mouse = {
+      x: t.clientX - rect.left,
+      y: t.clientY - rect.top
+    };
+    if (dragNode) {
+      e.preventDefault();
+      dragNode.x = mouse.x;
+      dragNode.y = mouse.y;
+    }
+  });
+
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 0) return;
+    const t = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    mouse = {
+      x: t.clientX - rect.left,
+      y: t.clientY - rect.top
+    };
+    const node = getNodeAt(mouse);
+    if (node) {
+      e.preventDefault();
+      dragNode = node;
+      node.fixed = true;
+    }
+  });
+
+  canvas.addEventListener('touchend', () => {
+    if (dragNode) {
+      dragNode.fixed = false;
+      dragNode = null;
+    }
+  });
+}
+
+/* ==================== Interactive Git Commit Grid & Explorer ==================== */
+function initGitCalendar() {
+  const grid = document.getElementById('git-contribution-grid');
+  const overlay = document.getElementById('git-terminal-overlay');
+  const termClose = document.getElementById('term-close-btn');
+  const termBody = document.getElementById('terminal-body');
+
+  if (!grid || !overlay || !termClose || !termBody) return;
+
+  // Mock Commit Database
+  const commitMessages = [
+    "refactor: Optimize DrishtiAI adverse event detection classifier",
+    "feat: Add HubSpot API transactional sync triggers to Payout Engine",
+    "deploy: Deploy serverless AI career coach chatbot to Cloudflare Workers",
+    "perf: Optimize cosine similarity search vector calculations in RecruitIQ",
+    "fix: Resolve Redis connection pool leaks in pharmacovigilance streams",
+    "docs: Update system data flow diagrams for Playto payout pipelines",
+    "test: Add integration test coverage for celery task worker failovers",
+    "style: Restore global Poppins typography variables across core grids",
+    "feat: Integrate Presidio PII redaction rules to DrishtiAI router",
+    "feat: Implement dark mode spotlight radial cursor glow mapping",
+    "fix: Resolve CORS preflight failures on Cloudflare AI chat endpoints",
+    "chore: Configure Docker multi-stage builds for Django web application",
+    "feat: Add live repository stats caching using localStorage API",
+    "refactor: Upgrade Workers AI handler to serve Llama 3.3 model context",
+    "feat: Build responsive sliding glassmorphic architecture side drawer"
+  ];
+
+  const diffSnippets = {
+    "DrishtiAI": `commit d8f7a6b5e43c2b1a0f9e8d7c6b5a4f3e2d1c0b9a
+Author: Himanshu Menghani <himanshumenghani524@gmail.com>
+Date:   Mon Jun 8 14:23:11 2026
+
+    refactor: Optimize DrishtiAI adverse event detection classifier
+
+<span class="diff-meta">diff --git a/drishti/classifier.py b/drishti/classifier.py
+index a12bc34..d45ef67 100644</span>
+<span class="diff-removed">--- a/drishti/classifier.py</span>
+<span class="diff-added">+++ b/drishti/classifier.py</span>
+<span class="diff-meta">@@ -24,8 +24,14 @@ def detect_adverse_events(text: str) -> dict:</span>
+<span class="diff-removed">-    doc = legacy_nlp_model(text)</span>
+<span class="diff-removed">-    events = parse_legacy_entities(doc)</span>
+<span class="diff-added">+    # Run optimized sciSpacy entity classifier</span>
+<span class="diff-added">+    doc = scispacy_nlp_pipeline(text)</span>
+<span class="diff-added">+    events = extract_medical_side_effects(doc.ents)</span>
+<span class="diff-added">+    </span>
+<span class="diff-added">+    # Redact PII data utilizing Microsoft Presidio API</span>
+<span class="diff-added">+    events["entities"] = presidio_redactor.sanitize(events["entities"])</span>
+     return events`,
+
+    "Payout Engine": `commit p4o5e6n7g8i9t0a1b2c3d4e5f6a7b8c9d0e1f2a3
+Author: Himanshu Menghani <himanshumenghani524@gmail.com>
+Date:   Wed Jun 10 11:05:42 2026
+
+    feat: Add HubSpot API transactional sync triggers to Payout Engine
+
+<span class="diff-meta">diff --git a/payout/tasks.py b/payout/tasks.py
+index b56cfd3..f789012 100644</span>
+<span class="diff-removed">--- a/payout/tasks.py</span>
+<span class="diff-added">+++ b/payout/tasks.py</span>
+<span class="diff-meta">@@ -57,7 +57,12 @@ def process_reward_payout(user_id: int, amount: float):</span>
+<span class="diff-removed">-    update_local_db_status(user_id, "PAID")</span>
+<span class="diff-added">+    transaction = create_postgresql_ledger_entry(user_id, amount)</span>
+<span class="diff-added">+    </span>
+<span class="diff-added">+    # Queue async webhook dispatch task to HubSpot CRM</span>
+<span class="diff-added">+    hubspot_crm_dispatcher.delay({</span>
+<span class="diff-added">+        "transaction_id": transaction.id,</span>
+<span class="diff-added">+        "status": "COMPLETED"</span>
+<span class="diff-added">+    })</span>`,
+
+    "Career Coach": `commit c2a3c4c5o6a7c8h9i0a1b2c3d4e5f6a7b8c9d0e1
+Author: Himanshu Menghani <himanshumenghani524@gmail.com>
+Date:   Thu Jun 11 18:47:19 2026
+
+    deploy: Deploy serverless AI career coach chatbot to Cloudflare Workers
+
+<span class="diff-meta">diff --git a/wrangler.toml b/wrangler.toml
+new file mode 100644
+index 0000000..c56789d</span>
+<span class="diff-added">+++ b/wrangler.toml</span>
+<span class="diff-meta">@@ -0,0 +1,9 @@</span>
+<span class="diff-added">+name = "cf-ai-web-coach"</span>
+<span class="diff-added">+main = "src/index.js"</span>
+<span class="diff-added">+compatibility_date = "2026-06-01"</span>
+<span class="diff-added">+</span>
+<span class="diff-added">+[ai]</span>
+<span class="diff-added">+binding = "AI"</span>
+<span class="diff-added">+</span>
+<span class="diff-added">+[durable_objects]</span>
+<span class="diff-added">+bindings = [{name = "SESSION_STORE", class_name = "SessionStore"}]</span>`,
+
+    "RecruitIQ": `commit r1e2c3r4u5i6t7i8q9o0a1b2c3d4e5f6a7b8c9d0
+Author: Himanshu Menghani <himanshumenghani524@gmail.com>
+Date:   Fri Jun 12 09:12:05 2026
+
+    perf: Optimize cosine similarity search vector calculations in RecruitIQ
+
+<span class="diff-meta">diff --git a/recruitiq/matching.py b/recruitiq/matching.py
+index m789012..e56cfd3 100644</span>
+<span class="diff-removed">--- a/recruitiq/matching.py</span>
+<span class="diff-added">+++ b/recruitiq/matching.py</span>
+<span class="diff-meta">@@ -12,5 +12,10 @@ def calculate_cosine_similarity(resume_vec, jd_vec):</span>
+<span class="diff-removed">-    dot_product = sum(r*j for r, j in zip(resume_vec, jd_vec))</span>
+<span class="diff-removed">-    return dot_product / (magnitude(resume_vec) * magnitude(jd_vec))</span>
+<span class="diff-added">+    # Batch matrix similarity vector calculation using NumPy</span>
+<span class="diff-added">+    dot_products = np.dot(resume_matrix, jd_vector)</span>
+<span class="diff-added">+    resume_norms = np.linalg.norm(resume_matrix, axis=1)</span>
+<span class="diff-added">+    jd_norm = np.linalg.norm(jd_vector)</span>
+<span class="diff-added">+    </span>
+<span class="diff-added">+    return dot_products / (resume_norms * jd_norm)</span>`
+  };
+
+  // Generate Git Tooltip Element
+  const tooltip = document.createElement('div');
+  tooltip.className = 'git-tooltip';
+  tooltip.style.opacity = '0';
+  document.body.appendChild(tooltip);
+
+  // Generate Grid Blocks (53 weeks * 7 days = 371 cells)
+  const totalDays = 371;
+  const today = new Date();
+  
+  // Set starting date to 371 days ago
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() - totalDays + 1);
+
+  for (let i = 0; i < totalDays; i++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
+
+    // Create Cell
+    const cell = document.createElement('div');
+    cell.className = 'git-day-cell';
+    
+    // Seed commit density (weekends less active, weekdays more active)
+    const dayOfWeek = currentDate.getDay();
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    let commitCount = 0;
+
+    // Pseudo-random distribution based on date hashing
+    const hash = (currentDate.getFullYear() * 12 + currentDate.getMonth() * 31 + currentDate.getDate()) % 100;
+    
+    if (hash > 88) {
+      commitCount = isWeekend ? 1 : 4;
+    } else if (hash > 70) {
+      commitCount = isWeekend ? 0 : 3;
+    } else if (hash > 45) {
+      commitCount = isWeekend ? 0 : 2;
+    } else if (hash > 20) {
+      commitCount = 1;
+    }
+
+    // Determine color level class
+    let level = 0;
+    if (commitCount === 1) level = 1;
+    else if (commitCount === 2) level = 2;
+    else if (commitCount === 3) level = 3;
+    else if (commitCount >= 4) level = 4;
+    
+    cell.classList.add(`level-${level}`);
+    cell.setAttribute('data-commits', commitCount);
+    cell.setAttribute('data-date', currentDate.toDateString());
+
+    // Click behavior (open terminal modal if commits exist)
+    if (commitCount > 0) {
+      cell.addEventListener('click', () => {
+        let commitMsg = commitMessages[hash % commitMessages.length];
+        
+        // Match specific projects for diff content
+        let projKey = "DrishtiAI";
+        if (commitMsg.includes("HubSpot") || commitMsg.includes("Payout")) projKey = "Payout Engine";
+        else if (commitMsg.includes("Workers") || commitMsg.includes("CF")) projKey = "Career Coach";
+        else if (commitMsg.includes("similarity") || commitMsg.includes("Recruit")) projKey = "RecruitIQ";
+
+        let diff = diffSnippets[projKey].replace("[Date]", currentDate.toDateString()).replace("[Commit Message]", commitMsg);
+        
+        termBody.innerHTML = `<pre>${diff}</pre>`;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    // Tooltip Hover bindings
+    cell.addEventListener('mouseenter', (e) => {
+      const commits = e.target.getAttribute('data-commits');
+      const dateStr = e.target.getAttribute('data-date');
+      
+      tooltip.innerHTML = `<strong>${commits} commit${commits !== '1' ? 's' : ''}</strong> on ${dateStr}`;
+      tooltip.style.opacity = '1';
+    });
+
+    cell.addEventListener('mousemove', (e) => {
+      tooltip.style.left = e.pageX + 'px';
+      tooltip.style.top = e.pageY + 'px';
+    });
+
+    cell.addEventListener('mouseleave', () => {
+      tooltip.style.opacity = '0';
+    });
+
+    grid.appendChild(cell);
+  }
+
+  // Close Terminal Handlers
+  function closeTerminal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  termClose.addEventListener('click', closeTerminal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeTerminal();
+  });
+}
+
+/* ==================== Interactive AI RAG Playground ==================== */
+function initRagPlayground() {
+  const btnRun = document.getElementById('btn-run-rag');
+  const queryInput = document.getElementById('rag-query');
+  const sizeSelect = document.getElementById('rag-chunk-size');
+  const overlapInput = document.getElementById('rag-overlap');
+  const overlapVal = document.getElementById('overlap-val');
+  
+  const consoleLogs = document.getElementById('rag-console-logs');
+  const docViewer = document.getElementById('rag-doc-viewer');
+  const chunksViewer = document.getElementById('rag-chunks-viewer');
+  const rankerViewer = document.getElementById('rag-ranker-viewer');
+  const llmContext = document.getElementById('rag-llm-context');
+  const llmResponse = document.getElementById('rag-llm-response');
+
+  if (!btnRun || !queryInput || !sizeSelect || !overlapInput || !consoleLogs) return;
+
+  // Source document text content
+  const sourceDocument = "Himanshu Menghani is a Full Stack Developer and AI Engineer. He specializes in designing scalable backend architectures and AI-driven products. DrishtiAI is his flagship adverse drug event detection tool shortlisted for AI for Bharat 2026. It utilizes Python FastAPI, scispaCy classification libraries, Redis connection caches, and a Microsoft Presidio pipeline to redact PII data in real time. RecruitIQ evaluates candidate qualifications by building miniLM text embeddings and executing cosine similarity algorithms in Streamlit. The CF AI Career Coach chatbot runs serverless Llama 3.3 models on Cloudflare Workers. Playto Payout Engine processes payment lead triggers asynchronously utilizing Celery task queues, Redis brokers, and PostgreSQL transaction tables.";
+
+  // Populate Document Ingestion Card initially
+  if (docViewer) {
+    docViewer.textContent = sourceDocument;
+  }
+
+  // Sync overlap slider text
+  overlapInput.addEventListener('input', (e) => {
+    overlapVal.textContent = e.target.value;
+  });
+
+  // Log printing helper
+  function addLog(text, type = '') {
+    const span = document.createElement('span');
+    span.className = `log-line ${type}`;
+    span.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+    consoleLogs.appendChild(span);
+    consoleLogs.scrollTop = consoleLogs.scrollHeight;
+  }
+
+  // Mock answers database
+  const responses = {
+    python: "Himanshu has developed multiple projects using Python:<br>1. **DrishtiAI**: An adverse side-effect classification pipeline leveraging scispaCy NLP models.<br>2. **RecruitIQ**: Semantically parses resumes, generates miniLM text vector embeddings, and runs cosine distance matches.",
+    asynchronous: "Himanshu's portfolio features complex asynchronous structures:<br>• **Playto Payout Engine**: Leverages Celery tasks and Redis brokers to offload reward transactions from Django DRF request cycles reliably.<br>• **DrishtiAI**: Leverages Redis cache layer to capture live social media streams.",
+    cf: "The **CF AI Career Coach** is a serverless mentorship chatbot built entirely on the Cloudflare ecosystem. It routes client requests through Workers, runs model inference (Llama 3.3) via Workers AI, and manages session history in Durable Objects.",
+    drishti: "**DrishtiAI** is a pharmacovigilance adverse event classifier. It ingests social media data streams, checks medical entities using scispaCy, redacts sensitive metrics with Presidio, and writes to Postgres/Redis. It was selected for AI for Bharat 2026."
+  };
+
+  btnRun.addEventListener('click', () => {
+    // Prevent overlapping pipeline executions
+    if (btnRun.disabled) return;
+    btnRun.disabled = true;
+    btnRun.innerHTML = `<i class="bx bx-loader-alt bx-spin"></i> Processing...`;
+
+    // Clear previous execution visualizations
+    chunksViewer.innerHTML = `<span class="text-muted italic">Chunking source document...</span>`;
+    rankerViewer.innerHTML = `<span class="text-muted italic">Awaiting index metrics...</span>`;
+    llmContext.querySelector('.context-data').innerHTML = `No context loaded.`;
+    llmResponse.innerHTML = `<span class="cursor-typing">|</span>`;
+    
+    // Remove active styling classes
+    document.querySelectorAll('.rag-stage-card').forEach(card => card.classList.remove('active'));
+
+    const query = queryInput.value.trim().toLowerCase();
+    const chunkSize = parseInt(sizeSelect.value);
+    const overlap = parseInt(overlapInput.value);
+
+    addLog(`System: Ingesting search query: "${queryInput.value}"`, 'system');
+
+    // Pipeline Stage 1: Document Loading
+    const stage1 = document.getElementById('stage-doc');
+    if (stage1) stage1.classList.add('active');
+    addLog("Pipeline [Stage 1]: Document parser loaded source text successfully.");
+
+    setTimeout(() => {
+      // Pipeline Stage 2: Chunking & Embeddings
+      document.querySelectorAll('.rag-stage-card').forEach(c => c.classList.remove('active'));
+      const stage2 = document.getElementById('stage-chunks');
+      if (stage2) stage2.classList.add('active');
+      addLog(`Pipeline [Stage 2]: Chunking document. Block size: ${chunkSize} chars, Overlap: ${overlap} chars.`);
+
+      // Split text into chunks
+      let chunks = [];
+      let i = 0;
+      while (i < sourceDocument.length) {
+        let end = Math.min(i + chunkSize, sourceDocument.length);
+        chunks.push({
+          id: `VEC-00${chunks.length + 1}`,
+          text: sourceDocument.substring(i, end)
+        });
+        if (end === sourceDocument.length) break;
+        i += (chunkSize - overlap);
+      }
+
+      // Render chunks
+      chunksViewer.innerHTML = '';
+      chunks.forEach((chunk, index) => {
+        const div = document.createElement('div');
+        div.className = 'rag-chunk-item';
+        div.id = `chunk-node-${index}`;
+        div.innerHTML = `<span class="chunk-id">${chunk.id}</span>${chunk.text}`;
+        chunksViewer.appendChild(div);
+      });
+      addLog(`Pipeline [Stage 2]: Segmented document into ${chunks.length} blocks. Created vector embeddings.`);
+
+      setTimeout(() => {
+        // Pipeline Stage 3: Matching / Search
+        document.querySelectorAll('.rag-stage-card').forEach(c => c.classList.remove('active'));
+        const stage3 = document.getElementById('stage-db');
+        if (stage3) stage3.classList.add('active');
+        addLog("Pipeline [Stage 3]: Querying vector database index...");
+
+        // Calculate scores based on query matches
+        const queryTerms = query.split(/\s+/);
+        let rankedMatches = chunks.map((chunk, index) => {
+          let score = 0.05 + Math.random() * 0.1; // Base score
+          queryTerms.forEach(term => {
+            if (term.length > 2 && chunk.text.toLowerCase().includes(term)) {
+              score += 0.35 + Math.random() * 0.15;
+            }
+          });
+          return {
+            ...chunk,
+            index,
+            score: Math.min(score, 0.98).toFixed(2)
+          };
+        });
+
+        // Sort descending
+        rankedMatches.sort((a, b) => b.score - a.score);
+
+        // Render ranked matches
+        rankerViewer.innerHTML = '';
+        rankedMatches.forEach((match, index) => {
+          const item = document.createElement('div');
+          item.className = 'rank-item';
+          if (index < 2 && match.score > 0.3) {
+            item.classList.add('match');
+            // Highlight the matching chunk block in Stage 2
+            const chunkEl = document.getElementById(`chunk-node-${match.index}`);
+            if (chunkEl) chunkEl.classList.add('highlight-chunk');
+          }
+          item.innerHTML = `
+            <div class="rank-meta">
+              <span>${match.id}</span>
+              <span class="rank-score">Similarity: ${match.score}</span>
+            </div>
+            <div class="score-bar-bg">
+              <div class="score-bar-fill" id="bar-fill-${index}" style="width: 0%;"></div>
+            </div>
+          `;
+          rankerViewer.appendChild(item);
+          
+          // Animate progress bar fill
+          setTimeout(() => {
+            const fill = document.getElementById(`bar-fill-${index}`);
+            if (fill) fill.style.width = `${match.score * 100}%`;
+          }, 50);
+        });
+
+        addLog(`Pipeline [Stage 3]: Match analysis finished. Found ${rankedMatches.filter(m => m.score > 0.3).length} relevant context chunks.`);
+
+        setTimeout(() => {
+          // Pipeline Stage 4: Synthesis
+          document.querySelectorAll('.rag-stage-card').forEach(c => c.classList.remove('active'));
+          const stage4 = document.getElementById('stage-llm');
+          if (stage4) stage4.classList.add('active');
+          addLog("Pipeline [Stage 4]: Compiling top context blocks into prompt context...");
+
+          // Gather top matched context texts
+          const matchingNodes = rankedMatches.filter(m => m.score > 0.3).slice(0, 2);
+          
+          if (matchingNodes.length > 0) {
+            const contextString = matchingNodes.map(m => `[${m.id}]: "${m.text}"`).join("\n\n");
+            llmContext.querySelector('.context-data').textContent = contextString;
+          } else {
+            llmContext.querySelector('.context-data').textContent = 'No matching document blocks exceeded confidence threshold (0.30).';
+          }
+
+          addLog("Pipeline [Stage 4]: Forwarding context to LLM model. Beginning text generation...");
+
+          // Choose appropriate typewriter response
+          let responseText = "Based on the provided context, Himanshu is a Full Stack and AI Engineer. He specializes in Python, FastAPI, Django, and Cloudflare serverless workers.";
+          
+          if (query.includes('python')) {
+            responseText = responses.python;
+          } else if (query.includes('async') || query.includes('queue') || query.includes('celery') || query.includes('redis')) {
+            responseText = responses.asynchronous;
+          } else if (query.includes('cf') || query.includes('workers') || query.includes('llama') || query.includes('career')) {
+            responseText = responses.cf;
+          } else if (query.includes('drishti') || query.includes('bharat') || query.includes('adverse')) {
+            responseText = responses.drishti;
+          }
+
+          // Typewriter animation
+          llmResponse.innerHTML = '';
+          let charIndex = 0;
+          
+          function typeChar() {
+            if (charIndex < responseText.length) {
+              const char = responseText.charAt(charIndex);
+              
+              if (char === '<') {
+                // Skip HTML tags inside response for tag rendering
+                const tagClose = responseText.indexOf('>', charIndex);
+                if (tagClose !== -1) {
+                  llmResponse.innerHTML = responseText.substring(0, tagClose + 1);
+                  charIndex = tagClose + 1;
+                } else {
+                  llmResponse.innerHTML = responseText.substring(0, charIndex + 1);
+                  charIndex++;
+                }
+              } else {
+                llmResponse.innerHTML = responseText.substring(0, charIndex + 1) + '<span class="cursor-typing">|</span>';
+                charIndex++;
+              }
+              setTimeout(typeChar, 25);
+            } else {
+              llmResponse.innerHTML = responseText; // Remove typing cursor when done
+              addLog("Pipeline [Stage 4]: Text synthesis complete. Generation finished.");
+              
+              // Enable trigger button
+              btnRun.disabled = false;
+              btnRun.innerHTML = `<i class="bx bx-play-circle"></i> Run Pipeline`;
+            }
+          }
+          
+          setTimeout(typeChar, 400);
+
+        }, 1800);
+
+      }, 1500);
+
+    }, 1500);
+  });
+}
