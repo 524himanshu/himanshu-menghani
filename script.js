@@ -435,27 +435,70 @@ async function handleUserSend(messageText) {
 function getLocalAIResponse(query) {
   const q = query.toLowerCase();
   
-  if (q.includes('project') || q.includes('build') || q.includes('drishti') || q.includes('recruitiq')) {
+  // Keyword definitions
+  const projectKeywords = ['project', 'build', 'drishti', 'recruitiq', 'career coach', 'playto', 'payout'];
+  const skillKeywords = ['skill', 'stack', 'tech', 'language', 'database'];
+  const contactKeywords = ['contact', 'reach', 'email', 'linkedin', 'phone', 'number', 'mobile', 'call'];
+  const experienceKeywords = ['experience', 'work', 'intern', 'octanet'];
+  const educationKeywords = ['education', 'college', 'university', 'mumbai', 'degree', 'study', 'studies', 'hsc'];
+  const achievementKeywords = ['achievement', 'award', 'hackathon', 'recognition', 'shortlist', 'trophy', 'hack', 'invictus', 'redrob'];
+  const certificationKeywords = ['certificate', 'certification', 'course', 'credential'];
+  const resumeKeywords = ['resume', 'cv', 'pdf', 'download'];
+  const availabilityKeywords = ['available', 'hire', 'looking', 'job', 'recruit', 'hiring', 'role', 'opportunity'];
+  const locationKeywords = ['location', 'based', 'relocate', 'live', 'city', 'india'];
+  const aiKeywords = ['llm', 'genai', 'agentic', 'rag', 'vector', 'model', 'inference', 'llama', 'gemini', 'claude'];
+  const whyKeywords = ['why hire', 'why him', 'strength', 'why should', 'qualities'];
+  const greetingKeywords = ['hello', 'hi', 'hey', 'greet', 'morning', 'evening', 'afternoon'];
+
+  if (achievementKeywords.some(k => q.includes(k))) {
+    return "Key achievements:<br><br>• <strong>AI for Bharat 2026</strong> - Shortlisted for the Prototype Phase with DrishtiAI.<br>• <strong>Redrob India Runs Hackathon</strong> - Built RecruitIQ, an AI-powered candidate ranking system evaluated on 100,000 candidate profiles.<br>• <strong>INVICTUS'24 Hackathon Participant</strong>.";
+  }
+
+  if (certificationKeywords.some(k => q.includes(k))) {
+    return "Relevant certifications:<br><br>• Develop GenAI Apps with Gemini and Streamlit (Google Cloud)<br>• Prompt Design in Vertex AI (Google)<br>• 27+ certifications across AI, Cloud, and Full-Stack Development.";
+  }
+
+  if (resumeKeywords.some(k => q.includes(k))) {
+    return "You can download Himanshu's latest resume directly from the Resume section or request a copy via email at <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a>.";
+  }
+
+  if (availabilityKeywords.some(k => q.includes(k))) {
+    return "Yes! Himanshu is actively seeking opportunities in Full-Stack Development, AI Engineering, GenAI, Agentic AI, and Software Engineering roles. Feel free to connect via LinkedIn or email.";
+  }
+
+  if (locationKeywords.some(k => q.includes(k))) {
+    return "Himanshu is based in Mumbai, India and is open to relocation for the right opportunity.";
+  }
+
+  if (aiKeywords.some(k => q.includes(k))) {
+    return "Himanshu has experience building applications with Gemini, Claude, and Llama 3.3. His work includes RAG pipelines, semantic search, prompt engineering, AI-powered ranking systems, and agentic workflows across projects like RecruitIQ and CF AI Career Coach.";
+  }
+
+  if (whyKeywords.some(k => q.includes(k))) {
+    return "Himanshu combines Full-Stack Development and AI Engineering skills. Unlike many candidates who focus only on models, he builds complete production-ready systems involving FastAPI, Django, Next.js, PostgreSQL, Redis, LLMs, asynchronous workflows, and cloud deployments.";
+  }
+
+  if (projectKeywords.some(k => q.includes(k))) {
     return "Himanshu has built several notable projects:<br><br>• <strong>DrishtiAI</strong>: Real-time pharmacovigilance adverse event detection (Twitter/Reddit streams) shortlisted for AI for Bharat 2026.<br>• <strong>RecruitIQ</strong>: Intelligent candidate ranking engine evaluating 100k profiles.<br>• <strong>CF AI Career Coach</strong>: Serverless Llama 3.3 chatbot on Cloudflare Workers.<br>• <strong>Playto Payout Engine</strong>: Async payout queue with Django & Celery.";
   }
   
-  if (q.includes('skill') || q.includes('tech') || q.includes('stack') || q.includes('language') || q.includes('database')) {
+  if (skillKeywords.some(k => q.includes(k))) {
     return "Himanshu's tech stack includes:<br><br>• <strong>Languages</strong>: JavaScript, Python, SQL<br>• <strong>Backend</strong>: FastAPI, Django & DRF, Flask, Celery, Redis<br>• <strong>AI/ML</strong>: LLM integrations (Gemini, Llama, Claude), Agentic AI, RAG pipelines, Scikit-learn<br>• <strong>Frontend</strong>: Next.js, React.js, Tailwind CSS<br>• <strong>Databases & Tools</strong>: PostgreSQL, MongoDB, Docker, Cloudflare Workers";
   }
   
-  if (q.includes('contact') || q.includes('reach') || q.includes('email') || q.includes('linkedin') || q.includes('hire') || q.includes('phone') || q.includes('number') || q.includes('mobile')) {
+  if (contactKeywords.some(k => q.includes(k))) {
     return "You can reach Himanshu in several ways:<br><br>• <strong>Email</strong>: <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a><br>• <strong>Phone</strong>: <a href='tel:+917769949282'>+91 77699 49282</a><br>• <strong>LinkedIn</strong>: <a href='https://www.linkedin.com/in/himanshumenghani524/' target='_blank'>himanshumenghani524</a><br>• Or fill out the <strong>Contact Form</strong> directly on this page!";
   }
   
-  if (q.includes('experience') || q.includes('work') || q.includes('intern') || q.includes('octanet')) {
+  if (experienceKeywords.some(k => q.includes(k))) {
     return "Himanshu was a <strong>Web Development Intern</strong> at OctaNet Services Pvt Ltd (Sept 2023 – Oct 2023). He developed 3+ responsive web applications (including a prioritize-based task management system) and resolved rendering and styling bugs.";
   }
   
-  if (q.includes('education') || q.includes('college') || q.includes('university') || q.includes('mumbai') || q.includes('degree')) {
+  if (educationKeywords.some(k => q.includes(k))) {
     return "Himanshu graduated with a <strong>Bachelor of Engineering in Information Technology</strong> from Mumbai University (2021 - 2024). He completed his HSC Science board with an 80% score in 2021.";
   }
   
-  if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('greet')) {
+  if (greetingKeywords.some(k => q.includes(k))) {
     return "Hello! I'm Himanshu's AI assistant. Ask me anything about his projects, experience, skills, or achievements!";
   }
   
