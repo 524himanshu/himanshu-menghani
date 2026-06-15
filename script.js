@@ -819,6 +819,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkillsCanvasView();
   initGitCalendar();
   initRagPlayground();
+  initSystemStatusDashboard();
 });
 
 /* ==================== Interactive Canvas Tech Stack Node Graph ==================== */
@@ -928,18 +929,21 @@ function initSkillsCanvasView() {
       y: canvas.height / 4 + Math.random() * (canvas.height / 2),
       vx: 0,
       vy: 0,
-      radius: d.label.length * 4.5 + 14,
+      radius: d.label.length * 2.8 + 12,
       isTarget: false
     }));
 
-    // Create links based on skillRelations mapping
+    // Create unique links based on skillRelations mapping (avoiding double-spring forces)
     links = [];
     nodes.forEach(source => {
       const targets = skillRelations[source.id] || [];
       targets.forEach(targetId => {
         const target = nodes.find(n => n.id === targetId);
         if (target) {
-          links.push({ source, target });
+          // Enforce a single direction/link per pair using lexicographical comparison
+          if (source.id < target.id) {
+            links.push({ source, target });
+          }
         }
       });
     });
@@ -957,7 +961,9 @@ function initSkillsCanvasView() {
   }
 
   function updatePhysics() {
-    // 1. Repulsion between all nodes
+    // 1. Repulsion between all nodes (Global Coulomb Repulsion with Softening)
+    const charge = 15000;
+    const softening = 1000; // prevents extreme values / division by zero
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const n1 = nodes[i];
@@ -965,27 +971,36 @@ function initSkillsCanvasView() {
         const dx = n2.x - n1.x;
         const dy = n2.y - n1.y;
         const dist = Math.hypot(dx, dy) || 1;
-        const minDist = n1.radius + n2.radius + 35;
         
+        // Electrostatic repulsion force with softening
+        const force = charge / (dist * dist + softening);
+        const fx = (dx / dist) * force;
+        const fy = (dy / dist) * force;
+        
+        if (!n1.fixed) { n1.vx -= fx; n1.vy -= fy; }
+        if (!n2.fixed) { n2.vx += fx; n2.vy += fy; }
+
+        // Extra short-range collision pushback (moderated)
+        const minDist = n1.radius + n2.radius + 12;
         if (dist < minDist) {
-          const force = (minDist - dist) * 0.08;
-          const fx = (dx / dist) * force;
-          const fy = (dy / dist) * force;
-          
-          if (!n1.fixed) { n1.vx -= fx; n1.vy -= fy; }
-          if (!n2.fixed) { n2.vx += fx; n2.vy += fy; }
+          const push = (minDist - dist) * 0.15; // gentle push apart
+          const pfx = (dx / dist) * push;
+          const pfy = (dy / dist) * push;
+          if (!n1.fixed) { n1.vx -= pfx; n1.vy -= pfy; }
+          if (!n2.fixed) { n2.vx += pfx; n2.vy += pfy; }
         }
       }
     }
 
-    // 2. Link Attraction forces
+    // 2. Link Spring Attraction/Repulsion forces (Continuous Spring)
     links.forEach(link => {
       const dx = link.target.x - link.source.x;
       const dy = link.target.y - link.source.y;
       const dist = Math.hypot(dx, dy) || 1;
-      const desiredDist = 120;
+      const desiredDist = 130; // Spaced out spring rest distance
       
-      const force = (dist - desiredDist) * 0.02;
+      // Continuous spring: attracts when dist > desiredDist, repels when dist < desiredDist
+      const force = (dist - desiredDist) * 0.015;
       const fx = (dx / dist) * force;
       const fy = (dy / dist) * force;
       
@@ -993,17 +1008,19 @@ function initSkillsCanvasView() {
       if (!link.target.fixed) { link.target.vx -= fx; link.target.vy -= fy; }
     });
 
-    // 3. Gravity pulling toward center
+    // 3. Gravity pulling toward center and Friction dampening
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
     nodes.forEach(n => {
       if (n.fixed) return;
-      n.vx += (cx - n.x) * 0.003;
-      n.vy += (cy - n.y) * 0.003;
+      
+      // Very gentle center gravity to prevent nodes drifting too far
+      n.vx += (cx - n.x) * 0.0003;
+      n.vy += (cy - n.y) * 0.0003;
 
-      // Friction
-      n.vx *= 0.88;
-      n.vy *= 0.88;
+      // Friction / Velocity decay for fast stabilization
+      n.vx *= 0.84;
+      n.vy *= 0.84;
 
       // Update positions
       n.x += n.vx;
@@ -1642,4 +1659,141 @@ function initRagPlayground() {
 
     }, 1500);
   });
+}
+
+/* ==================== Live DevOps Status Dashboard ==================== */
+function initSystemStatusDashboard() {
+  const latencyVal = document.getElementById('ops-latency-val');
+  const latencyBar = document.getElementById('ops-latency-bar');
+  const cpuVal = document.getElementById('ops-cpu-val');
+  const cpuBar = document.getElementById('ops-cpu-bar');
+  const cacheVal = document.getElementById('ops-cache-val');
+  const cacheBar = document.getElementById('ops-cache-bar');
+  const tokensVal = document.getElementById('ops-tokens-val');
+  const tokensBar = document.getElementById('ops-tokens-bar');
+  const consoleLog = document.getElementById('ops-console-log');
+
+  if (!latencyVal || !cpuVal || !cacheVal || !tokensVal || !consoleLog) return;
+
+  // Initial Metrics State
+  let metrics = {
+    latency: 42,
+    cpu: 4.5,
+    cache: 98.4,
+    tokens: 4120
+  };
+
+  // Helper to format time
+  function getTimestamp() {
+    const now = new Date();
+    const hrs = String(now.getHours()).padStart(2, '0');
+    const mins = String(now.getMinutes()).padStart(2, '0');
+    const secs = String(now.getSeconds()).padStart(2, '0');
+    return `[${hrs}:${mins}:${secs}]`;
+  }
+
+  // Helper to add log line
+  function addLog(message, type = 'info') {
+    const line = document.createElement('div');
+    line.className = 'ops-log-line';
+    line.innerHTML = `
+      <span class="ops-log-time">${getTimestamp()}</span>
+      <span class="ops-log-msg ${type}">${message}</span>
+    `;
+    consoleLog.appendChild(line);
+
+    // Keep only last 25 lines
+    while (consoleLog.children.length > 25) {
+      consoleLog.removeChild(consoleLog.firstChild);
+    }
+
+    // Scroll to bottom
+    consoleLog.scrollTop = consoleLog.scrollHeight;
+  }
+
+  // Prepopulate with some system boot logs
+  setTimeout(() => addLog("Initializing Portfolio Services monitoring client...", "info"), 100);
+  setTimeout(() => addLog("DrishtiAI: Successfully loaded Model Weights (adverse_events_v2.bin)", "success"), 600);
+  setTimeout(() => addLog("PostgreSQL DB: Connection pool active on localhost:5432 (12/20 active connections)", "success"), 1100);
+  setTimeout(() => addLog("Cloudflare Workers: Edge listener initialized at /api/visitor", "success"), 1600);
+  setTimeout(() => addLog("System check complete. Monitoring 4 telemetry channels. STATUS: OK", "success"), 2100);
+
+  // List of possible messages for live stream
+  const logTemplates = [
+    { text: "Celery Worker: Worker pool idle. 0 tasks pending.", type: "info" },
+    { text: "Redis Cache: Memory usage nominal at 14.2 MB. Cache hits stable.", type: "info" },
+    { text: "Cloudflare Worker: Request received for /api/visitor. Fetching analytics metadata.", type: "info" },
+    { text: "DrishtiAI Engine: Classifying incoming medical adverse event reports...", type: "info" },
+    { text: "DrishtiAI API: Processed batch of 12 adverse event reports. 0 anomalies detected.", type: "success" },
+    { text: "Cloudflare Worker: Cache HIT for endpoint /api/visitor (served from Edge CDN).", type: "success" },
+    { text: "Celery Task: Completed candidate profile scoring for RecruitIQ in 1.14s.", type: "success" },
+    { text: "Postgres DB: Automated table vacuum completed on 'candidate_profiles'.", type: "success" },
+    { text: "DrishtiAI Engine: Successfully parsed medication entities and symptom keywords.", type: "success" },
+    { text: "Redis Cache: Connection pool close to threshold (46/50 active connections). Scale trigger scheduled.", type: "warning" },
+    { text: "DrishtiAI API: Queue congestion detected. Latency increased momentarily.", type: "warning" },
+    { text: "Celery Worker: Task execution time for 'resume_summarize' exceeded 2.5s threshold.", type: "warning" },
+    { text: "Postgres DB: S3 database snapshot scheduled backup completed.", type: "success" }
+  ];
+
+  const errorTemplates = [
+    { text: "DrishtiAI Engine: Temporary failure connecting to external ICD-10 API. Falling back to local cache.", type: "error" },
+    { text: "FastAPI Gateway: Rate limit triggered for remote client (IP 103.44.112.98). Status Code 429.", type: "error" },
+    { text: "Celery Task: Worker node 'worker-beta-3' lost connection. Task rescheduled.", type: "error" }
+  ];
+
+  // Function to fluctuate metrics and update DOM
+  function updateTelemetry() {
+    // Latency fluctuation
+    const latencyDelta = (Math.random() - 0.5) * 6; // Random walk -3 to +3
+    metrics.latency = Math.max(25, Math.min(85, Math.round(metrics.latency + latencyDelta)));
+    
+    // CPU fluctuation
+    const cpuDelta = (Math.random() - 0.5) * 0.8; // Random walk -0.4 to +0.4
+    metrics.cpu = Math.max(1.8, Math.min(9.5, parseFloat((metrics.cpu + cpuDelta).toFixed(1))));
+    
+    // Cache fluctuation
+    const cacheDelta = (Math.random() - 0.5) * 0.4;
+    metrics.cache = Math.max(95.0, Math.min(100.0, parseFloat((metrics.cache + cacheDelta).toFixed(1))));
+    
+    // Tokens throughput fluctuation
+    const tokensDelta = Math.floor((Math.random() - 0.5) * 350);
+    metrics.tokens = Math.max(2500, Math.min(5800, metrics.tokens + tokensDelta));
+
+    // Update values in DOM
+    latencyVal.textContent = `${metrics.latency} ms`;
+    cpuVal.textContent = `${metrics.cpu} ms`;
+    cacheVal.textContent = `${metrics.cache}%`;
+    tokensVal.textContent = `${metrics.tokens.toLocaleString()} t/min`;
+
+    // Update progress bars (bound maps)
+    // Max values: Latency 100ms, CPU 10ms, Cache 100%, Tokens 6000
+    latencyBar.style.width = `${metrics.latency}%`;
+    cpuBar.style.width = `${(metrics.cpu / 10) * 100}%`;
+    cacheBar.style.width = `${metrics.cache}%`;
+    tokensBar.style.width = `${(metrics.tokens / 6000) * 100}%`;
+  }
+
+  // Periodic Telemetry Updates
+  setInterval(updateTelemetry, 2500);
+
+  // Periodic Log Streaming
+  function streamLog() {
+    const isError = Math.random() < 0.05; // 5% chance of warning/error
+    let logObj;
+
+    if (isError) {
+      logObj = errorTemplates[Math.floor(Math.random() * errorTemplates.length)];
+    } else {
+      logObj = logTemplates[Math.floor(Math.random() * logTemplates.length)];
+    }
+
+    addLog(logObj.text, logObj.type);
+
+    // Schedule next log at variable intervals (3s to 8s)
+    const nextInterval = 3000 + Math.random() * 5000;
+    setTimeout(streamLog, nextInterval);
+  }
+
+  // Start log stream after initial boot sequence finishes
+  setTimeout(streamLog, 3000);
 }

@@ -352,6 +352,87 @@
           </div>
         </div>
       </div>
+
+      <!-- Dynamic DevOps Status Dashboard -->
+      <div class="ops-dashboard">
+        <div class="ops-header">
+          <div class="ops-title">
+            <i class="bx bx-server"></i>
+            <span>System Status Operations</span>
+          </div>
+          <div class="ops-status-pulse">
+            <span class="pulse-dot"></span>
+            <span class="status-text">ALL SYSTEMS OPERATIONAL</span>
+          </div>
+        </div>
+        
+        <div class="ops-grid">
+          <!-- Card 1: DrishtiAI Inference Latency -->
+          <div class="ops-card">
+            <div class="ops-card-header">
+              <span class="ops-label">DrishtiAI API Latency</span>
+              <span class="ops-card-status status-nominal">Nominal</span>
+            </div>
+            <div class="ops-value" id="ops-latency-val">42 ms</div>
+            <div class="ops-progress-bar">
+              <div class="ops-progress-fill" id="ops-latency-bar" style="width: 42%;"></div>
+            </div>
+          </div>
+          
+          <!-- Card 2: Cloudflare Workers CPU Time -->
+          <div class="ops-card">
+            <div class="ops-card-header">
+              <span class="ops-label">CF Workers CPU Time</span>
+              <span class="ops-card-status status-nominal">Optimal</span>
+            </div>
+            <div class="ops-value" id="ops-cpu-val">4.5 ms</div>
+            <div class="ops-progress-bar">
+              <div class="ops-progress-fill" id="ops-cpu-bar" style="width: 45%;"></div>
+            </div>
+          </div>
+          
+          <!-- Card 3: Redis Cache Hit Rate -->
+          <div class="ops-card">
+            <div class="ops-card-header">
+              <span class="ops-label">Redis Cache Hit Rate</span>
+              <span class="ops-card-status status-nominal">Excellent</span>
+            </div>
+            <div class="ops-value" id="ops-cache-val">98.4%</div>
+            <div class="ops-progress-bar">
+              <div class="ops-progress-fill" id="ops-cache-bar" style="width: 98.4%;"></div>
+            </div>
+          </div>
+          
+          <!-- Card 4: LLM Token Throughput -->
+          <div class="ops-card">
+            <div class="ops-card-header">
+              <span class="ops-label">LLM Token Ingestion</span>
+              <span class="ops-card-status status-nominal">Active</span>
+            </div>
+            <div class="ops-value" id="ops-tokens-val">4,120 t/min</div>
+            <div class="ops-progress-bar">
+              <div class="ops-progress-fill" id="ops-tokens-bar" style="width: 65%;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Live Console Logs Stream -->
+        <div class="ops-console">
+          <div class="ops-console-header">
+            <div class="ops-console-title">
+              <i class="bx bx-terminal"></i>
+              <span>Live Operations Console Log</span>
+            </div>
+            <div class="ops-console-indicator">
+              <span class="console-blink-dot"></span>
+              <span>LIVE FEED</span>
+            </div>
+          </div>
+          <div class="ops-console-body" id="ops-console-log">
+            <!-- Simulated log lines will stream here -->
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- certificates section -->
