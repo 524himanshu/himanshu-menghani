@@ -30,7 +30,25 @@
         <a href="#certificates">Certificates</a>
         <a href="#contact">Contact</a>
       </nav>
-      <i class="bx bx-moon" id="theme-toggle"></i>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme">
+        <svg class="sun-moon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <mask id="moon-mask">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <circle cx="24" cy="10" r="6" fill="black" />
+          </mask>
+          <circle cx="12" cy="12" r="5" fill="currentColor" mask="url(#moon-mask)" />
+          <g class="sun-beams" stroke="currentColor">
+            <line x1="12" y1="1" x2="12" y2="3" stroke-width="2" />
+            <line x1="12" y1="21" x2="12" y2="23" stroke-width="2" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-width="2" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-width="2" />
+            <line x1="1" y1="12" x2="3" y2="12" stroke-width="2" />
+            <line x1="21" y1="12" x2="23" y2="12" stroke-width="2" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-width="2" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke-width="2" />
+          </g>
+        </svg>
+      </button>
     </header>
 
     <!-- available for hire badge -->
@@ -121,9 +139,9 @@
             <h3>Languages</h3>
           </div>
           <div class="skills-list">
-            <span>JavaScript</span>
-            <span>Python</span>
-            <span>SQL</span>
+            <span data-skill="javascript">JavaScript</span>
+            <span data-skill="python">Python</span>
+            <span data-skill="sql">SQL</span>
           </div>
         </div>
 
@@ -133,12 +151,12 @@
             <h3>AI / ML</h3>
           </div>
           <div class="skills-list">
-            <span>LLMs (Gemini, Claude, Llama 3.3)</span>
-            <span>Agentic AI</span>
-            <span>RAG Pipelines</span>
-            <span>Prompt Engineering</span>
-            <span>Scikit-learn</span>
-            <span>Pandas & NumPy</span>
+            <span data-skill="llms">LLMs (Gemini, Claude, Llama 3.3)</span>
+            <span data-skill="agentic-ai">Agentic AI</span>
+            <span data-skill="rag-pipelines">RAG Pipelines</span>
+            <span data-skill="prompt-engineering">Prompt Engineering</span>
+            <span data-skill="scikit-learn">Scikit-learn</span>
+            <span data-skill="pandas-numpy">Pandas & NumPy</span>
           </div>
         </div>
 
@@ -148,14 +166,14 @@
             <h3>Backend</h3>
           </div>
           <div class="skills-list">
-            <span>FastAPI</span>
-            <span>Django & DRF</span>
-            <span>Flask</span>
-            <span>Node.js / Express</span>
-            <span>REST APIs</span>
-            <span>JWT Auth</span>
-            <span>Celery</span>
-            <span>Redis</span>
+            <span data-skill="fastapi">FastAPI</span>
+            <span data-skill="django-drf">Django & DRF</span>
+            <span data-skill="flask">Flask</span>
+            <span data-skill="node-express">Node.js / Express</span>
+            <span data-skill="rest-apis">REST APIs</span>
+            <span data-skill="jwt-auth">JWT Auth</span>
+            <span data-skill="celery">Celery</span>
+            <span data-skill="redis">Redis</span>
           </div>
         </div>
 
@@ -165,10 +183,10 @@
             <h3>Frontend</h3>
           </div>
           <div class="skills-list">
-            <span>React.js</span>
-            <span>Next.js</span>
-            <span>Tailwind CSS</span>
-            <span>HTML & CSS</span>
+            <span data-skill="react-js">React.js</span>
+            <span data-skill="next-js">Next.js</span>
+            <span data-skill="tailwind-css">Tailwind CSS</span>
+            <span data-skill="html-css">HTML & CSS</span>
           </div>
         </div>
 
@@ -178,8 +196,8 @@
             <h3>Databases</h3>
           </div>
           <div class="skills-list">
-            <span>PostgreSQL</span>
-            <span>MongoDB</span>
+            <span data-skill="postgresql">PostgreSQL</span>
+            <span data-skill="mongodb">MongoDB</span>
           </div>
         </div>
 
@@ -189,12 +207,12 @@
             <h3>Tools & Platforms</h3>
           </div>
           <div class="skills-list">
-            <span>Docker</span>
-            <span>Redis</span>
-            <span>Git & GitHub</span>
-            <span>Postman</span>
-            <span>Vercel & Render</span>
-            <span>Cloudflare Workers</span>
+            <span data-skill="docker">Docker</span>
+            <span data-skill="redis">Redis</span>
+            <span data-skill="git-github">Git & GitHub</span>
+            <span data-skill="postman">Postman</span>
+            <span data-skill="vercel-render">Vercel & Render</span>
+            <span data-skill="cloudflare-workers">Cloudflare Workers</span>
           </div>
         </div>
 
@@ -204,9 +222,9 @@
             <h3>Concepts</h3>
           </div>
           <div class="skills-list">
-            <span>RBAC (Role-Based Access)</span>
-            <span>Async Processing</span>
-            <span>API Design</span>
+            <span data-skill="rbac">RBAC (Role-Based Access)</span>
+            <span data-skill="async-processing">Async Processing</span>
+            <span data-skill="api-design">API Design</span>
           </div>
         </div>
 
@@ -435,7 +453,13 @@
             <div class="portfolio-icon-wrap">
               <i class="bx bx-pulse"></i>
             </div>
-            <h4>DrishtiAI</h4>
+            <div class="project-title-row">
+              <h4>DrishtiAI</h4>
+              <div class="github-stats" data-repo="524himanshu/drishti-ai">
+                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
+                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
+              </div>
+            </div>
             <h5>Real-Time Adverse Event Detection</h5>
             <p>A real-time pharmacovigilance platform ingesting Twitter & Reddit streams. Uses scispaCy NLP, SHAP-based explainability, and Presidio PII redaction. Selected for the AI for Bharat 2026 prototype phase.</p>
             <div class="portfolio-tags">
@@ -454,7 +478,13 @@
             <div class="portfolio-icon-wrap">
               <i class="bx bx-user-check"></i>
             </div>
-            <h4>RecruitIQ</h4>
+            <div class="project-title-row">
+              <h4>RecruitIQ</h4>
+              <div class="github-stats" data-repo="524himanshu/recruitiq">
+                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
+                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
+              </div>
+            </div>
             <h5>Intelligent Candidate Ranking</h5>
             <p>AI-powered candidate screening system evaluating 100k profiles using a 5-factor scoring model. Uses all-MiniLM-L6-v2 embeddings and cosine similarity to rank candidates in &lt;60s.</p>
             <div class="portfolio-tags">
@@ -474,7 +504,13 @@
             <div class="portfolio-icon-wrap">
               <i class="bx bx-bot"></i>
             </div>
-            <h4>CF AI Career Coach</h4>
+            <div class="project-title-row">
+              <h4>CF AI Career Coach</h4>
+              <div class="github-stats" data-repo="524himanshu/cf_ai_web_coach">
+                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
+                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
+              </div>
+            </div>
             <h5>Serverless AI Coaching Chatbot</h5>
             <p>Deployed on Cloudflare Workers using Llama 3.3 70B (Workers AI). Uses Durable Objects for persistent multi-turn memory without a database, and provides instant AI resume feedback.</p>
             <div class="portfolio-tags">
@@ -577,6 +613,52 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="script.js"></script>
+    <!-- Himanshu AI Chat Widget -->
+    <div id="ai-chat-widget" class="ai-chat-widget">
+      <button id="ai-chat-toggle" class="ai-chat-toggle" aria-label="Toggle AI Assistant">
+        <i class="bx bx-bot"></i>
+        <span class="ai-badge-pulse"></span>
+      </button>
+
+      <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+          <div class="ai-chat-header-info">
+            <div class="ai-avatar-wrap">
+              <i class="bx bx-bot"></i>
+              <span class="online-indicator"></span>
+            </div>
+            <div>
+              <h3>Himanshu AI</h3>
+              <p>Assistant Agent</p>
+            </div>
+          </div>
+          <button id="ai-chat-close" class="ai-chat-close" aria-label="Close Chat">
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+
+        <div id="ai-chat-body" class="ai-chat-body">
+          <div class="chat-message bot">
+            <div class="message-content">
+              Hi! I'm Himanshu's AI assistant. Ask me anything about his skills, experience, projects, or how to contact him!
+            </div>
+          </div>
+          <div class="chat-chips">
+            <button class="chat-chip" data-question="What are his featured projects?">Projects</button>
+            <button class="chat-chip" data-question="What is his technical stack?">Tech Stack</button>
+            <button class="chat-chip" data-question="Is he looking for opportunities?">Availability</button>
+          </div>
+        </div>
+
+        <form id="ai-chat-input-area" class="ai-chat-input-area">
+          <input type="text" id="ai-chat-input" placeholder="Ask about Himanshu..." required autocomplete="off" />
+          <button type="submit" id="ai-chat-send" aria-label="Send Message">
+            <i class="bx bx-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div id="toast" class="toast"></div>
     <div id="cursor-glow"></div>
   </body>
