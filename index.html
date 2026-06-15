@@ -241,7 +241,225 @@
         <div class="canvas-instruction">Drag nodes to explore relations. Hovering over a node highlights its dependencies.</div>
       </div>
     </section>
+    <!-- portfolio / projects section -->
+    <section class="portfolio" id="portfolio">
+      <h2 class="heading">My <span>Projects</span></h2>
 
+      <!-- filter tabs -->
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ai">AI</button>
+        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+        <button class="filter-btn" data-filter="ml">ML</button>
+      </div>
+
+      <div class="portfolio-container">
+
+        <!-- DrishtiAI -->
+        <div class="portfolio-box" data-category="ai fullstack">
+          <span class="live-badge"><i class="bx bx-trophy"></i> AI for Bharat Shortlist</span>
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-pulse"></i>
+            </div>
+            <div class="project-title-row">
+              <h4>DrishtiAI</h4>
+              <div class="github-stats" data-repo="524himanshu/drishti-ai">
+                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
+                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
+              </div>
+            </div>
+            <h5>Real-Time Adverse Event Detection</h5>
+            <p>A real-time pharmacovigilance platform ingesting Twitter & Reddit streams. Uses scispaCy NLP, SHAP-based explainability, and Presidio PII redaction. Selected for the AI for Bharat 2026 prototype phase.</p>
+            <div class="portfolio-tags">
+              <span>FastAPI</span><span>Next.js</span><span>PostgreSQL</span><span>Redis</span><span>scispaCy</span><span>Docker</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="https://github.com/524himanshu/drishti-ai" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <button class="btn-arch" data-project="drishtiai" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RecruitIQ -->
+        <div class="portfolio-box" data-category="ai ml">
+          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live Demo</span>
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-user-check"></i>
+            </div>
+            <div class="project-title-row">
+              <h4>RecruitIQ</h4>
+              <div class="github-stats" data-repo="524himanshu/recruitiq">
+                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
+                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
+              </div>
+            </div>
+            <h5>Intelligent Candidate Ranking</h5>
+            <p>AI-powered candidate screening system evaluating 100k profiles using a 5-factor scoring model. Uses all-MiniLM-L6-v2 embeddings and cosine similarity to rank candidates in &lt;60s.</p>
+            <div class="portfolio-tags">
+              <span>Python</span><span>Streamlit</span><span>Transformers</span><span>Pandas</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="https://github.com/524himanshu/recruitiq" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <a href="https://recruitiq-redrob.streamlit.app/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+              <button class="btn-arch" data-project="recruitiq" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CF AI Career Coach -->
+        <div class="portfolio-box" data-category="ai">
+          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-bot"></i>
+            </div>
+            <div class="project-title-row">
+              <h4>CF AI Career Coach</h4>
+              <div class="github-stats" data-repo="524himanshu/cf_ai_web_coach">
+                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
+                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
+              </div>
+            </div>
+            <h5>Serverless AI Coaching Chatbot</h5>
+            <p>Deployed on Cloudflare Workers using Llama 3.3 70B (Workers AI). Uses Durable Objects for persistent multi-turn memory without a database, and provides instant AI resume feedback.</p>
+            <div class="portfolio-tags">
+              <span>Llama 3.3</span><span>Workers AI</span><span>Durable Objects</span><span>JavaScript</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="https://github.com/524himanshu/cf_ai_web_coach" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <a href="https://cf-ai-web-coach.himanshu524.workers.dev/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+              <button class="btn-arch" data-project="careercoach" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Playto Payout Engine -->
+        <div class="portfolio-box" data-category="fullstack">
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-wallet"></i>
+            </div>
+            <h4>Playto Payout Engine</h4>
+            <h5>Async Payout Processing System</h5>
+            <p>An asynchronous payout system built with Django, Celery, and Redis to offload long-running tasks from request cycles. Features PostgreSQL transactional workflows, HubSpot API sync, and RBAC dashboards.</p>
+            <div class="portfolio-tags">
+              <span>Django</span><span>DRF</span><span>PostgreSQL</span><span>Celery</span><span>Redis</span><span>React</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <button class="btn-arch" data-project="payoutengine" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AI Playground Section -->
+    <section class="playground" id="playground">
+      <h2 class="heading">AI <span>Playground</span></h2>
+      <p class="playground-subheading">Interactive simulation of a RAG (Retrieval-Augmented Generation) query pipeline</p>
+      
+      <div class="playground-container">
+        <!-- Control Panel -->
+        <div class="playground-panel controls-panel">
+          <h3>RAG Settings</h3>
+          
+          <div class="control-group">
+            <label for="rag-query">User Search Query</label>
+            <input type="text" id="rag-query" value="Show Python asynchronous project details" placeholder="Type a search query...">
+          </div>
+          
+          <div class="control-group">
+            <label for="rag-chunk-size">Chunk Size (characters)</label>
+            <select id="rag-chunk-size">
+              <option value="100">100 (Fine-grained chunks)</option>
+              <option value="200" selected>200 (Balanced chunks)</option>
+              <option value="400">400 (Coarse-grained chunks)</option>
+            </select>
+          </div>
+          
+          <div class="control-group">
+            <label for="rag-overlap">Chunk Overlap (characters)</label>
+            <div class="slider-container">
+              <input type="range" id="rag-overlap" min="0" max="100" value="30">
+              <span id="overlap-val">30</span>
+            </div>
+          </div>
+          
+          <button id="btn-run-rag" class="btn"><i class="bx bx-play-circle"></i> Run Pipeline</button>
+          
+          <div class="playground-console">
+            <h4>Pipeline Logs</h4>
+            <div class="console-output" id="rag-console-logs">
+              <span class="log-line text-muted">[System] Ready to run RAG pipeline simulation.</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pipeline Flow Visualization -->
+        <div class="playground-panel visualization-panel">
+          <div class="rag-stages-flow">
+            
+            <!-- Stage 1: Source Document -->
+            <div class="rag-stage-card" id="stage-doc">
+              <div class="stage-header">
+                <span class="stage-num">1</span>
+                <h4>Source Document</h4>
+              </div>
+              <div class="stage-content doc-viewer" id="rag-doc-viewer">
+                <!-- Source document content shown here -->
+              </div>
+            </div>
+            
+            <!-- Stage 2: Chunking & Embedding -->
+            <div class="rag-stage-card" id="stage-chunks">
+              <div class="stage-header">
+                <span class="stage-num">2</span>
+                <h4>Chunking &amp; Embeddings</h4>
+              </div>
+              <div class="stage-content chunks-viewer" id="rag-chunks-viewer">
+                <span class="text-muted italic">Click 'Run Pipeline' to see chunks.</span>
+              </div>
+            </div>
+            
+            <!-- Stage 3: Vector Db Similarity Ranker -->
+            <div class="rag-stage-card" id="stage-db">
+              <div class="stage-header">
+                <span class="stage-num">3</span>
+                <h4>Vector DB Matching</h4>
+              </div>
+              <div class="stage-content ranker-viewer" id="rag-ranker-viewer">
+                <span class="text-muted italic">Awaiting document indexing...</span>
+              </div>
+            </div>
+            
+            <!-- Stage 4: LLM Context Synthesis -->
+            <div class="rag-stage-card" id="stage-llm">
+              <div class="stage-header">
+                <span class="stage-num">4</span>
+                <h4>LLM Synthesis</h4>
+              </div>
+              <div class="stage-content llm-viewer">
+                <div class="llm-prompt-context" id="rag-llm-context">
+                  <span class="label">Context prompt:</span>
+                  <div class="context-data text-muted italic">No context loaded.</div>
+                </div>
+                <div class="llm-response">
+                  <span class="label">AI Answer:</span>
+                  <div class="response-text" id="rag-llm-response">
+                    <span class="cursor-typing">|</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- journey section -->
     <section class="journey" id="journey">
@@ -545,226 +763,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- portfolio / projects section -->
-    <section class="portfolio" id="portfolio">
-      <h2 class="heading">My <span>Projects</span></h2>
-
-      <!-- filter tabs -->
-      <div class="portfolio-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="ai">AI</button>
-        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
-        <button class="filter-btn" data-filter="ml">ML</button>
-      </div>
-
-      <div class="portfolio-container">
-
-        <!-- DrishtiAI -->
-        <div class="portfolio-box" data-category="ai fullstack">
-          <span class="live-badge"><i class="bx bx-trophy"></i> AI for Bharat Shortlist</span>
-          <div class="portfolio-card-content">
-            <div class="portfolio-icon-wrap">
-              <i class="bx bx-pulse"></i>
-            </div>
-            <div class="project-title-row">
-              <h4>DrishtiAI</h4>
-              <div class="github-stats" data-repo="524himanshu/drishti-ai">
-                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
-                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
-              </div>
-            </div>
-            <h5>Real-Time Adverse Event Detection</h5>
-            <p>A real-time pharmacovigilance platform ingesting Twitter & Reddit streams. Uses scispaCy NLP, SHAP-based explainability, and Presidio PII redaction. Selected for the AI for Bharat 2026 prototype phase.</p>
-            <div class="portfolio-tags">
-              <span>FastAPI</span><span>Next.js</span><span>PostgreSQL</span><span>Redis</span><span>scispaCy</span><span>Docker</span>
-            </div>
-            <div class="portfolio-links">
-              <a href="https://github.com/524himanshu/drishti-ai" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-              <button class="btn-arch" data-project="drishtiai" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- RecruitIQ -->
-        <div class="portfolio-box" data-category="ai ml">
-          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live Demo</span>
-          <div class="portfolio-card-content">
-            <div class="portfolio-icon-wrap">
-              <i class="bx bx-user-check"></i>
-            </div>
-            <div class="project-title-row">
-              <h4>RecruitIQ</h4>
-              <div class="github-stats" data-repo="524himanshu/recruitiq">
-                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
-                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
-              </div>
-            </div>
-            <h5>Intelligent Candidate Ranking</h5>
-            <p>AI-powered candidate screening system evaluating 100k profiles using a 5-factor scoring model. Uses all-MiniLM-L6-v2 embeddings and cosine similarity to rank candidates in &lt;60s.</p>
-            <div class="portfolio-tags">
-              <span>Python</span><span>Streamlit</span><span>Transformers</span><span>Pandas</span>
-            </div>
-            <div class="portfolio-links">
-              <a href="https://github.com/524himanshu/recruitiq" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-              <a href="https://recruitiq-redrob.streamlit.app/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
-              <button class="btn-arch" data-project="recruitiq" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- CF AI Career Coach -->
-        <div class="portfolio-box" data-category="ai">
-          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
-          <div class="portfolio-card-content">
-            <div class="portfolio-icon-wrap">
-              <i class="bx bx-bot"></i>
-            </div>
-            <div class="project-title-row">
-              <h4>CF AI Career Coach</h4>
-              <div class="github-stats" data-repo="524himanshu/cf_ai_web_coach">
-                <span class="stat-item" title="GitHub Stars"><i class="bx bx-star"></i> <span class="stars">--</span></span>
-                <span class="stat-item" title="Forks"><i class="bx bx-git-repo-forked"></i> <span class="forks">--</span></span>
-              </div>
-            </div>
-            <h5>Serverless AI Coaching Chatbot</h5>
-            <p>Deployed on Cloudflare Workers using Llama 3.3 70B (Workers AI). Uses Durable Objects for persistent multi-turn memory without a database, and provides instant AI resume feedback.</p>
-            <div class="portfolio-tags">
-              <span>Llama 3.3</span><span>Workers AI</span><span>Durable Objects</span><span>JavaScript</span>
-            </div>
-            <div class="portfolio-links">
-              <a href="https://github.com/524himanshu/cf_ai_web_coach" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-              <a href="https://cf-ai-web-coach.himanshu524.workers.dev/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
-              <button class="btn-arch" data-project="careercoach" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Playto Payout Engine -->
-        <div class="portfolio-box" data-category="fullstack">
-          <div class="portfolio-card-content">
-            <div class="portfolio-icon-wrap">
-              <i class="bx bx-wallet"></i>
-            </div>
-            <h4>Playto Payout Engine</h4>
-            <h5>Async Payout Processing System</h5>
-            <p>An asynchronous payout system built with Django, Celery, and Redis to offload long-running tasks from request cycles. Features PostgreSQL transactional workflows, HubSpot API sync, and RBAC dashboards.</p>
-            <div class="portfolio-tags">
-              <span>Django</span><span>DRF</span><span>PostgreSQL</span><span>Celery</span><span>Redis</span><span>React</span>
-            </div>
-            <div class="portfolio-links">
-              <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-              <button class="btn-arch" data-project="payoutengine" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- AI Playground Section -->
-    <section class="playground" id="playground">
-      <h2 class="heading">AI <span>Playground</span></h2>
-      <p class="playground-subheading">Interactive simulation of a RAG (Retrieval-Augmented Generation) query pipeline</p>
-      
-      <div class="playground-container">
-        <!-- Control Panel -->
-        <div class="playground-panel controls-panel">
-          <h3>RAG Settings</h3>
-          
-          <div class="control-group">
-            <label for="rag-query">User Search Query</label>
-            <input type="text" id="rag-query" value="Show Python asynchronous project details" placeholder="Type a search query...">
-          </div>
-          
-          <div class="control-group">
-            <label for="rag-chunk-size">Chunk Size (characters)</label>
-            <select id="rag-chunk-size">
-              <option value="100">100 (Fine-grained chunks)</option>
-              <option value="200" selected>200 (Balanced chunks)</option>
-              <option value="400">400 (Coarse-grained chunks)</option>
-            </select>
-          </div>
-          
-          <div class="control-group">
-            <label for="rag-overlap">Chunk Overlap (characters)</label>
-            <div class="slider-container">
-              <input type="range" id="rag-overlap" min="0" max="100" value="30">
-              <span id="overlap-val">30</span>
-            </div>
-          </div>
-          
-          <button id="btn-run-rag" class="btn"><i class="bx bx-play-circle"></i> Run Pipeline</button>
-          
-          <div class="playground-console">
-            <h4>Pipeline Logs</h4>
-            <div class="console-output" id="rag-console-logs">
-              <span class="log-line text-muted">[System] Ready to run RAG pipeline simulation.</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Pipeline Flow Visualization -->
-        <div class="playground-panel visualization-panel">
-          <div class="rag-stages-flow">
-            
-            <!-- Stage 1: Source Document -->
-            <div class="rag-stage-card" id="stage-doc">
-              <div class="stage-header">
-                <span class="stage-num">1</span>
-                <h4>Source Document</h4>
-              </div>
-              <div class="stage-content doc-viewer" id="rag-doc-viewer">
-                <!-- Source document content shown here -->
-              </div>
-            </div>
-            
-            <!-- Stage 2: Chunking & Embedding -->
-            <div class="rag-stage-card" id="stage-chunks">
-              <div class="stage-header">
-                <span class="stage-num">2</span>
-                <h4>Chunking &amp; Embeddings</h4>
-              </div>
-              <div class="stage-content chunks-viewer" id="rag-chunks-viewer">
-                <span class="text-muted italic">Click 'Run Pipeline' to see chunks.</span>
-              </div>
-            </div>
-            
-            <!-- Stage 3: Vector Db Similarity Ranker -->
-            <div class="rag-stage-card" id="stage-db">
-              <div class="stage-header">
-                <span class="stage-num">3</span>
-                <h4>Vector DB Matching</h4>
-              </div>
-              <div class="stage-content ranker-viewer" id="rag-ranker-viewer">
-                <span class="text-muted italic">Awaiting document indexing...</span>
-              </div>
-            </div>
-            
-            <!-- Stage 4: LLM Context Synthesis -->
-            <div class="rag-stage-card" id="stage-llm">
-              <div class="stage-header">
-                <span class="stage-num">4</span>
-                <h4>LLM Synthesis</h4>
-              </div>
-              <div class="stage-content llm-viewer">
-                <div class="llm-prompt-context" id="rag-llm-context">
-                  <span class="label">Context prompt:</span>
-                  <div class="context-data text-muted italic">No context loaded.</div>
-                </div>
-                <div class="llm-response">
-                  <span class="label">AI Answer:</span>
-                  <div class="response-text" id="rag-llm-response">
-                    <span class="cursor-typing">|</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
       </div>
     </section>
 
