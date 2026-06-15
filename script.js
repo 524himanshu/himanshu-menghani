@@ -457,6 +457,10 @@ function getLocalAIResponse(query) {
   const whyKeywords = ['why hire', 'why him', 'strength', 'why should', 'qualities'];
   const greetingKeywords = ['hello', 'hi', 'hey', 'greet', 'morning', 'evening', 'afternoon'];
 
+  if (whyKeywords.some(k => q.includes(k))) {
+    return "Himanshu combines Full-Stack Development and AI Engineering skills. Unlike many candidates who focus only on models, he builds complete production-ready systems involving FastAPI, Django, Next.js, PostgreSQL, Redis, LLMs, asynchronous workflows, and cloud deployments.";
+  }
+
   if (achievementKeywords.some(k => q.includes(k))) {
     return "Key achievements:<br><br>• <strong>AI for Bharat 2026</strong> - Shortlisted for the Prototype Phase with DrishtiAI.<br>• <strong>Redrob India Runs Hackathon</strong> - Built RecruitIQ, an AI-powered candidate ranking system evaluated on 100,000 candidate profiles.<br>• <strong>INVICTUS'24 Hackathon Participant</strong>.";
   }
@@ -479,10 +483,6 @@ function getLocalAIResponse(query) {
 
   if (aiKeywords.some(k => q.includes(k))) {
     return "Himanshu has experience building applications with Gemini, Claude, and Llama 3.3. His work includes RAG pipelines, semantic search, prompt engineering, AI-powered ranking systems, and agentic workflows across projects like RecruitIQ and CF AI Career Coach.";
-  }
-
-  if (whyKeywords.some(k => q.includes(k))) {
-    return "Himanshu combines Full-Stack Development and AI Engineering skills. Unlike many candidates who focus only on models, he builds complete production-ready systems involving FastAPI, Django, Next.js, PostgreSQL, Redis, LLMs, asynchronous workflows, and cloud deployments.";
   }
 
   if (projectKeywords.some(k => q.includes(k))) {
