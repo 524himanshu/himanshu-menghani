@@ -430,8 +430,8 @@ function getLocalAIResponse(query) {
     return "Himanshu's tech stack includes:<br><br>• <strong>Languages</strong>: JavaScript, Python, SQL<br>• <strong>Backend</strong>: FastAPI, Django & DRF, Flask, Celery, Redis<br>• <strong>AI/ML</strong>: LLM integrations (Gemini, Llama, Claude), Agentic AI, RAG pipelines, Scikit-learn<br>• <strong>Frontend</strong>: Next.js, React.js, Tailwind CSS<br>• <strong>Databases & Tools</strong>: PostgreSQL, MongoDB, Docker, Cloudflare Workers";
   }
   
-  if (q.includes('contact') || q.includes('reach') || q.includes('email') || q.includes('linkedin') || q.includes('hire')) {
-    return "You can reach Himanshu in several ways:<br><br>• <strong>Email</strong>: <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a><br>• <strong>LinkedIn</strong>: <a href='https://www.linkedin.com/in/himanshumenghani524/' target='_blank'>himanshumenghani524</a><br>• Or fill out the <strong>Contact Form</strong> directly on this page!";
+  if (q.includes('contact') || q.includes('reach') || q.includes('email') || q.includes('linkedin') || q.includes('hire') || q.includes('phone') || q.includes('number') || q.includes('mobile')) {
+    return "You can reach Himanshu in several ways:<br><br>• <strong>Email</strong>: <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a><br>• <strong>Phone</strong>: <a href='tel:+917769949282'>+91 77699 49282</a><br>• <strong>LinkedIn</strong>: <a href='https://www.linkedin.com/in/himanshumenghani524/' target='_blank'>himanshumenghani524</a><br>• Or fill out the <strong>Contact Form</strong> directly on this page!";
   }
   
   if (q.includes('experience') || q.includes('work') || q.includes('intern') || q.includes('octanet')) {
@@ -446,7 +446,7 @@ function getLocalAIResponse(query) {
     return "Hello! I'm Himanshu's AI assistant. Ask me anything about his projects, experience, skills, or achievements!";
   }
   
-  return "That's an interesting question! Himanshu is a Full Stack Developer & AI Engineer focused on production-ready systems (FastAPI, Next.js, Celery, RAG pipelines). Feel free to check out his Projects or Journey sections, or drop an email to <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a>!";
+  return "That's an interesting question! Himanshu is a Full Stack Developer & AI Engineer focused on production-ready systems (FastAPI, Next.js, Celery, RAG pipelines). Feel free to check out his Projects or Journey sections, or drop an email to <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a> or call <a href='tel:+917769949282'>+91 77699 49282</a>!";
 }
 
 function showToast(message) {
