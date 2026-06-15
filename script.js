@@ -68,19 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ==================== dark / light theme toggle ==================== */
+/* ==================== theme toggle (classic dark vs midnight black) ==================== */
 const themeToggle = document.getElementById('theme-toggle');
 
 themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light-theme');
+  document.body.classList.toggle('dark-theme');
 
-  // swap icon between sun (dark mode) and moon (light mode)
-  if (document.body.classList.contains('light-theme')) {
-    themeToggle.classList.remove('bx-sun');
-    themeToggle.classList.add('bx-moon');
-  } else {
+  // swap icon: show sun if in midnight/black mode, moon if in classic dark mode
+  if (document.body.classList.contains('dark-theme')) {
     themeToggle.classList.remove('bx-moon');
     themeToggle.classList.add('bx-sun');
+  } else {
+    themeToggle.classList.remove('bx-sun');
+    themeToggle.classList.add('bx-moon');
   }
 });
 

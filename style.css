@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
@@ -8,35 +8,36 @@
   border: none;
   outline: none;
   scroll-behavior: smooth;
+  font-family: var(--font-body);
 }
 
 :root {
-  --bg-color: #030712;        /* Gray 950 */
-  --second-bg-color: #0f172a;  /* Slate 900 */
-  --header-bg: rgba(3, 7, 18, 0.85);
-  --text-color: #f9fafb;       /* Gray 50 */
-  --text-muted: #9ca3af;       /* Gray 400 */
-  --main-color: #6366f1;       /* Indigo 500 */
-  --accent-color: #06b6d4;     /* Cyan 500 */
-  --card-border: rgba(99, 102, 241, 0.15);
+  --bg-color: #1f242d;        /* Classic Dark Bluish-Gray */
+  --second-bg-color: #323946; /* Classic Second Background */
+  --header-bg: rgba(31, 36, 45, 0.85);
+  --text-color: #ffffff;
+  --text-muted: #a89ec9;       /* Classic Gray-Purple */
+  --main-color: #0ef;          /* Classic Cyan */
+  --accent-color: #0ef;
+  --card-border: rgba(0, 238, 255, 0.15);
   --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
-  --btn-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-  --font-heading: "Plus Jakarta Sans", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --btn-shadow: 0 0 15px rgba(0, 238, 255, 0.4);
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Poppins", sans-serif;
 }
 
-/* ===== light theme ===== */
-body.light-theme {
-  --bg-color: #f8fafc;        /* Slate 50 */
-  --second-bg-color: #ffffff; /* Pure White */
-  --header-bg: rgba(248, 250, 252, 0.85);
-  --text-color: #0f172a;      /* Slate 900 */
-  --text-muted: #64748b;      /* Slate 500 */
-  --main-color: #4f46e5;      /* Indigo 600 */
-  --accent-color: #0891b2;    /* Cyan 600 */
-  --card-border: rgba(15, 23, 42, 0.08);
-  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
-  --btn-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+/* ===== midnight black theme ===== */
+body.dark-theme {
+  --bg-color: #0a0a0a;        /* Midnight Pitch Black */
+  --second-bg-color: #111318; /* Deep Slate Black */
+  --header-bg: rgba(10, 10, 10, 0.85);
+  --text-color: #e0e0e0;
+  --text-muted: #9ca3af;
+  --main-color: #00d4ff;      /* Cyan-Blue Accent */
+  --accent-color: #06b6d4;
+  --card-border: rgba(0, 212, 255, 0.15);
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --btn-shadow: 0 0 15px rgba(0, 212, 255, 0.45);
 }
 
 *::selection {
@@ -1043,12 +1044,12 @@ span {
   opacity: 0.08;
 }
 
-body.light-theme #cursor-glow {
-  opacity: 0.04; /* Toggled: extremely subtle on light mode */
+body.dark-theme #cursor-glow {
+  opacity: 0.15; /* Midnight Black mode: prominent glow */
 }
 
-body.light-theme #cursor-glow.hovering {
-  opacity: 0.02;
+body.dark-theme #cursor-glow.hovering {
+  opacity: 0.10;
 }
 
 
