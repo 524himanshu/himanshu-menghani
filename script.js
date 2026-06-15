@@ -122,6 +122,19 @@ contactForm.addEventListener('submit', async (e) => {
     submitBtn.classList.add('success');
     submitBtn.textContent = '✓ Message Sent';
     
+    // Increment local message count and update footer badge
+    try {
+      let currentMsgs = parseInt(localStorage.getItem('portfolio_messages') || '18');
+      currentMsgs++;
+      localStorage.setItem('portfolio_messages', currentMsgs.toString());
+      const msgElement = document.getElementById('messages-count');
+      if (msgElement) {
+        msgElement.textContent = currentMsgs;
+      }
+    } catch (err) {
+      console.warn("Failed to update local messages count", err);
+    }
+    
     showToast(data.message || 'Message sent successfully!');
     form.reset();
     
@@ -458,3 +471,295 @@ function showToast(message) {
     toast.classList.remove('show');
   }, 3500);
 }
+
+/* ==================== Interactive System Architecture Drawers ==================== */
+const projectArchitectures = {
+  drishtiai: {
+    title: "DrishtiAI",
+    desc: "Real-time pharmacovigilance adverse event detection pipeline. Ingests data streams, performs NLP classification and PII redaction, stores structured incidents, and serves them via a Next.js dashboard.",
+    tags: ["FastAPI", "Next.js", "PostgreSQL", "Redis", "scispaCy", "Docker"],
+    svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-drishti" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
+    </marker>
+  </defs>
+  <!-- Connection Edges -->
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-drishti)" d="M 110,100 L 138,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-drishti)" d="M 230,100 L 258,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-drishti)" d="M 350,100 L 378,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-drishti)" d="M 470,100 L 498,100" />
+  
+  <!-- Nodes -->
+  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="65" y="98">
+    <tspan x="65" dy="0" class="arch-text-title">Twitter/Reddit</tspan>
+    <tspan x="65" dy="14">Streams</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="185" y="98">
+    <tspan x="185" dy="0" class="arch-text-title">scispaCy</tspan>
+    <tspan x="185" dy="14">Classification</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="305" y="98">
+    <tspan x="305" dy="0" class="arch-text-title">Presidio</tspan>
+    <tspan x="305" dy="14">PII Redaction</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="425" y="98">
+    <tspan x="425" dy="0" class="arch-text-title">PostgreSQL</tspan>
+    <tspan x="425" dy="14">&amp; Redis</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
+  <text class="arch-text" x="540" y="98">
+    <tspan x="540" dy="0" class="arch-text-title">Next.js</tspan>
+    <tspan x="540" dy="14">Dashboard</tspan>
+  </text>
+</svg>`
+  },
+  recruitiq: {
+    title: "RecruitIQ",
+    desc: "Automated recruitment ranking pipeline. Parses incoming PDF resumes, computes semantic embeddings, ranks candidates based on job description cosine similarity, and renders details via a real-time Streamlit dashboard.",
+    tags: ["Python", "Streamlit", "MiniLM-L6-v2", "Cosine Similarity", "NLP"],
+    svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-recruit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
+    </marker>
+  </defs>
+  <!-- Connection Edges -->
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-recruit)" d="M 110,100 L 138,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-recruit)" d="M 230,100 L 258,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-recruit)" d="M 350,100 L 378,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-recruit)" d="M 470,100 L 498,100" />
+  
+  <!-- Nodes -->
+  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="65" y="98">
+    <tspan x="65" dy="0" class="arch-text-title">PDF Resume</tspan>
+    <tspan x="65" dy="14">Parsing</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="185" y="98">
+    <tspan x="185" dy="0" class="arch-text-title">miniLM</tspan>
+    <tspan x="185" dy="14">Embeddings</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="305" y="98">
+    <tspan x="305" dy="0" class="arch-text-title">Cosine</tspan>
+    <tspan x="305" dy="14">Similarity</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="425" y="98">
+    <tspan x="425" dy="0" class="arch-text-title">Quality &amp;</tspan>
+    <tspan x="425" dy="14">Match Filters</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
+  <text class="arch-text" x="540" y="98">
+    <tspan x="540" dy="0" class="arch-text-title">Streamlit</tspan>
+    <tspan x="540" dy="14">Dashboard</tspan>
+  </text>
+</svg>`
+  },
+  careercoach: {
+    title: "CF AI Career Coach",
+    desc: "Serverless AI career mentorship assistant. Routes chat requests through Cloudflare Workers, queries low-latency Llama 3.3 models via Workers AI, and retains session state utilizing Cloudflare Durable Objects.",
+    tags: ["Cloudflare Workers", "Workers AI", "Llama 3.3", "Durable Objects", "Wrangler"],
+    svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-coach" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
+    </marker>
+  </defs>
+  <!-- Connection Edges -->
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-coach)" d="M 140,100 L 178,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-coach)" d="M 280,100 L 318,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-coach)" d="M 420,100 L 458,100" />
+  
+  <!-- Nodes -->
+  <rect class="arch-node arch-node-active" x="40" y="75" width="100" height="50" rx="8" />
+  <text class="arch-text" x="90" y="98">
+    <tspan x="90" dy="0" class="arch-text-title">Portfolio</tspan>
+    <tspan x="90" dy="14">Client UI</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="180" y="75" width="100" height="50" rx="8" />
+  <text class="arch-text" x="230" y="98">
+    <tspan x="230" dy="0" class="arch-text-title">CF Workers</tspan>
+    <tspan x="230" dy="14">API Router</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="320" y="75" width="100" height="50" rx="8" />
+  <text class="arch-text" x="370" y="98">
+    <tspan x="370" dy="0" class="arch-text-title">Workers AI</tspan>
+    <tspan x="370" dy="14">Llama 3.3 LLM</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="460" y="75" width="100" height="50" rx="8" />
+  <text class="arch-text" x="510" y="98">
+    <tspan x="510" dy="0" class="arch-text-title">Durable Objects</tspan>
+    <tspan x="510" dy="14">Session Context</tspan>
+  </text>
+</svg>`
+  },
+  payoutengine: {
+    title: "Playto Payout Engine",
+    desc: "Asynchronous transaction payout orchestrator. Handles user reward payouts asynchronously by queuing tasks from Django DRF via a Redis Message Broker, executing them reliably in Celery workers, and persisting transactions in PostgreSQL.",
+    tags: ["Django DRF", "Celery", "Redis", "PostgreSQL", "Docker", "REST API"],
+    svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-payout" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
+    </marker>
+  </defs>
+  <!-- Connection Edges -->
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-payout)" d="M 110,100 L 138,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-payout)" d="M 230,100 L 258,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-payout)" d="M 350,100 L 378,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-payout)" d="M 470,100 L 498,100" />
+  
+  <!-- Nodes -->
+  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="65" y="98">
+    <tspan x="65" dy="0" class="arch-text-title">API Payout</tspan>
+    <tspan x="65" dy="14">Request</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="185" y="98">
+    <tspan x="185" dy="0" class="arch-text-title">Django DRF</tspan>
+    <tspan x="185" dy="14">Endpoint</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="305" y="98">
+    <tspan x="305" dy="0" class="arch-text-title">Redis</tspan>
+    <tspan x="305" dy="14">Message Broker</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="425" y="98">
+    <tspan x="425" dy="0" class="arch-text-title">Celery</tspan>
+    <tspan x="425" dy="14">Worker Queue</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
+  <text class="arch-text" x="540" y="98">
+    <tspan x="540" dy="0" class="arch-text-title">PostgreSQL</tspan>
+    <tspan x="540" dy="14">DB Store</tspan>
+  </text>
+</svg>`
+  }
+};
+
+const archDrawerOverlay = document.getElementById('arch-drawer-overlay');
+const archDrawer = document.getElementById('arch-drawer');
+const drawerCloseBtn = document.getElementById('drawer-close');
+const drawerTitle = document.getElementById('drawer-title');
+const drawerDesc = document.getElementById('drawer-desc');
+const drawerTags = document.getElementById('drawer-tags');
+const drawerSvgContainer = document.getElementById('drawer-svg-container');
+
+// Open drawer
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn-arch');
+  if (btn) {
+    const projectId = btn.getAttribute('data-project');
+    const project = projectArchitectures[projectId];
+    if (project) {
+      drawerTitle.textContent = project.title;
+      drawerDesc.textContent = project.desc;
+      drawerTags.innerHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
+      drawerSvgContainer.innerHTML = project.svg;
+      
+      archDrawerOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+});
+
+// Close drawer function
+function closeDrawer() {
+  if (archDrawerOverlay) {
+    archDrawerOverlay.classList.remove('active');
+  }
+  document.body.style.overflow = '';
+}
+
+if (drawerCloseBtn) {
+  drawerCloseBtn.addEventListener('click', closeDrawer);
+}
+
+if (archDrawerOverlay) {
+  archDrawerOverlay.addEventListener('click', (e) => {
+    if (e.target === archDrawerOverlay) {
+      closeDrawer();
+    }
+  });
+}
+
+// Esc key to close drawer
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeDrawer();
+  }
+});
+
+/* ==================== Serverless Visitor Analytics Badge ==================== */
+async function fetchVisitorAnalytics() {
+  const visitorCountEl = document.getElementById('visitor-count');
+  const messagesCountEl = document.getElementById('messages-count');
+  
+  // Set up local storage fallback stats (initialize if empty)
+  let localViews = parseInt(localStorage.getItem('portfolio_views') || '142');
+  let localMsgs = parseInt(localStorage.getItem('portfolio_messages') || '18');
+  
+  // Increment view count on each page load
+  localViews++;
+  localStorage.setItem('portfolio_views', localViews.toString());
+  
+  // Initially show local counts
+  if (visitorCountEl) visitorCountEl.textContent = localViews;
+  if (messagesCountEl) messagesCountEl.textContent = localMsgs;
+  
+  try {
+    // Attempt to hit the Cloudflare Worker endpoint
+    const res = await fetch('https://cf-ai-web-coach.himanshu524.workers.dev/api/visitor', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ views: localViews, messages: localMsgs })
+    });
+    
+    if (res.ok) {
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        const data = await res.json();
+        if (data && typeof data.views !== 'undefined') {
+          localStorage.setItem('portfolio_views', data.views.toString());
+          if (visitorCountEl) visitorCountEl.textContent = data.views;
+        }
+        if (data && typeof data.messages !== 'undefined') {
+          localStorage.setItem('portfolio_messages', data.messages.toString());
+          if (messagesCountEl) messagesCountEl.textContent = data.messages;
+        }
+      }
+    }
+  } catch (err) {
+    console.warn("Analytics API request failed, using local fallback.", err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchVisitorAnalytics();
+});

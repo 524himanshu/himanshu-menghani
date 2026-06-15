@@ -467,6 +467,7 @@
             </div>
             <div class="portfolio-links">
               <a href="https://github.com/524himanshu/drishti-ai" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <button class="btn-arch" data-project="drishtiai" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
             </div>
           </div>
         </div>
@@ -493,6 +494,7 @@
             <div class="portfolio-links">
               <a href="https://github.com/524himanshu/recruitiq" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
               <a href="https://recruitiq-redrob.streamlit.app/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+              <button class="btn-arch" data-project="recruitiq" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
             </div>
           </div>
         </div>
@@ -519,6 +521,7 @@
             <div class="portfolio-links">
               <a href="https://github.com/524himanshu/cf_ai_web_coach" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
               <a href="https://cf-ai-web-coach.himanshu524.workers.dev/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+              <button class="btn-arch" data-project="careercoach" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
             </div>
           </div>
         </div>
@@ -537,6 +540,7 @@
             </div>
             <div class="portfolio-links">
               <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <button class="btn-arch" data-project="payoutengine" aria-label="View System Architecture"><i class="bx bx-git-repo-forked"></i> Architecture</button>
             </div>
           </div>
         </div>
@@ -584,6 +588,19 @@
           <a href="#home" class="logo"><span>Himanshu.</span></a>
           <p>Full Stack & AI Developer based in Mumbai.</p>
           <p class="footer-email"><i class="bx bx-envelope"></i> himanshumenghani524@gmail.com</p>
+        </div>
+        <div class="footer-analytics">
+          <h4>Platform Stats</h4>
+          <div class="analytics-badges">
+            <div class="analytics-badge" title="Total Page Views">
+              <i class="bx bx-show"></i>
+              <span>Views: <strong id="visitor-count">--</strong></span>
+            </div>
+            <div class="analytics-badge" title="Messages Sent via Contact Form">
+              <i class="bx bx-send"></i>
+              <span>Messages: <strong id="messages-count">--</strong></span>
+            </div>
+          </div>
         </div>
         <div class="footer-links">
           <h4>Quick Links</h4>
@@ -654,6 +671,33 @@
             <i class="bx bx-paper-plane"></i>
           </button>
         </form>
+      </div>
+    </div>
+
+    <!-- System Architecture Drawer Overlay -->
+    <div id="arch-drawer-overlay" class="arch-drawer-overlay">
+      <div id="arch-drawer" class="arch-drawer">
+        <div class="drawer-header">
+          <div class="drawer-header-title">
+            <h2 id="drawer-title">Project Architecture</h2>
+            <span id="drawer-project-badge" class="project-badge">System Architecture</span>
+          </div>
+          <button id="drawer-close" class="drawer-close" aria-label="Close Drawer">
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+        <div class="drawer-content">
+          <div class="drawer-details">
+            <p id="drawer-desc">Project details and architecture pipeline explanation.</p>
+            <div id="drawer-tags" class="portfolio-tags"></div>
+          </div>
+          <div class="drawer-diagram-section">
+            <h3>Interactive Pipeline Diagram</h3>
+            <div id="drawer-svg-container" class="drawer-svg-container">
+              <!-- Inline SVG injected here -->
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -1504,6 +1504,276 @@ body.dark-theme .ai-chat-window {
   }
 }
 
+/* ===== System Architecture Drawer & Analytics ===== */
+.btn-arch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  padding: 0.8rem 1.6rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--font-heading);
+  outline: none;
+}
+
+.btn-arch i {
+  font-size: 1.4rem;
+  color: var(--main-color);
+}
+
+.btn-arch:hover {
+  border-color: var(--main-color);
+  background: rgba(0, 238, 255, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 238, 255, 0.1);
+}
+
+.arch-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10005;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.arch-drawer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.arch-drawer {
+  position: fixed;
+  top: 0;
+  right: -550px;
+  width: 550px;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.98);
+  border-left: 1px solid var(--card-border);
+  box-shadow: -15px 0 35px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  z-index: 10006;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  padding: 3rem;
+}
+
+body.dark-theme .arch-drawer {
+  background: rgba(10, 10, 10, 0.98);
+}
+
+.arch-drawer-overlay.active .arch-drawer {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 2rem;
+}
+
+.drawer-header-title h2 {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 0.6rem;
+}
+
+.project-badge {
+  display: inline-block;
+  background: rgba(0, 238, 255, 0.1);
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.2rem 0.9rem;
+  border-radius: 2rem;
+  text-transform: uppercase;
+}
+
+.drawer-close {
+  background: transparent;
+  border: none;
+  font-size: 2.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.25s ease;
+  outline: none;
+}
+
+.drawer-close:hover {
+  color: var(--main-color);
+}
+
+.drawer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.drawer-details p {
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.drawer-diagram-section h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.drawer-svg-container {
+  background: var(--second-bg-color);
+  border: 1px solid var(--card-border);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.drawer-svg-container svg {
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+}
+
+/* SVG Architecture Diagram Elements */
+.arch-node {
+  fill: var(--bg-color);
+  stroke: var(--card-border);
+  stroke-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.arch-node:hover {
+  stroke: var(--main-color);
+  filter: drop-shadow(0 0 6px rgba(0, 238, 255, 0.4));
+}
+
+.arch-node-active {
+  fill: rgba(0, 238, 255, 0.08);
+  stroke: var(--main-color);
+  stroke-width: 2px;
+}
+
+.arch-text {
+  font-family: var(--font-body);
+  font-size: 11px;
+  fill: var(--text-color);
+  font-weight: 500;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.arch-text-title {
+  font-weight: 700;
+  fill: var(--main-color);
+}
+
+.arch-edge {
+  stroke: var(--card-border);
+  stroke-width: 2px;
+  fill: none;
+  transition: stroke 0.3s ease;
+}
+
+.arch-edge-active {
+  stroke: var(--main-color);
+  stroke-width: 2.5px;
+  stroke-dasharray: 6;
+  animation: edge-pulse 20s linear infinite;
+}
+
+@keyframes edge-pulse {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.arch-glow {
+  filter: drop-shadow(0 0 4px var(--main-color));
+}
+
+/* Footer Analytics */
+.footer-analytics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.footer-analytics h4 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.analytics-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.analytics-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.analytics-badge i {
+  font-size: 1.6rem;
+  color: var(--main-color);
+}
+
+.analytics-badge:hover {
+  border-color: var(--main-color);
+  color: var(--text-color);
+  background: rgba(0, 238, 255, 0.05);
+}
+
+.analytics-badge strong {
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .arch-drawer {
+    width: 100%;
+    right: -100%;
+    padding: 2rem;
+  }
+}
+
 /* ===== scroll progress bar ===== */
 #scroll-progress {
   position: fixed;
