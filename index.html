@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Himanshu Menghani — Full Stack & AI Developer</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <!-- scroll progress bar -->
-    <div id="scroll-progress"></div>
   </head>
 
   <body>
+    <!-- scroll progress bar -->
+    <div id="scroll-progress"></div>
+
     <!-- header -->
     <header class="header">
       <a href="#" class="logo"><span>Himanshu.</span></a>
@@ -21,13 +25,12 @@
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#stats-card">Statistics</a>
-        <a href="#certificates">Certificates</a>
         <a href="#portfolio">Projects</a>
+        <a href="#journey">Journey</a>
+        <a href="#certificates">Certificates</a>
         <a href="#contact">Contact</a>
       </nav>
-      <i class="bx bx-moon" id="theme-toggle"></i>
+      <i class="bx bx-sun" id="theme-toggle"></i>
     </header>
 
     <!-- available for hire badge -->
@@ -40,18 +43,18 @@
     <section class="home" id="home">
       <div class="home-content">
         <h3>Hello, It's Me</h3>
-        <h1><span>Himanshu</span></h1>
+        <h1><span>Himanshu Menghani</span></h1>
         <h3>And I'm a <span class="typed-text"></span></h3>
         <p>
-  Full-stack developer building scalable web applications and AI-powered systems.
-  Experienced in <span>React, Next.js, Django, Flask, and distributed async systems (Celery, Redis)</span>.
-  Focused on backend reliability, clean architecture, and real-world AI integrations.
-</p>
+          Full-stack developer and AI engineer focused on building production-ready web applications and AI-powered systems.
+          Experienced in <span>FastAPI, Django, Next.js, React, Celery, Redis, and LLM integrations</span> to design reliable and scalable architectures.
+        </p>
         <div class="social-media">
           <a href="https://github.com/524himanshu" target="_blank" rel="noopener"><i class="bx bxl-github"></i></a>
-          <a href="https://discord.gg/dFHYPdjw" target="_blank" rel="noopener"><i class="bx bxl-discord"></i></a>
-          <a href="https://www.instagram.com/himanshumenghani524/" target="_blank" rel="noopener"><i class="bx bxl-instagram"></i></a>
           <a href="https://www.linkedin.com/in/himanshumenghani524/" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://www.instagram.com/himanshumenghani524/" target="_blank" rel="noopener"><i class="bx bxl-instagram"></i></a>
+          <a href="https://discord.gg/dFHYPdjw" target="_blank" rel="noopener"><i class="bx bxl-discord"></i></a>
+          <a href="mailto:himanshumenghani524@gmail.com"><i class="bx bx-envelope"></i></a>
         </div>
         <a href="Himanshu Professional Resume updated.pdf" download="Himanshu Menghani Resume.pdf" class="btn download-cv">Download CV</a>
       </div>
@@ -67,25 +70,22 @@
       </div>
       <div class="about-content">
         <h2 class="heading">About <span>Me</span></h2>
-        <h3>Full Stack & <span>AI Developer</span></h3>
+        <h3>Full Stack Developer & <span>AI Engineer</span></h3>
         <p>
           I'm <span>Himanshu Menghani</span>, a Mumbai-based developer focused on building
-          real-world web and AI applications. I work with
-          <span>Next.js, React, Flask, and MongoDB</span>, and I like turning ideas into
+          production-ready web and AI applications. I work with
+          <span>FastAPI, Django, Next.js, Celery, Redis, and LLMs</span>, and I like turning complex technical challenges into
           functional, user-focused products.
         </p>
         <p>
-          Instead of just learning theory, I prefer building. From an
-          <span>AI-powered health diagnostics platform</span> to a
-          <span>Cloudflare Workers AI career coach</span>, my work reflects
-          practical problem-solving and continuous improvement.
+          Instead of just learning theory, I prefer building. From <span>DrishtiAI</span> (a real-time adverse event detection platform shortlisted for <span>AI for Bharat 2026</span>) to <span>RecruitIQ</span> (an AI-powered candidate ranking system evaluated on 100,000 candidate profiles), my work reflects practical problem-solving and continuous improvement.
         </p>
         <h3>What I Bring</h3>
         <ul class="about-list">
-          <li>Strong foundation in <span>full-stack development (MERN + Next.js)</span></li>
-          <li>Hands-on experience with <span>AI integration and APIs</span></li>
-          <li>Focus on <span>clean UI, performance, and real usability</span></li>
-          <li>Consistent project building and self-learning mindset</li>
+          <li>Hands-on experience with <span>Agentic AI, RAG pipelines, and LLM integrations</span> (Gemini, Claude, Llama)</li>
+          <li>Strong foundation in <span>full-stack development</span> (Django, Next.js, React)</li>
+          <li>Focus on <span>asynchronous workflows, Celery, Redis, and transactional PostgreSQL</span></li>
+          <li>Active builder of validator-compliant systems and performance optimizations</li>
         </ul>
         <div class="tech-stack">
           <span class="tech-stack-label">Tech Stack</span>
@@ -93,15 +93,16 @@
             <div class="tech-icon" title="Next.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" /></div>
             <div class="tech-icon" title="React"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" /></div>
             <div class="tech-icon" title="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /></div>
+            <div class="tech-icon" title="FastAPI"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" /></div>
+            <div class="tech-icon" title="Django"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" /></div>
             <div class="tech-icon" title="Flask"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" /></div>
+            <div class="tech-icon" title="PostgreSQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" /></div>
             <div class="tech-icon" title="MongoDB"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /></div>
+            <div class="tech-icon" title="Redis"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" /></div>
+            <div class="tech-icon" title="Docker"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" /></div>
             <div class="tech-icon" title="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /></div>
             <div class="tech-icon" title="TypeScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" /></div>
-            <div class="tech-icon" title="Firebase"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" /></div>
-            <div class="tech-icon" title="PostgreSQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" /></div>
-            <div class="tech-icon" title="Django"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" /></div>
             <div class="tech-icon" title="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" /></div>
-            <div class="tech-icon" title="Flutter"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" /></div>
           </div>
         </div>
 
@@ -112,100 +113,165 @@
     <!-- skills section -->
     <section class="skills" id="skills">
       <h2 class="heading">My <span>Skills</span></h2>
-      <div class="skills-row">
-        <div class="skills-column">
-          <h3 class="title">Technical <span>Skills</span></h3>
-          <div class="skills-box">
-            <div class="skills-content">
-              <div class="progress"><h3>HTML <span>90%</span></h3><div class="bar"><span style="width: 90%"></span></div></div>
-              <div class="progress"><h3>CSS <span>80%</span></h3><div class="bar"><span style="width: 80%"></span></div></div>
-              <div class="progress"><h3>JavaScript <span>65%</span></h3><div class="bar"><span style="width: 65%"></span></div></div>
-              <div class="progress"><h3>Python <span>75%</span></h3><div class="bar"><span style="width: 75%"></span></div></div>
-              <div class="progress"><h3>SQL <span>70%</span></h3><div class="bar"><span style="width: 70%"></span></div></div>
-              <div class="progress"><h3>React / Next.js <span>65%</span></h3><div class="bar"><span style="width: 65%"></span></div></div>
-            </div>
+      <div class="skills-container">
+
+        <div class="skills-card">
+          <div class="skills-card-header">
+            <i class="bx bx-code-alt"></i>
+            <h3>Languages</h3>
+          </div>
+          <div class="skills-list">
+            <span>JavaScript</span>
+            <span>Python</span>
+            <span>SQL</span>
           </div>
         </div>
-        <div class="skills-column">
-          <h3 class="title">Professional <span>Skills</span></h3>
-          <div class="skills-box">
-            <div class="skills-content">
-              <div class="progress"><h3>Full Stack Development <span>75%</span></h3><div class="bar"><span style="width: 75%"></span></div></div>
-              <div class="progress"><h3>AI & API Integration <span>72%</span></h3><div class="bar"><span style="width: 72%"></span></div></div>
-              <div class="progress"><h3>Data Structures & Algorithms <span>60%</span></h3><div class="bar"><span style="width: 60%"></span></div></div>
-              <div class="progress"><h3>UI/UX Design <span>70%</span></h3><div class="bar"><span style="width: 70%"></span></div></div>
-            </div>
+
+        <div class="skills-card">
+          <div class="skills-card-header">
+            <i class="bx bx-brain"></i>
+            <h3>AI / ML</h3>
+          </div>
+          <div class="skills-list">
+            <span>LLMs (Gemini, Claude, Llama 3.3)</span>
+            <span>Agentic AI</span>
+            <span>RAG Pipelines</span>
+            <span>Prompt Engineering</span>
+            <span>Scikit-learn</span>
+            <span>Pandas & NumPy</span>
           </div>
         </div>
+
+        <div class="skills-card">
+          <div class="skills-card-header">
+            <i class="bx bx-server"></i>
+            <h3>Backend</h3>
+          </div>
+          <div class="skills-list">
+            <span>FastAPI</span>
+            <span>Django & DRF</span>
+            <span>Flask</span>
+            <span>Node.js / Express</span>
+            <span>REST APIs</span>
+            <span>JWT Auth</span>
+            <span>Celery</span>
+            <span>Redis</span>
+          </div>
+        </div>
+
+        <div class="skills-card">
+          <div class="skills-card-header">
+            <i class="bx bx-layout"></i>
+            <h3>Frontend</h3>
+          </div>
+          <div class="skills-list">
+            <span>React.js</span>
+            <span>Next.js</span>
+            <span>Tailwind CSS</span>
+            <span>HTML & CSS</span>
+          </div>
+        </div>
+
+        <div class="skills-card">
+          <div class="skills-card-header">
+            <i class="bx bx-data"></i>
+            <h3>Databases</h3>
+          </div>
+          <div class="skills-list">
+            <span>PostgreSQL</span>
+            <span>MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skills-card">
+          <div class="skills-card-header">
+            <i class="bx bx-wrench"></i>
+            <h3>Tools & Platforms</h3>
+          </div>
+          <div class="skills-list">
+            <span>Docker</span>
+            <span>Redis</span>
+            <span>Git & GitHub</span>
+            <span>Postman</span>
+            <span>Vercel & Render</span>
+            <span>Cloudflare Workers</span>
+          </div>
+        </div>
+
+        <div class="skills-card">
+          <div class="skills-card-header">
+            <i class="bx bx-bulb"></i>
+            <h3>Concepts</h3>
+          </div>
+          <div class="skills-list">
+            <span>RBAC (Role-Based Access)</span>
+            <span>Async Processing</span>
+            <span>API Design</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
 
-    <!-- experience section -->
-    <section class="experience" id="experience">
-      <h2 class="heading">My <span>Experience</span></h2>
-      <div class="timeline">
+    <!-- journey section -->
+    <section class="journey" id="journey">
+      <h2 class="heading">My <span>Journey</span></h2>
+      <div class="journey-row">
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Apr 2026</div>
-          <div class="timeline-content">
-            <h3>Engineering Challenge — Playto</h3>
-            <span class="timeline-tag">Backend</span>
-<p>
-Built an asynchronous payout processing system using Celery and Redis, handling background jobs outside request cycles.
-Implemented retry logic, transactional PostgreSQL workflows, and idempotent APIs to prevent duplicate payouts.
-Designed REST APIs with Django REST Framework and ensured concurrency safety using row-level locking.
-</p>          </div>
-        </div>
+        <!-- Experience Column -->
+        <div class="journey-column">
+          <h3 class="title"><i class="bx bx-briefcase"></i> Experience</h3>
+          <div class="journey-box">
+            
+            <div class="journey-content">
+              <div class="content-header">
+                <span class="journey-date"><i class="bx bx-calendar"></i> Sept 2023 – Oct 2023</span>
+                <h3>Web Development Intern</h3>
+                <h4>OctaNet Services Pvt Ltd</h4>
+              </div>
+              <ul class="journey-bullets">
+                <li>Developed and delivered <span>3+ responsive web applications</span>, including a task management platform featuring prioritization, deadline tracking, and status workflows.</li>
+                <li>Enhanced cross-device compatibility and user experience through <span>component-based architecture</span> and responsive design practices.</li>
+                <li>Collaborated on frontend debugging, resolving rendering, styling, and responsiveness issues to improve application stability.</li>
+              </ul>
+            </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Apr–May 2026</div>
-          <div class="timeline-content">
-            <h3>AI for Bharat Hackathon — PulseWatch</h3>
-            <span class="timeline-tag">Hackathon</span>
-            <p>Selected for Round 1 of Government of Karnataka × PAN IIT hackathon. Built PulseWatch — a real-time healthcare social listening platform using Gemini API NLP pipeline, confidence scoring, and PII/PHI flagging.</p>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Mar 2026</div>
-          <div class="timeline-content">
-            <h3>CF AI Web Coach — Cloudflare Internship Project</h3>
-            <span class="timeline-tag">AI · Cloudflare</span>
-            <p>Built as a technical assignment for Cloudflare internship. Used Workers AI + Llama 3.3 70B + Durable Objects with persistent session state. Deployed live on Cloudflare Workers.</p>
-          </div>
-        </div>
+        <!-- Education Column -->
+        <div class="journey-column">
+          <h3 class="title"><i class="bx bx-book-open"></i> Education</h3>
+          <div class="journey-box">
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Sep–Oct 2023</div>
-          <div class="timeline-content">
-            <h3>Web Development Intern — OctaNet Services</h3>
-            <span class="timeline-tag">Internship</span>
-            <p>Completed a web development internship building and maintaining web interfaces. Gained hands-on experience in production-level frontend development.</p>
-          </div>
-        </div>
+            <div class="journey-content">
+              <div class="content-header">
+                <span class="journey-date"><i class="bx bx-calendar"></i> 2021 – 2024</span>
+                <h3>Bachelor of Engineering, IT</h3>
+                <h4>Mumbai University</h4>
+              </div>
+              <p>Specialized in Information Technology. Focused on web application architectures, database design, software development lifecycles, and core computing foundations.</p>
+            </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Nov 2023</div>
-          <div class="timeline-content">
-            <h3>INVICTUS24 — 24-Hour Hackathon</h3>
-            <span class="timeline-tag">Hackathon</span>
-            <p>Participated in the 24-hour hackathon organised by QuestIT Cell × ISTE VESIT. Built a working project under time pressure and competed against other teams.</p>
-          </div>
-        </div>
+            <div class="journey-content">
+              <div class="content-header">
+                <span class="journey-date"><i class="bx bx-calendar"></i> 2020 – 2021</span>
+                <h3>Higher Secondary Certificate (Science)</h3>
+                <h4>Maharashtra State Board (80%)</h4>
+              </div>
+              <p>Completed secondary school science and math foundations with physics, chemistry, mathematics, and IT.</p>
+            </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">2022–Present</div>
-          <div class="timeline-content">
-            <h3>Self-Taught Full Stack Developer</h3>
-            <span class="timeline-tag">Ongoing</span>
-            <p>Independently learning and building across the full stack — MERN, Next.js, Python/Flask, AI APIs, cloud deployments. 27 certifications across Cloud, AI, and Web Development.</p>
+            <div class="journey-content">
+              <div class="content-header">
+                <span class="journey-date"><i class="bx bx-calendar"></i> 2018 – 2019</span>
+                <h3>Secondary Education (10th Grade)</h3>
+                <h4>Maharashtra State Board</h4>
+              </div>
+              <p>Completed standard primary education benchmarks, scoring well on mathematical foundations and general studies.</p>
+            </div>
+
           </div>
         </div>
 
@@ -237,152 +303,111 @@ Designed REST APIs with Django REST Framework and ensured concurrency safety usi
 
     <!-- certificates section -->
     <section class="certificates" id="certificates">
-      <h2 class="heading">My <span>Certificates</span></h2>
+      <h2 class="heading">Certifications & <span>Achievements</span></h2>
       <div class="certificates-container">
 
+        <!-- AI for Bharat 2026 -->
+        <div class="nft">
+          <div class="main">
+            <img class="tokenImage" src="https://uc.hackerearth.com/he-s3-ap-south-1/media/sprint/ai-for-namma-karnataka-hackathon-2/editor/editor_image_2646421_b5ea1ae.png" alt="AI for Bharat 2026" />
+            <h3>AI for Bharat 2026</h3>
+            <p class="description">Shortlisted for the Prototype Phase of AI for Bharat 2026 (national AI innovation hackathon) for DrishtiAI, a real-time adverse event detection platform.</p>
+            <hr />
+            <div class="creator">
+              <p><ins>Issued in</ins> <span>2026</span> by <span>Govt of Karnataka & PAN IIT</span></p>
+            </div>
+            <a href="https://www.linkedin.com/in/himanshumenghani524/details/certifications/" target="_blank" rel="noopener" class="btn">View Details</a>
+          </div>
+        </div>
+
+        <!-- Develop GenAI Apps -->
         <div class="nft">
           <div class="main">
             <img class="tokenImage" src="https://cdn.qwiklabs.com/Wd0M6LLiUyTjAcKQd7IChkWEF%2BuAndWsKPKmgAAd5ZY%3D" alt="Develop GenAI Apps with Gemini and Streamlit" />
-            <h3>Develop GenAI Apps with Gemini and Streamlit</h3>
-            <p class="description">Completed the course on creating generative AI applications using Gemini and Streamlit.</p>
+            <h3>Develop GenAI Apps with Gemini</h3>
+            <p class="description">Completed Google Cloud credentials on building generative AI applications using Gemini and Streamlit.</p>
             <hr />
             <div class="creator">
               <div class="wrapper"><img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google" /></div>
-              <p><ins>Issued in</ins> <span>May 2024</span> by <span>Google</span></p>
+              <p><ins>Issued</ins> <span>May 2024</span> by <span>Google Cloud</span></p>
             </div>
             <a href="https://www.cloudskillsboost.google/public_profiles/a9c58b9f-f2c2-41d6-9444-6310d2e25223/badges/9205669" target="_blank" rel="noopener" class="btn">Show Credential</a>
           </div>
         </div>
 
-        <div class="nft">
-          <div class="main">
-            <img class="tokenImage" src="https://cdn.qwiklabs.com/KJbv0GOIxc4Ze8p7LH1Ke4TeOMBGPqAus29iGiFw5po%3D" alt="Introduction to Generative AI" />
-            <h3>Introduction to Generative AI</h3>
-            <p class="description">Completed the course on Generative AI and its applications, covering the latest advancements in AI technologies.</p>
-            <hr />
-            <div class="creator">
-              <div class="wrapper"><img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google" /></div>
-              <p><ins>Issued in</ins> <span>May 2024</span> by <span>Google</span></p>
-            </div>
-            <a href="https://www.cloudskillsboost.google/public_profiles/a9c58b9f-f2c2-41d6-9444-6310d2e25223/badges/9209925" target="_blank" rel="noopener" class="btn">Show Credential</a>
-          </div>
-        </div>
-
-        <div class="nft">
-          <div class="main">
-            <img class="tokenImage" src="https://cdn.qwiklabs.com/CmKnJgGc%2FJXb%2FDCvu%2BzgvGfxxEQQ4kfQV5P9o3wUK0c%3D" alt="Level 3: GenAIus Registries" />
-            <h3>Level 3: GenAIus Registries</h3>
-            <p class="description">Advanced course on Generative AI covering cutting-edge models, practical applications, and deployment strategies.</p>
-            <hr />
-            <div class="creator">
-              <div class="wrapper"><img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google" /></div>
-              <p><ins>Issued in</ins> <span>May 2024</span> by <span>Google</span></p>
-            </div>
-            <a href="https://www.cloudskillsboost.google/public_profiles/a9c58b9f-f2c2-41d6-9444-6310d2e25223/badges/9212286" target="_blank" rel="noopener" class="btn">Show Credential</a>
-          </div>
-        </div>
-
+        <!-- Prompt Design in Vertex AI -->
         <div class="nft">
           <div class="main">
             <img class="tokenImage" src="https://cdn.qwiklabs.com/Zd4Z2gdc58uW%2Fu5AcTNOvKnjokXECt8jfHGoYqqgz6w%3D" alt="Prompt Design in Vertex AI" />
             <h3>Prompt Design in Vertex AI</h3>
-            <p class="description">Advanced course on creating effective prompts for large language models and optimizing generative AI systems.</p>
+            <p class="description">Completed Google Cloud credentials on advanced prompt engineering and optimizing generative AI model responses.</p>
             <hr />
             <div class="creator">
               <div class="wrapper"><img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google" /></div>
-              <p><ins>Issued in</ins> <span>May 2024</span> by <span>Google</span></p>
+              <p><ins>Issued</ins> <span>May 2024</span> by <span>Google Cloud</span></p>
             </div>
             <a href="https://www.cloudskillsboost.google/public_profiles/a9c58b9f-f2c2-41d6-9444-6310d2e25223/badges/9204180" target="_blank" rel="noopener" class="btn">Show Credential</a>
           </div>
         </div>
 
+        <!-- INVICTUS 24 -->
+        <div class="nft">
+          <div class="main">
+            <div class="cert-icon-badge">
+              <i class="bx bx-medal"></i>
+            </div>
+            <h3>INVICTUS’24 Hackathon</h3>
+            <p class="description">Participated and built a working prototype under a 24-hour time constraint at the hackathon organized by QuestIT Cell × ISTE VESIT.</p>
+            <hr />
+            <div class="creator">
+              <p><ins>Issued</ins> <span>Feb 2024</span> by <span>QuestIT & ISTE VESIT</span></p>
+            </div>
+            <a href="https://www.linkedin.com/in/himanshumenghani524/details/certifications/" target="_blank" rel="noopener" class="btn">View Details</a>
+          </div>
+        </div>
+
+        <!-- Introduction to GenAI -->
+        <div class="nft">
+          <div class="main">
+            <img class="tokenImage" src="https://cdn.qwiklabs.com/KJbv0GOIxc4Ze8p7LH1Ke4TeOMBGPqAus29iGiFw5po%3D" alt="Introduction to Generative AI" />
+            <h3>Introduction to Generative AI</h3>
+            <p class="description">Completed Google Cloud introductory credentials on generative AI concepts and foundational model behaviors.</p>
+            <hr />
+            <div class="creator">
+              <div class="wrapper"><img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google" /></div>
+              <p><ins>Issued</ins> <span>May 2024</span> by <span>Google Cloud</span></p>
+            </div>
+            <a href="https://www.cloudskillsboost.google/public_profiles/a9c58b9f-f2c2-41d6-9444-6310d2e25223/badges/9209925" target="_blank" rel="noopener" class="btn">Show Credential</a>
+          </div>
+        </div>
+
+        <!-- Web Dev Internship -->
         <div class="nft">
           <div class="main">
             <img class="tokenImage" src="Web Development Internship.png" alt="Web Development Internship" />
             <h3>Web Development Internship</h3>
-            <p class="description">Internship at OctaNet Services Pvt Ltd, focusing on web development from September to October 2023.</p>
+            <p class="description">Completed a professional internship building responsive web applications and styling modular layouts.</p>
             <hr />
             <div class="creator">
-              <p><ins>Issued in</ins> <span>October 2023</span> by <span>OctaNet Services Pvt Ltd</span></p>
+              <p><ins>Issued</ins> <span>Oct 2023</span> by <span>OctaNet Services</span></p>
             </div>
             <a href="https://certificate.givemycertificate.com/c/90992128-d362-40f8-8e41-3df93238af0a" target="_blank" rel="noopener" class="btn">Show Credential</a>
           </div>
         </div>
 
-        <div class="nft">
+        <!-- More Certifications -->
+        <div class="nft cert-more-card">
           <div class="main">
-            <img class="tokenImage" src="Mastering MERN A 4-Day Workshop.jpg" alt="Mastering MERN Workshop" />
-            <h3>Mastering MERN: A 4-Day Workshop</h3>
-            <p class="description">Hands-on experience building full-stack applications using MongoDB, Express.js, React.js, and Node.js.</p>
+            <div class="cert-icon-badge">
+              <i class="bx bx-certification"></i>
+            </div>
+            <h3>27+ More Certifications</h3>
+            <p class="description">Including Next.js development, Java programming, MERN Stack development, API engineering, and cloud infrastructure.</p>
             <hr />
             <div class="creator">
-              <p><ins>Issued in</ins> <span>April 2024</span> by <span>OctaNet Services Pvt Ltd</span></p>
+              <p>Credentials verified and documented on LinkedIn.</p>
             </div>
-            <a href="https://drive.google.com/file/d/1Sp_V96vl96R15fCqWWij4nFPmvmba4uH/view" target="_blank" rel="noopener" class="btn">Show Credential</a>
-          </div>
-        </div>
-
-        <div class="nft">
-          <div class="main">
-            <img class="tokenImage" src="https://media.licdn.com/dms/image/v2/D4D2DAQFu3BZJyNUWDQ/profile-treasury-document-cover-images_800/profile-treasury-document-cover-images_800/0/1699955579846?e=1731747600&v=beta&t=gC-ITNH9NU_tJafReonnV4zxE5TmFp9mMJPAad_TnyA" alt="API Alchemy Workshop" />
-            <h3>API Alchemy Workshop</h3>
-            <p class="description">Built and connected APIs to create dynamic, efficient web services with hands-on integration practice.</p>
-            <hr />
-            <div class="creator">
-              <p><ins>Issued in</ins> <span>September 2023</span> by <span>QuestIT Cell</span></p>
-            </div>
-            <a href="https://drive.google.com/file/d/13yOT4BcA4sr4eyku2bq6CaXhpL7IJS0e/view?usp=sharing" target="_blank" rel="noopener" class="btn">Show Credential</a>
-          </div>
-        </div>
-
-        <div class="nft">
-          <div class="main">
-            <img class="tokenImage" src="Android Apps Development from Scratch with 5 Projects.JPG" alt="Android Development" />
-            <h3>Android Apps Development from Scratch</h3>
-            <p class="description">Built five Android applications from scratch, gaining practical mobile development experience.</p>
-            <hr />
-            <div class="creator">
-              <p><ins>Issued in</ins> <span>June 2023</span> by <span>Udemy</span></p>
-            </div>
-            <a href="https://www.ude.my/UC-ba8d3fe1-e202-4757-bb7d-04cbe7582ba0/" target="_blank" rel="noopener" class="btn">Show Credential</a>
-          </div>
-        </div>
-
-        <div class="nft">
-          <div class="main">
-            <img class="tokenImage" src="coding ninja.jpg" alt="Build Greeting App with React JS" />
-            <h3>Build Greeting App with React JS</h3>
-            <p class="description">Developed a greeting app using React JS as part of the Coding Ninjas course.</p>
-            <hr />
-            <div class="creator">
-              <p><ins>Issued in</ins> <span>March 2023</span> by <span>Coding Ninjas</span></p>
-            </div>
-            <a href="https://drive.google.com/file/d/1YfHXHsfiHRjvB2n9dDxAn0HROpku6qi7/view?usp=sharing" target="_blank" rel="noopener" class="btn">Show Credential</a>
-          </div>
-        </div>
-
-        <div class="nft">
-          <div class="main">
-            <img class="tokenImage" src="Himanshu Menghani NextJS.png" alt="Next.js Workshop" />
-            <h3>Next.js Workshop</h3>
-            <p class="description">SSR, SSG, dynamic routing, API integration, and middleware — building SEO-friendly Next.js apps.</p>
-            <hr />
-            <div class="creator">
-              <p><ins>Issued in</ins> <span>March 2023</span> by <span>QuestIT Cell</span></p>
-            </div>
-            <a href="https://drive.google.com/file/d/1wRsGzlE_hVYOirRFh2ZCfZYXOtRgh6fc/view?usp=sharing" target="_blank" rel="noopener" class="btn">Show Credential</a>
-          </div>
-        </div>
-
-        <div class="nft">
-          <div class="main">
-            <img class="tokenImage" src="Himanshu Menghani Java .png" alt="Java Workshop" />
-            <h3>Java Workshop</h3>
-            <p class="description">OOP, data structures, and algorithms in Java with hands-on application building and debugging.</p>
-            <hr />
-            <div class="creator">
-              <p><ins>Issued in</ins> <span>December 2022</span> by <span>QuestIT Cell</span></p>
-            </div>
+            <a href="https://www.linkedin.com/in/himanshumenghani524/" target="_blank" rel="noopener" class="btn">View All Credentials</a>
           </div>
         </div>
 
@@ -403,108 +428,79 @@ Designed REST APIs with Django REST Framework and ensured concurrency safety usi
 
       <div class="portfolio-container">
 
+        <!-- DrishtiAI -->
         <div class="portfolio-box" data-category="ai fullstack">
-          <!-- <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span> -->
-          <div class="portfolio-placeholder" data-label="Next.js · Flask · Gemini AI">
-            <i class="bx bx-brain placeholder-icon"></i>
-          </div>
-          <div class="portfolio-layer">
-            <h4>AI Health Diagnostics Platform</h4>
-            <p>Next.js frontend, Flask backend, MongoDB, Gemini API. Deployed on Vercel + Render with real AI-powered symptom analysis.</p>
+          <span class="live-badge"><i class="bx bx-trophy"></i> AI for Bharat Shortlist</span>
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-pulse"></i>
+            </div>
+            <h4>DrishtiAI</h4>
+            <h5>Real-Time Adverse Event Detection</h5>
+            <p>A real-time pharmacovigilance platform ingesting Twitter & Reddit streams. Uses scispaCy NLP, SHAP-based explainability, and Presidio PII redaction. Selected for the AI for Bharat 2026 prototype phase.</p>
             <div class="portfolio-tags">
-              <span>Next.js</span><span>Flask</span><span>MongoDB</span><span>Gemini</span>
+              <span>FastAPI</span><span>Next.js</span><span>PostgreSQL</span><span>Redis</span><span>scispaCy</span><span>Docker</span>
             </div>
             <div class="portfolio-links">
-              <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-              <a href="#" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+              <a href="https://github.com/524himanshu/drishti-ai" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
             </div>
           </div>
         </div>
 
+        <!-- RecruitIQ -->
+        <div class="portfolio-box" data-category="ai ml">
+          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live Demo</span>
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-user-check"></i>
+            </div>
+            <h4>RecruitIQ</h4>
+            <h5>Intelligent Candidate Ranking</h5>
+            <p>AI-powered candidate screening system evaluating 100k profiles using a 5-factor scoring model. Uses all-MiniLM-L6-v2 embeddings and cosine similarity to rank candidates in &lt;60s.</p>
+            <div class="portfolio-tags">
+              <span>Python</span><span>Streamlit</span><span>Transformers</span><span>Pandas</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="https://github.com/524himanshu/recruitiq" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <a href="https://recruitiq-redrob.streamlit.app/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CF AI Career Coach -->
         <div class="portfolio-box" data-category="ai">
           <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
-          <div class="portfolio-placeholder" data-label="Cloudflare · Workers AI · Llama 3.3">
-            <i class="bx bx-bot placeholder-icon"></i>
-          </div>
-          <div class="portfolio-layer">
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-bot"></i>
+            </div>
             <h4>CF AI Career Coach</h4>
-            <p>Built on Cloudflare Workers + Workers AI (Llama 3.3 70B) with Durable Objects for session state. Fully deployed and live.</p>
+            <h5>Serverless AI Coaching Chatbot</h5>
+            <p>Deployed on Cloudflare Workers using Llama 3.3 70B (Workers AI). Uses Durable Objects for persistent multi-turn memory without a database, and provides instant AI resume feedback.</p>
             <div class="portfolio-tags">
-              <span>Cloudflare</span><span>Workers AI</span><span>Llama 3.3</span>
+              <span>Llama 3.3</span><span>Workers AI</span><span>Durable Objects</span><span>JavaScript</span>
             </div>
             <div class="portfolio-links">
-              <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-              <a href="https://cf-ai-web-coach.himanshu524.workers.dev" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+              <a href="https://github.com/524himanshu/cf_ai_web_coach" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              <a href="https://cf-ai-web-coach.himanshu524.workers.dev/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
             </div>
           </div>
         </div>
 
+        <!-- Playto Payout Engine -->
         <div class="portfolio-box" data-category="fullstack">
-          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
-          <div class="portfolio-placeholder" data-label="React · Node.js · MongoDB">
-            <i class="bx bx-graduation placeholder-icon"></i>
-          </div>
-          <div class="portfolio-layer">
-            <h4>Student Portal</h4>
-            <p>Full-stack student management system with role-based authentication, MongoDB backend, and clean dashboard UI.</p>
+          <div class="portfolio-card-content">
+            <div class="portfolio-icon-wrap">
+              <i class="bx bx-wallet"></i>
+            </div>
+            <h4>Playto Payout Engine</h4>
+            <h5>Async Payout Processing System</h5>
+            <p>An asynchronous payout system built with Django, Celery, and Redis to offload long-running tasks from request cycles. Features PostgreSQL transactional workflows, HubSpot API sync, and RBAC dashboards.</p>
             <div class="portfolio-tags">
-              <span>React</span><span>Node.js</span><span>MongoDB</span><span>Auth</span>
+              <span>Django</span><span>DRF</span><span>PostgreSQL</span><span>Celery</span><span>Redis</span><span>React</span>
             </div>
             <div class="portfolio-links">
               <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-            <a href="https://studentportal-7wwa.onrender.com/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-box" data-category="ml">
-          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
-          <div class="portfolio-placeholder" data-label="Python · Scikit-learn · ML">
-            <i class="bx bx-line-chart placeholder-icon"></i>
-          </div>
-          <div class="portfolio-layer">
-            <h4>Parkinson's Disease Prediction</h4>
-            <p>ML pipeline using Scikit-learn Decision Tree model. Achieved 94.87% accuracy on biomedical voice measurement data.</p>
-            <div class="portfolio-tags">
-              <span>Python</span><span>Scikit-learn</span><span>ML</span>
-            </div>
-            <div class="portfolio-links">
-              <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-            <a href="https://parkinsons-updated-final.onrender.com/" target="_blank" rel="noopener" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-box" data-category="fullstack">
-          <div class="portfolio-placeholder" data-label="Django · Celery · PostgreSQL">
-            <i class="bx bx-task placeholder-icon"></i>
-          </div>
-          <div class="portfolio-layer">
-            <h4>Django Task Queue System</h4>
-            <p>Engineering challenge built from scratch — async task processing with Django, Celery, and PostgreSQL queue management.</p>
-            <div class="portfolio-tags">
-              <span>Django</span><span>Celery</span><span>PostgreSQL</span>
-            </div>
-            <div class="portfolio-links">
-              <a href="https://github.com/524himanshu" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-box" data-category="fullstack">
-          <span class="live-badge"><i class="bx bx-radio-circle-marked"></i> Live</span>
-          <div class="portfolio-placeholder" data-label="HTML · CSS · JavaScript">
-            <i class="bx bx-code-alt placeholder-icon"></i>
-          </div>
-          <div class="portfolio-layer">
-            <h4>Developer Portfolio</h4>
-            <p>This site — built from scratch with vanilla HTML, CSS, and JS. Custom animations, contact API, and fully responsive.</p>
-            <div class="portfolio-tags">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span>
-            </div>
-            <div class="portfolio-links">
-              <a href="https://github.com/524himanshu/himanshu-menghani" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-              <a href="https://himanshu-menghani.vercel.app/" target="_blank" rel="noopener" aria-label="Live Site"><i class="bx bx-link-external"></i></a>
             </div>
           </div>
         </div>
@@ -557,7 +553,7 @@ Designed REST APIs with Django REST Framework and ensured concurrency safety usi
           <h4>Quick Links</h4>
           <a href="#about">About</a>
           <a href="#portfolio">Projects</a>
-          <a href="#experience">Experience</a>
+          <a href="#journey">Journey</a>
           <a href="#contact">Contact</a>
         </div>
         <div class="footer-social">

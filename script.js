@@ -60,7 +60,7 @@ ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 /* ==================== typed js ==================== */
 document.addEventListener('DOMContentLoaded', () => {
   new Typed('.typed-text', {
-    strings: ['Full Stack Developer', 'AI Integration Developer', 'Next.js & Flask Builder'],
+    strings: ['Full Stack Developer', 'AI Engineer', 'RAG & LLM Builder', 'Asynchronous Systems Architect'],
     typeSpeed: 80,
     backSpeed: 40,
     backDelay: 1500,
@@ -72,15 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
 const themeToggle = document.getElementById('theme-toggle');
 
 themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-theme');
+  document.body.classList.toggle('light-theme');
 
-  // swap icon between moon (light mode) and sun (dark mode)
-  if (document.body.classList.contains('dark-theme')) {
-    themeToggle.classList.remove('bx-moon');
-    themeToggle.classList.add('bx-sun');
-  } else {
+  // swap icon between sun (dark mode) and moon (light mode)
+  if (document.body.classList.contains('light-theme')) {
     themeToggle.classList.remove('bx-sun');
     themeToggle.classList.add('bx-moon');
+  } else {
+    themeToggle.classList.remove('bx-moon');
+    themeToggle.classList.add('bx-sun');
   }
 });
 
