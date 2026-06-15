@@ -470,7 +470,7 @@ function getLocalAIResponse(query) {
   }
 
   if (resumeKeywords.some(k => q.includes(k))) {
-    return "You can download Himanshu's latest resume directly from the Resume section or request a copy via email at <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a>.";
+    return "You can download Himanshu's latest resume directly using the button below or request a copy via email at <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a>.<br><br><a href='./Himanshu Professional Resume updated.pdf' download='Himanshu Menghani Resume.pdf' class='btn' style='display: inline-flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1.6rem; font-size: 1.2rem; margin-top: 0.5rem; text-decoration: none; border-radius: 2rem;'><i class='bx bx-download'></i> Download CV</a>";
   }
 
   if (availabilityKeywords.some(k => q.includes(k))) {
