@@ -408,11 +408,19 @@ async function handleUserSend(messageText) {
   
   const typingIndicator = showTypingIndicator();
   
-  // Wait a little bit to simulate thinking
-  await new Promise(r => setTimeout(r, 800));
+  // 1. Check local custom responses first
+  const localResp = getLocalAIResponse(messageText);
+  if (localResp) {
+    // Simulate thinking delay for natural feel
+    await new Promise(r => setTimeout(r, 600));
+    typingIndicator.remove();
+    appendMessage('bot', localResp);
+    return;
+  }
   
+  // 2. Fall back to Cloudflare Worker LLM for general queries
+  await new Promise(r => setTimeout(r, 400));
   try {
-    // Try requesting the worker API
     const res = await fetch('https://cf-ai-web-coach.himanshu524.workers.dev/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -423,12 +431,11 @@ async function handleUserSend(messageText) {
     const data = await res.json();
     
     typingIndicator.remove();
-    appendMessage('bot', data.response || data.message || getLocalAIResponse(messageText));
+    appendMessage('bot', data.response || data.message || getGeneralFallbackResponse());
   } catch (err) {
-    console.warn("Using local AI engine fallback:", err);
+    console.warn("Using general local AI fallback:", err);
     typingIndicator.remove();
-    const localResp = getLocalAIResponse(messageText);
-    appendMessage('bot', localResp);
+    appendMessage('bot', getGeneralFallbackResponse());
   }
 }
 
@@ -502,6 +509,10 @@ function getLocalAIResponse(query) {
     return "Hello! I'm Himanshu's AI assistant. Ask me anything about his projects, experience, skills, or achievements!";
   }
   
+  return null;
+}
+
+function getGeneralFallbackResponse() {
   return "That's an interesting question! Himanshu is a Full Stack Developer & AI Engineer focused on production-ready systems (FastAPI, Next.js, Celery, RAG pipelines). Feel free to check out his Projects or Journey sections, or drop an email to <a href='mailto:himanshumenghani524@gmail.com'>himanshumenghani524@gmail.com</a> or call <a href='tel:+917769949282'>+91 77699 49282</a>!";
 }
 
