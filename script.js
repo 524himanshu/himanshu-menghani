@@ -453,7 +453,7 @@ function getLocalAIResponse(query) {
   const resumeKeywords = ['resume', 'cv', 'pdf', 'download'];
   const availabilityKeywords = ['available', 'hire', 'looking', 'job', 'recruit', 'hiring', 'role', 'opportunity'];
   const locationKeywords = ['location', 'based', 'relocate', 'live', 'city', 'india'];
-  const aiKeywords = ['llm', 'genai', 'agentic', 'rag', 'vector', 'model', 'inference', 'llama', 'gemini', 'claude'];
+  const aiKeywords = ['llm', 'genai', 'agentic', 'rag', 'vector', 'model', 'inference', 'llama', 'gemini', 'claude', 'grok'];
   const whyKeywords = ['why hire', 'why him', 'strength', 'why should', 'qualities'];
   const greetingKeywords = ['hello', 'hi', 'hey', 'greet', 'morning', 'evening', 'afternoon'];
 
@@ -482,7 +482,7 @@ function getLocalAIResponse(query) {
   }
 
   if (aiKeywords.some(k => q.includes(k))) {
-    return "Himanshu has experience building applications with Gemini, Claude, and Llama 3.3. His work includes RAG pipelines, semantic search, prompt engineering, AI-powered ranking systems, and agentic workflows across projects like CodeMate, RecruitIQ, and CF AI Career Coach.";
+    return "Himanshu has experience building applications with Gemini, Claude, Llama 3.3, and Grok. His work includes RAG pipelines, semantic search, prompt engineering, AI-powered ranking systems, and agentic workflows across projects like CodeMate, RecruitIQ, and CF AI Career Coach.";
   }
 
   if (projectKeywords.some(k => q.includes(k))) {
@@ -490,7 +490,7 @@ function getLocalAIResponse(query) {
   }
   
   if (skillKeywords.some(k => q.includes(k))) {
-    return "Himanshu's tech stack includes:<br><br>• <strong>Languages</strong>: JavaScript, Python, SQL<br>• <strong>Backend</strong>: FastAPI, Django & DRF, Flask, Celery, Redis<br>• <strong>AI/ML</strong>: LLM integrations (Gemini, Llama, Claude), Agentic AI, RAG pipelines, Scikit-learn<br>• <strong>Frontend</strong>: Next.js, React.js, Tailwind CSS<br>• <strong>Databases & Tools</strong>: PostgreSQL, MongoDB, Docker, Cloudflare Workers";
+    return "Himanshu's tech stack includes:<br><br>• <strong>Languages</strong>: JavaScript, Python, SQL<br>• <strong>Backend</strong>: FastAPI, Django & DRF, Flask, Celery, Redis<br>• <strong>AI/ML</strong>: LLM integrations (Gemini, Llama, Claude, Grok), Agentic AI, RAG pipelines, Scikit-learn<br>• <strong>Frontend</strong>: Next.js, React.js, Tailwind CSS<br>• <strong>Databases & Tools</strong>: PostgreSQL, MongoDB, Docker, Cloudflare Workers";
   }
   
   if (contactKeywords.some(k => q.includes(k))) {
