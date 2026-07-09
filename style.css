@@ -3099,3 +3099,27 @@ body.dark-theme .playground-panel {
   }
 }
 
+
+/* ===== secondary outline button style ===== */
+.btn-sec {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  background: transparent;
+  border: 2px solid var(--main-color);
+  border-radius: 4rem;
+  font-size: 1.6rem;
+  color: var(--main-color);
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+  transition: 0.3s ease;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  text-decoration: none;
+}
+
+.btn-sec:hover {
+  background: var(--main-color);
+  color: #fff;
+  box-shadow: var(--btn-shadow);
+  transform: translateY(-2px);
+}

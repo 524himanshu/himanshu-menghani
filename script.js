@@ -532,6 +532,7 @@ const projectArchitectures = {
     title: "CodeMate",
     desc: "AI-powered Career Operating System and active engineering learning simulator. Features week-by-week roadmaps, an interactive learning engine with a pluggable 9-state machine, deterministic call-stack whiteboard tracing, sandboxed multi-language code executors (Python/JS/Java/C++), real-time peer WebSockets collaboration, and PII-redacted RecruitIQ Job Fit scoring.",
     tags: ["Next.js", "FastAPI", "WebSockets", "Docker Sandbox", "AST Tracing", "PII Redactor"],
+    rationale: "Designed to execute untrusted user code safely inside isolated sandboxed processes with 2s timeouts, while leveraging AST instrumentation hooks to trace execution call-stacks frame-by-frame.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-codemate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -580,6 +581,7 @@ const projectArchitectures = {
     title: "DrishtiAI",
     desc: "Real-time pharmacovigilance adverse event detection pipeline. Ingests data streams, performs NLP classification and PII redaction, stores structured incidents, and serves them via a Next.js dashboard.",
     tags: ["FastAPI", "Next.js", "PostgreSQL", "Redis", "scispaCy", "Docker"],
+    rationale: "Designed to achieve real-time stream ingestion and adverse event detection from raw patient discussions, automatically scrubbing personal identifiers (PII) before database storage to preserve patient anonymity.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-drishti" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -628,6 +630,7 @@ const projectArchitectures = {
     title: "RecruitIQ",
     desc: "Automated recruitment ranking pipeline. Parses incoming PDF resumes, computes semantic embeddings, ranks candidates based on job description cosine similarity, and renders details via a real-time Streamlit dashboard.",
     tags: ["Python", "Streamlit", "MiniLM-L6-v2", "Cosine Similarity", "NLP"],
+    rationale: "Designed to compute candidate rankings using a multi-factor weighted rubric rather than flat text searches, using normalized cosine similarity scores to prevent keyword-stuffing gaming.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-recruit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -676,6 +679,7 @@ const projectArchitectures = {
     title: "CF AI Career Coach",
     desc: "Serverless AI career mentorship assistant. Routes chat requests through Cloudflare Workers, queries low-latency Llama 3.3 models via Workers AI, and retains session state utilizing Cloudflare Durable Objects.",
     tags: ["Cloudflare Workers", "Workers AI", "Llama 3.3", "Durable Objects", "Wrangler"],
+    rationale: "Designed to deploy as an edge-native, zero-cold-start career coach chatbot utilizing Cloudflare Workers and serverless AI endpoints for low-latency edge responses.",
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-coach" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -717,6 +721,7 @@ const projectArchitectures = {
     title: "Playto Payout Engine",
     desc: "Asynchronous transaction payout orchestrator. Handles user reward payouts asynchronously by queuing tasks from Django DRF via a Redis Message Broker, executing them reliably in Celery workers, and persisting transactions in PostgreSQL.",
     tags: ["Django DRF", "Celery", "Redis", "PostgreSQL", "Docker", "REST API"],
+    rationale: "Designed to eliminate double-spend race conditions in concurrent withdrawal requests by using PostgreSQL row-level locks (select_for_update) inside strict database transactions.",
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-payout" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -782,6 +787,11 @@ document.addEventListener('click', (e) => {
       drawerDesc.textContent = project.desc;
       drawerTags.innerHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
       drawerSvgContainer.innerHTML = project.svg;
+      
+      const drawerRationale = document.getElementById('drawer-rationale');
+      if (drawerRationale) {
+        drawerRationale.textContent = project.rationale || 'N/A';
+      }
       
       archDrawerOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
