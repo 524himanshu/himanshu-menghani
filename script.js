@@ -530,8 +530,8 @@ function showToast(message) {
 const projectArchitectures = {
   codemate: {
     title: "CodeMate",
-    desc: "AI-powered Career Operating System and active engineering learning simulator. Features week-by-week roadmaps, an interactive learning engine with a pluggable 9-state machine, deterministic call-stack whiteboard tracing, sandboxed Python code executions, and AI teach-back reviews.",
-    tags: ["Next.js", "FastAPI", "Gemini API", "Supabase", "Python Sandbox", "AST Tracing"],
+    desc: "AI-powered Career Operating System and active engineering learning simulator. Features week-by-week roadmaps, an interactive learning engine with a pluggable 9-state machine, deterministic call-stack whiteboard tracing, sandboxed multi-language code executors (Python/JS/Java/C++), real-time peer WebSockets collaboration, and PII-redacted RecruitIQ Job Fit scoring.",
+    tags: ["Next.js", "FastAPI", "WebSockets", "Docker Sandbox", "AST Tracing", "PII Redactor"],
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-codemate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
