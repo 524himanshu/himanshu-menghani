@@ -1237,8 +1237,17 @@ span {
 }
 
 .profile-card .front {
-  border: 2px solid #ddd;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  transition: filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.profile-card-container:hover .profile-card .front {
+  filter: brightness(1);
+  border-color: var(--main-color);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
 }
 
 .profile-card .back {
