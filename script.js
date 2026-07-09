@@ -482,11 +482,11 @@ function getLocalAIResponse(query) {
   }
 
   if (aiKeywords.some(k => q.includes(k))) {
-    return "Himanshu has experience building applications with Gemini, Claude, and Llama 3.3. His work includes RAG pipelines, semantic search, prompt engineering, AI-powered ranking systems, and agentic workflows across projects like RecruitIQ and CF AI Career Coach.";
+    return "Himanshu has experience building applications with Gemini, Claude, and Llama 3.3. His work includes RAG pipelines, semantic search, prompt engineering, AI-powered ranking systems, and agentic workflows across projects like CodeMate, RecruitIQ, and CF AI Career Coach.";
   }
 
   if (projectKeywords.some(k => q.includes(k))) {
-    return "Himanshu has built several notable projects:<br><br>• <strong>DrishtiAI</strong>: Real-time pharmacovigilance adverse event detection (Twitter/Reddit streams) shortlisted for AI for Bharat 2026.<br>• <strong>RecruitIQ</strong>: Intelligent candidate ranking engine evaluating 100k profiles.<br>• <strong>CF AI Career Coach</strong>: Serverless Llama 3.3 chatbot on Cloudflare Workers.<br>• <strong>Playto Payout Engine</strong>: Async payout queue with Django & Celery.";
+    return "Himanshu has built several notable projects:<br><br>• <strong>CodeMate</strong>: AI-powered Career Operating System and active engineering learning simulator.<br>• <strong>DrishtiAI</strong>: Real-time pharmacovigilance adverse event detection (Twitter/Reddit streams) shortlisted for AI for Bharat 2026.<br>• <strong>RecruitIQ</strong>: Intelligent candidate ranking engine evaluating 100k profiles.<br>• <strong>CF AI Career Coach</strong>: Serverless Llama 3.3 chatbot on Cloudflare Workers.<br>• <strong>Playto Payout Engine</strong>: Async payout queue with Django & Celery.";
   }
   
   if (skillKeywords.some(k => q.includes(k))) {
@@ -528,6 +528,54 @@ function showToast(message) {
 
 /* ==================== Interactive System Architecture Drawers ==================== */
 const projectArchitectures = {
+  codemate: {
+    title: "CodeMate",
+    desc: "AI-powered Career Operating System and active engineering learning simulator. Features week-by-week roadmaps, an interactive learning engine with a pluggable 9-state machine, deterministic call-stack whiteboard tracing, sandboxed Python code executions, and AI teach-back reviews.",
+    tags: ["Next.js", "FastAPI", "Gemini API", "Supabase", "Python Sandbox", "AST Tracing"],
+    svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-codemate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
+    </marker>
+  </defs>
+  <!-- Connection Edges -->
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-codemate)" d="M 110,100 L 138,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-codemate)" d="M 230,100 L 258,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-codemate)" d="M 350,100 L 378,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-codemate)" d="M 470,100 L 498,100" />
+  
+  <!-- Nodes -->
+  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="65" y="98">
+    <tspan x="65" dy="0" class="arch-text-title">Vercel UI</tspan>
+    <tspan x="65" dy="14">(Next.js)</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="185" y="98">
+    <tspan x="185" dy="0" class="arch-text-title">FastAPI</tspan>
+    <tspan x="185" dy="14">API Router</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="305" y="98">
+    <tspan x="305" dy="0" class="arch-text-title">Subprocess</tspan>
+    <tspan x="305" dy="14">AST Tracer</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="425" y="98">
+    <tspan x="425" dy="0" class="arch-text-title">Gemini AI</tspan>
+    <tspan x="425" dy="14">Grading &amp; Hint</tspan>
+  </text>
+  
+  <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
+  <text class="arch-text" x="540" y="98">
+    <tspan x="540" dy="0" class="arch-text-title">Supabase</tspan>
+    <tspan x="540" dy="14">Mastery DB</tspan>
+  </text>
+</svg>`
+  },
   drishtiai: {
     title: "DrishtiAI",
     desc: "Real-time pharmacovigilance adverse event detection pipeline. Ingests data streams, performs NLP classification and PII redaction, stores structured incidents, and serves them via a Next.js dashboard.",
@@ -1443,7 +1491,7 @@ function initRagPlayground() {
   if (!btnRun || !queryInput || !sizeSelect || !overlapInput || !consoleLogs) return;
 
   // Source document text content
-  const sourceDocument = "Himanshu Menghani is a Full Stack Developer and AI Engineer. He specializes in designing scalable backend architectures and AI-driven products. DrishtiAI is his flagship adverse drug event detection tool shortlisted for AI for Bharat 2026. It utilizes Python FastAPI, scispaCy classification libraries, Redis connection caches, and a Microsoft Presidio pipeline to redact PII data in real time. RecruitIQ evaluates candidate qualifications by building miniLM text embeddings and executing cosine similarity algorithms in Streamlit. The CF AI Career Coach chatbot runs serverless Llama 3.3 models on Cloudflare Workers. Playto Payout Engine processes payment lead triggers asynchronously utilizing Celery task queues, Redis brokers, and PostgreSQL transaction tables.";
+  const sourceDocument = "Himanshu Menghani is a Full Stack Developer and AI Engineer. He specializes in designing scalable backend architectures and AI-driven products. DrishtiAI is his flagship adverse drug event detection tool shortlisted for AI for Bharat 2026. It utilizes Python FastAPI, scispaCy classification libraries, Redis connection caches, and a Microsoft Presidio pipeline to redact PII data in real time. CodeMate is an AI-powered Career Operating System and active engineering learning simulator built with Next.js, FastAPI, Supabase, and Gemini. It features data-driven lesson state machines, progressive hint disclosure, and a deterministic Python runner with custom AST settrace hooks to record recursive call-stack whiteboard frames. RecruitIQ evaluates candidate qualifications by building miniLM text embeddings and executing cosine similarity algorithms in Streamlit. The CF AI Career Coach chatbot runs serverless Llama 3.3 models on Cloudflare Workers. Playto Payout Engine processes payment lead triggers asynchronously utilizing Celery task queues, Redis brokers, and PostgreSQL transaction tables.";
 
   // Populate Document Ingestion Card initially
   if (docViewer) {
@@ -1466,10 +1514,11 @@ function initRagPlayground() {
 
   // Mock answers database
   const responses = {
-    python: "Himanshu has developed multiple projects using Python:<br>1. **DrishtiAI**: An adverse side-effect classification pipeline leveraging scispaCy NLP models.<br>2. **RecruitIQ**: Semantically parses resumes, generates miniLM text vector embeddings, and runs cosine distance matches.",
+    python: "Himanshu has developed multiple projects using Python:<br>1. **CodeMate**: A learning engine featuring a deterministic call-stack runner using subprocesses and AST tracing hooks.<br>2. **DrishtiAI**: An adverse side-effect classification pipeline leveraging scispaCy NLP models.<br>3. **RecruitIQ**: Semantically parses resumes, generates miniLM text vector embeddings, and runs cosine distance matches.",
     asynchronous: "Himanshu's portfolio features complex asynchronous structures:<br>• **Playto Payout Engine**: Leverages Celery tasks and Redis brokers to offload reward transactions from Django DRF request cycles reliably.<br>• **DrishtiAI**: Leverages Redis cache layer to capture live social media streams.",
     cf: "The **CF AI Career Coach** is a serverless mentorship chatbot built entirely on the Cloudflare ecosystem. It routes client requests through Workers, runs model inference (Llama 3.3) via Workers AI, and manages session history in Durable Objects.",
-    drishti: "**DrishtiAI** is a pharmacovigilance adverse event classifier. It ingests social media data streams, checks medical entities using scispaCy, redacts sensitive metrics with Presidio, and writes to Postgres/Redis. It was selected for AI for Bharat 2026."
+    drishti: "**DrishtiAI** is a pharmacovigilance adverse event classifier. It ingests social media data streams, checks medical entities using scispaCy, redacts sensitive metrics with Presidio, and writes to Postgres/Redis. It was selected for AI for Bharat 2026.",
+    codemate: "**CodeMate** is an AI-powered Career Operating System and active engineering learning simulator. It features data-driven lesson state machines, a deterministic Python runner with custom AST settrace hooks to record recursive call-stack whiteboard frames, and an impact-driven resume bullet generator."
   };
 
   btnRun.addEventListener('click', () => {
