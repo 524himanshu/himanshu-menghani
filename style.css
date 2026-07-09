@@ -1114,7 +1114,7 @@ span {
 
 .contact form {
   max-width: 70rem;
-  text-align: right;
+  text-align: center;
   margin-bottom: 3rem;
 }
 
@@ -1167,8 +1167,6 @@ span {
 
 .contact form .btn {
   margin-top: 2rem;
-  display: block;
-  margin-left: auto;
   cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
