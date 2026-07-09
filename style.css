@@ -1208,71 +1208,126 @@ span {
 }
 
 /* ===== rotating profile card ===== */
-.profile-card-container {
-  perspective: 1000px;
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
-.profile-card {
+/* ===== Developer Contact Card ===== */
+.developer-contact-card {
   width: 300px;
-  height: 400px;
-  position: relative;
-  transition: transform 0.6s ease-in-out;
-  transform-style: preserve-3d;
-}
-
-.profile-card-container:hover .profile-card {
-  transform: rotateY(180deg);
-}
-
-.profile-card .front,
-.profile-card .back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 10px;
-}
-
-.profile-card .front {
+  background: var(--second-bg-color);
   border: 1px solid var(--card-border);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  transition: filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  filter: brightness(0.9);
-}
-
-.profile-card-container:hover .profile-card .front {
-  filter: brightness(1);
-  border-color: var(--main-color);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
-}
-
-.profile-card .back {
-  background-image: url('himanshu.png');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  transform: rotateY(180deg);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: var(--second-bg-color);
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  flex: 0 0 auto;
 }
 
-.profile-card img {
+.developer-contact-card:hover {
+  border-color: var(--main-color);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.dev-card-avatar-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 2rem;
+}
+
+.dev-card-avatar {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  border-radius: 10px;
+  border: 3px solid var(--main-color);
+  padding: 3px;
+  background: var(--bg-color);
 }
 
-.profile-card .back .btn {
-  margin-top: 20px;
+.online-pulse-dot {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 14px;
+  height: 14px;
+  background: #00e676;
+  border-radius: 50%;
+  border: 3px solid var(--second-bg-color);
+  animation: hirePulse 2s ease-in-out infinite;
+}
+
+.developer-contact-card h3 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--text-color);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.dev-card-subtitle {
+  font-size: 1.4rem;
+  color: var(--main-color);
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05rem;
+}
+
+.dev-card-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem 0.5rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 1.3rem;
+  color: var(--text-color);
+  opacity: 0.85;
+}
+
+.detail-item i {
+  font-size: 1.8rem;
+  color: var(--main-color);
+  flex-shrink: 0;
+}
+
+.dev-card-socials {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.dev-card-socials a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  background: transparent;
+  text-decoration: none;
+}
+
+.dev-card-socials a:hover {
+  background: var(--main-color);
+  color: #fff;
+  border-color: var(--main-color);
+  transform: translateY(-3px);
+  box-shadow: var(--btn-shadow);
 }
 
 /* ===== footer ===== */
