@@ -1720,6 +1720,8 @@ function initSystemStatusDashboard() {
   const cacheBar = document.getElementById('ops-cache-bar');
   const tokensVal = document.getElementById('ops-tokens-val');
   const tokensBar = document.getElementById('ops-tokens-bar');
+  const sandboxVal = document.getElementById('ops-sandbox-val');
+  const sandboxBar = document.getElementById('ops-sandbox-bar');
   const consoleLog = document.getElementById('ops-console-log');
 
   if (!latencyVal || !cpuVal || !cacheVal || !tokensVal || !consoleLog) return;
@@ -1729,7 +1731,8 @@ function initSystemStatusDashboard() {
     latency: 42,
     cpu: 4.5,
     cache: 98.4,
-    tokens: 4120
+    tokens: 4120,
+    sandbox: 18
   };
 
   // Helper to format time
@@ -1765,10 +1768,14 @@ function initSystemStatusDashboard() {
   setTimeout(() => addLog("DrishtiAI: Successfully loaded Model Weights (adverse_events_v2.bin)", "success"), 600);
   setTimeout(() => addLog("PostgreSQL DB: Connection pool active on localhost:5432 (12/20 active connections)", "success"), 1100);
   setTimeout(() => addLog("Cloudflare Workers: Edge listener initialized at /api/visitor", "success"), 1600);
-  setTimeout(() => addLog("System check complete. Monitoring 4 telemetry channels. STATUS: OK", "success"), 2100);
+  setTimeout(() => addLog("CodeMate: Sandbox execution engine initialized at /api/teaching/execute", "success"), 1900);
+  setTimeout(() => addLog("System check complete. Monitoring 5 telemetry channels. STATUS: OK", "success"), 2200);
 
   // List of possible messages for live stream
   const logTemplates = [
+    { text: "CodeMate: Initialized Python Subprocess Sandbox Runner.", type: "info" },
+    { text: "CodeMate: Executed student test script (AST settrace enabled) in 18ms.", type: "success" },
+    { text: "CodeMate: Generated 12 call-stack trace frames for visual whiteboard.", type: "success" },
     { text: "Celery Worker: Worker pool idle. 0 tasks pending.", type: "info" },
     { text: "Redis Cache: Memory usage nominal at 14.2 MB. Cache hits stable.", type: "info" },
     { text: "Cloudflare Worker: Request received for /api/visitor. Fetching analytics metadata.", type: "info" },
@@ -1808,18 +1815,24 @@ function initSystemStatusDashboard() {
     const tokensDelta = Math.floor((Math.random() - 0.5) * 350);
     metrics.tokens = Math.max(2500, Math.min(5800, metrics.tokens + tokensDelta));
 
+    // Sandbox latency fluctuation
+    const sandboxDelta = (Math.random() - 0.5) * 4;
+    metrics.sandbox = Math.max(10, Math.min(45, Math.round(metrics.sandbox + sandboxDelta)));
+
     // Update values in DOM
     latencyVal.textContent = `${metrics.latency} ms`;
     cpuVal.textContent = `${metrics.cpu} ms`;
     cacheVal.textContent = `${metrics.cache}%`;
     tokensVal.textContent = `${metrics.tokens.toLocaleString()} t/min`;
+    if (sandboxVal) sandboxVal.textContent = `${metrics.sandbox} ms`;
 
     // Update progress bars (bound maps)
-    // Max values: Latency 100ms, CPU 10ms, Cache 100%, Tokens 6000
+    // Max values: Latency 100ms, CPU 10ms, Cache 100%, Tokens 6000, Sandbox 50ms
     latencyBar.style.width = `${metrics.latency}%`;
     cpuBar.style.width = `${(metrics.cpu / 10) * 100}%`;
     cacheBar.style.width = `${metrics.cache}%`;
     tokensBar.style.width = `${(metrics.tokens / 6000) * 100}%`;
+    if (sandboxBar) sandboxBar.style.width = `${(metrics.sandbox / 50) * 100}%`;
   }
 
   // Periodic Telemetry Updates
