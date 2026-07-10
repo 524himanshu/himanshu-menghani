@@ -528,6 +528,48 @@ function showToast(message) {
 
 /* ==================== Interactive System Architecture Drawers ==================== */
 const projectArchitectures = {
+  offerforge: {
+    title: "OfferForge",
+    desc: "AI-powered career preparation suite. Sanitizes candidate locations, emails, and phone numbers locally before transmission to shield personal data from third-party LLMs.",
+    tags: ["Next.js", "Groq API", "PII Redactor", "docx"],
+    rationale: "Designed to execute local, client-side PII scrubbing using specialized regex patterns to intercept resume data before transmission, shielding sensitive candidate details from third-party LLMs.",
+    svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-offerforge" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
+    </marker>
+  </defs>
+  <!-- Connection Edges -->
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-offerforge)" d="M 110,100 L 138,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-offerforge)" d="M 230,100 L 258,100" />
+  <path class="arch-edge arch-edge-active" marker-end="url(#arrow-offerforge)" d="M 370,100 L 398,100" />
+
+  <!-- Nodes -->
+  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="65" y="98">
+    <tspan x="65" dy="0" class="arch-text-title">User UI</tspan>
+    <tspan x="65" dy="14">(Resume / JD)</tspan>
+  </text>
+
+  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <text class="arch-text" x="185" y="98">
+    <tspan x="185" dy="0" class="arch-text-title">PII Shield</tspan>
+    <tspan x="185" dy="14">(Scrub Regex)</tspan>
+  </text>
+
+  <rect class="arch-node arch-node-active" x="260" y="75" width="110" height="50" rx="8" />
+  <text class="arch-text" x="315" y="98">
+    <tspan x="315" dy="0" class="arch-text-title">LLM Gateway</tspan>
+    <tspan x="315" dy="14">(Groq / Llama)</tspan>
+  </text>
+
+  <rect class="arch-node arch-node-active" x="400" y="75" width="110" height="50" rx="8" />
+  <text class="arch-text" x="455" y="98">
+    <tspan x="455" dy="0" class="arch-text-title">Prep Panel</tspan>
+    <tspan x="455" dy="14">(Resume / docx)</tspan>
+  </text>
+</svg>`
+  },
   codemate: {
     title: "CodeMate",
     desc: "AI-powered Career Operating System and active engineering learning simulator. Features week-by-week roadmaps, an interactive learning engine with a pluggable 9-state machine, deterministic call-stack whiteboard tracing, sandboxed multi-language code executors (Python/JS/Java/C++), real-time peer WebSockets collaboration, and PII-redacted RecruitIQ Job Fit scoring.",
