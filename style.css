@@ -2839,6 +2839,31 @@ body.dark-theme .skills-canvas-container {
   backdrop-filter: blur(10px);
 }
 
+.rag-query-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.rag-sug-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.rag-sug-tag:hover {
+  background: var(--main-color);
+  border-color: var(--main-color);
+  color: #0d1b2a;
+  transform: translateY(-1px);
+}
+
 body.dark-theme .playground-panel {
   background: rgba(10, 10, 10, 0.6);
 }

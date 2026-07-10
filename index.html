@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=1.0.1" />
+    <link rel="stylesheet" href="style.css?v=1.0.2" />
   </head>
 
   <body>
@@ -731,6 +731,13 @@
           <div class="control-group">
             <label for="rag-query">User Search Query</label>
             <input type="text" id="rag-query" value="Show Python asynchronous project details" placeholder="Type a search query...">
+            <div class="rag-query-suggestions">
+              <span class="rag-sug-tag" data-query="Show Python projects">Python</span>
+              <span class="rag-sug-tag" data-query="How does CodeMate work?">CodeMate</span>
+              <span class="rag-sug-tag" data-query="Explain DrishtiAI and AI for Bharat">DrishtiAI</span>
+              <span class="rag-sug-tag" data-query="Where is Celery or asynchronous tasks used?">Async queues</span>
+              <span class="rag-sug-tag" data-query="Explain Cloudflare Workers chat bot">Cloudflare AI</span>
+            </div>
           </div>
           
           <div class="control-group">

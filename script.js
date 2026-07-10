@@ -1595,6 +1595,15 @@ function initRagPlayground() {
     overlapVal.textContent = e.target.value;
   });
 
+  // Suggestions click handler
+  const suggestionTags = document.querySelectorAll('.rag-sug-tag');
+  suggestionTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      queryInput.value = tag.getAttribute('data-query');
+      queryInput.focus();
+    });
+  });
+
   // Log printing helper
   function addLog(text, type = '') {
     const span = document.createElement('span');
@@ -1757,6 +1766,8 @@ function initRagPlayground() {
             responseText = responses.cf;
           } else if (query.includes('drishti') || query.includes('bharat') || query.includes('adverse')) {
             responseText = responses.drishti;
+          } else if (query.includes('codemate') || query.includes('sandbox') || query.includes('compiler') || query.includes('state')) {
+            responseText = responses.codemate;
           }
 
           // Typewriter animation
