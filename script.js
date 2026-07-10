@@ -1443,25 +1443,28 @@ index m789012..e56cfd3 100644</span>
     // Create Cell
     const cell = document.createElement('div');
     cell.className = 'git-day-cell';
+    // Seed commit density using a pseudo-random sine hash for organic distribution
+    const seed = currentDate.getFullYear() * 1000 + currentDate.getMonth() * 40 + currentDate.getDate();
+    const x = Math.sin(seed) * 10000;
+    const rand = x - Math.floor(x);
     
-    // Seed commit density (weekends less active, weekdays more active)
     const dayOfWeek = currentDate.getDay();
     const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
     let commitCount = 0;
-
-    // Pseudo-random distribution based on date hashing
-    const hash = (currentDate.getFullYear() * 12 + currentDate.getMonth() * 31 + currentDate.getDate()) % 100;
     
-    if (hash > 88) {
-      commitCount = isWeekend ? 1 : 4;
-    } else if (hash > 70) {
-      commitCount = isWeekend ? 0 : 3;
-    } else if (hash > 45) {
-      commitCount = isWeekend ? 0 : 2;
-    } else if (hash > 20) {
-      commitCount = 1;
+    if (isWeekend) {
+      if (rand > 0.94) commitCount = 2;
+      else if (rand > 0.82) commitCount = 1;
+    } else {
+      if (rand > 0.91) commitCount = 4;
+      else if (rand > 0.78) commitCount = 3;
+      else if (rand > 0.50) commitCount = 2;
+      else if (rand > 0.22) commitCount = 1;
     }
-
+    
+    // Pseudo-random hash index for selecting commit messages
+    const hash = Math.floor(rand * 100);
+    
     // Determine color level class
     let level = 0;
     if (commitCount === 1) level = 1;
