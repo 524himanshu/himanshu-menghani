@@ -1311,7 +1311,7 @@ function initSkillsCanvasView() {
 }
 
 /* ==================== Interactive Git Commit Grid & Explorer ==================== */
-function initGitCalendar() {
+async function initGitCalendar() {
   const grid = document.getElementById('git-contribution-grid');
   const overlay = document.getElementById('git-terminal-overlay');
   const termClose = document.getElementById('term-close-btn');
@@ -1319,7 +1319,7 @@ function initGitCalendar() {
 
   if (!grid || !overlay || !termClose || !termBody) return;
 
-  // Mock Commit Database
+  // Mock Commit Database for Terminal Diffs
   const commitMessages = [
     "refactor: Optimize DrishtiAI adverse event detection classifier",
     "feat: Add HubSpot API transactional sync triggers to Payout Engine",
@@ -1407,9 +1407,9 @@ Date:   Fri Jun 12 09:12:05 2026
 
     perf: Optimize cosine similarity search vector calculations in RecruitIQ
 
-<span class="diff-meta">diff --git a/recruitiq/matching.py b/recruitiq/matching.py
+<span class="diff-meta">diff --git b/recruitiq/matching.py b/recruitiq/matching.py
 index m789012..e56cfd3 100644</span>
-<span class="diff-removed">--- a/recruitiq/matching.py</span>
+<span class="diff-removed">--- b/recruitiq/matching.py</span>
 <span class="diff-added">+++ b/recruitiq/matching.py</span>
 <span class="diff-meta">@@ -12,5 +12,10 @@ def calculate_cosine_similarity(resume_vec, jd_vec):</span>
 <span class="diff-removed">-    dot_product = sum(r*j for r, j in zip(resume_vec, jd_vec))</span>
@@ -1428,50 +1428,82 @@ index m789012..e56cfd3 100644</span>
   tooltip.style.opacity = '0';
   document.body.appendChild(tooltip);
 
-  // Generate Grid Blocks (53 weeks * 7 days = 371 cells)
   const totalDays = 371;
   const today = new Date();
-  
+
   // Set starting date to 371 days ago
   const startDate = new Date(today);
   startDate.setDate(today.getDate() - totalDays + 1);
 
+  // Helper to format date as YYYY-MM-DD
+  function formatDateKey(date) {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  // Attempt to fetch real commit contributions from public API
+  let contributionsMap = {};
+  try {
+    const res = await fetch('https://github-contributions-api.jogruber.de/v4/524himanshu');
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.contributions) {
+        data.contributions.forEach(item => {
+          contributionsMap[item.date] = {
+            count: item.count,
+            level: item.level
+          };
+        });
+        console.log("Real GitHub contributions loaded successfully.");
+      }
+    }
+  } catch (err) {
+    console.warn("Failed to fetch real GitHub contributions, falling back to organic mock generation.", err);
+  }
+
+  // Render Grid Blocks
   for (let i = 0; i < totalDays; i++) {
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
 
-    // Create Cell
     const cell = document.createElement('div');
     cell.className = 'git-day-cell';
-    // Seed commit density using a pseudo-random sine hash for organic distribution
-    const seed = currentDate.getFullYear() * 1000 + currentDate.getMonth() * 40 + currentDate.getDate();
-    const x = Math.sin(seed) * 10000;
-    const rand = x - Math.floor(x);
-    
-    const dayOfWeek = currentDate.getDay();
-    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
+    const dateKey = formatDateKey(currentDate);
     let commitCount = 0;
-    
-    if (isWeekend) {
-      if (rand > 0.94) commitCount = 2;
-      else if (rand > 0.82) commitCount = 1;
-    } else {
-      if (rand > 0.91) commitCount = 4;
-      else if (rand > 0.78) commitCount = 3;
-      else if (rand > 0.50) commitCount = 2;
-      else if (rand > 0.22) commitCount = 1;
-    }
-    
-    // Pseudo-random hash index for selecting commit messages
-    const hash = Math.floor(rand * 100);
-    
-    // Determine color level class
     let level = 0;
-    if (commitCount === 1) level = 1;
-    else if (commitCount === 2) level = 2;
-    else if (commitCount === 3) level = 3;
-    else if (commitCount >= 4) level = 4;
-    
+
+    if (contributionsMap[dateKey] !== undefined) {
+      // Use real commits from GitHub API
+      commitCount = contributionsMap[dateKey].count;
+      level = contributionsMap[dateKey].level;
+    } else {
+      // Fallback: Seed commit density using a pseudo-random sine hash for organic distribution
+      const seed = currentDate.getFullYear() * 1000 + currentDate.getMonth() * 40 + currentDate.getDate();
+      const x = Math.sin(seed) * 10000;
+      const rand = x - Math.floor(x);
+
+      const dayOfWeek = currentDate.getDay();
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
+      if (isWeekend) {
+        if (rand > 0.94) commitCount = 2;
+        else if (rand > 0.82) commitCount = 1;
+      } else {
+        if (rand > 0.91) commitCount = 4;
+        else if (rand > 0.78) commitCount = 3;
+        else if (rand > 0.50) commitCount = 2;
+        else if (rand > 0.22) commitCount = 1;
+      }
+
+      if (commitCount === 1) level = 1;
+      else if (commitCount === 2) level = 2;
+      else if (commitCount === 3) level = 3;
+      else if (commitCount >= 4) level = 4;
+    }
+
     cell.classList.add(`level-${level}`);
     cell.setAttribute('data-commits', commitCount);
     cell.setAttribute('data-date', currentDate.toDateString());
@@ -1479,8 +1511,13 @@ index m789012..e56cfd3 100644</span>
     // Click behavior (open terminal modal if commits exist)
     if (commitCount > 0) {
       cell.addEventListener('click', () => {
+        // Calculate stable hash from date for commit message selection
+        const seed = currentDate.getFullYear() * 1000 + currentDate.getMonth() * 40 + currentDate.getDate();
+        const x = Math.sin(seed) * 10000;
+        const rand = x - Math.floor(x);
+        const hash = Math.floor(rand * 100);
         let commitMsg = commitMessages[hash % commitMessages.length];
-        
+
         // Match specific projects for diff content
         let projKey = "DrishtiAI";
         if (commitMsg.includes("HubSpot") || commitMsg.includes("Payout")) projKey = "Payout Engine";
@@ -1488,7 +1525,7 @@ index m789012..e56cfd3 100644</span>
         else if (commitMsg.includes("similarity") || commitMsg.includes("Recruit")) projKey = "RecruitIQ";
 
         let diff = diffSnippets[projKey].replace("[Date]", currentDate.toDateString()).replace("[Commit Message]", commitMsg);
-        
+
         termBody.innerHTML = `<pre>${diff}</pre>`;
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1499,7 +1536,7 @@ index m789012..e56cfd3 100644</span>
     cell.addEventListener('mouseenter', (e) => {
       const commits = e.target.getAttribute('data-commits');
       const dateStr = e.target.getAttribute('data-date');
-      
+
       tooltip.innerHTML = `<strong>${commits} commit${commits !== '1' ? 's' : ''}</strong> on ${dateStr}`;
       tooltip.style.opacity = '1';
     });
