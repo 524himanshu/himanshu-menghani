@@ -60,7 +60,7 @@ ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 /* ==================== typed js ==================== */
 document.addEventListener('DOMContentLoaded', () => {
   new Typed('.typed-text', {
-    strings: ['Full Stack Developer', 'AI Engineer', 'RAG & LLM Builder', 'Asynchronous Systems Architect'],
+    strings: ['Full Stack AI Engineer', 'Backend Specialist', 'RAG & LLM Builder', 'Asynchronous Systems Architect'],
     typeSpeed: 80,
     backSpeed: 40,
     backDelay: 1500,
