@@ -535,6 +535,10 @@ const projectArchitectures = {
     rationale: "Designed to execute local, client-side PII scrubbing using specialized regex patterns to intercept resume data before transmission, shielding sensitive candidate details from third-party LLMs.",
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
+    </linearGradient>
     <marker id="arrow-offerforge" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
     </marker>
@@ -577,6 +581,10 @@ const projectArchitectures = {
     rationale: "Designed to execute untrusted user code safely inside isolated sandboxed processes with 2s timeouts, while leveraging AST instrumentation hooks to trace execution call-stacks frame-by-frame.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
+    </linearGradient>
     <marker id="arrow-codemate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
     </marker>
@@ -626,6 +634,10 @@ const projectArchitectures = {
     rationale: "Designed to run a robust dual-mode pipeline (SpaCy NER and Microsoft Presidio) that falls back to fast local patterns on resource-constrained platforms, coupled with Gemini 1.5 Flash cloud reporting for safety summaries.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
+    </linearGradient>
     <marker id="arrow-drishti" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
     </marker>
@@ -675,6 +687,10 @@ const projectArchitectures = {
     rationale: "Designed to compute candidate rankings using a multi-factor weighted rubric rather than flat text searches, using normalized cosine similarity scores to prevent keyword-stuffing gaming.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
+    </linearGradient>
     <marker id="arrow-recruit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--main-color)" />
     </marker>
