@@ -535,7 +535,7 @@ const projectArchitectures = {
     rationale: "Designed to execute local, client-side PII scrubbing using specialized regex patterns to intercept resume data before transmission, shielding sensitive candidate details from third-party LLMs.",
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="node-grad-offerforge" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
       <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
     </linearGradient>
@@ -549,25 +549,25 @@ const projectArchitectures = {
   <path class="arch-edge arch-edge-active" marker-end="url(#arrow-offerforge)" d="M 370,100 L 398,100" />
 
   <!-- Nodes -->
-  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-offerforge);" x="20" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="65" y="98">
     <tspan x="65" dy="0" class="arch-text-title">User UI</tspan>
     <tspan x="65" dy="14">(Resume / JD)</tspan>
   </text>
 
-  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-offerforge);" x="140" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="185" y="98">
     <tspan x="185" dy="0" class="arch-text-title">PII Shield</tspan>
     <tspan x="185" dy="14">(Scrub Regex)</tspan>
   </text>
 
-  <rect class="arch-node arch-node-active" x="260" y="75" width="110" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-offerforge);" x="260" y="75" width="110" height="50" rx="8" />
   <text class="arch-text" x="315" y="98">
     <tspan x="315" dy="0" class="arch-text-title">LLM Gateway</tspan>
     <tspan x="315" dy="14">(Groq / Llama)</tspan>
   </text>
 
-  <rect class="arch-node arch-node-active" x="400" y="75" width="110" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-offerforge);" x="400" y="75" width="110" height="50" rx="8" />
   <text class="arch-text" x="455" y="98">
     <tspan x="455" dy="0" class="arch-text-title">Prep Panel</tspan>
     <tspan x="455" dy="14">(Resume / docx)</tspan>
@@ -581,7 +581,7 @@ const projectArchitectures = {
     rationale: "Designed to execute untrusted user code safely inside isolated sandboxed processes with 2s timeouts, while leveraging AST instrumentation hooks to trace execution call-stacks frame-by-frame.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="node-grad-codemate" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
       <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
     </linearGradient>
@@ -596,31 +596,31 @@ const projectArchitectures = {
   <path class="arch-edge arch-edge-active" marker-end="url(#arrow-codemate)" d="M 470,100 L 498,100" />
   
   <!-- Nodes -->
-  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-codemate);" x="20" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="65" y="98">
     <tspan x="65" dy="0" class="arch-text-title">Vercel UI</tspan>
     <tspan x="65" dy="14">(Next.js)</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-codemate);" x="140" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="185" y="98">
     <tspan x="185" dy="0" class="arch-text-title">FastAPI</tspan>
     <tspan x="185" dy="14">API Router</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-codemate);" x="260" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="305" y="98">
     <tspan x="305" dy="0" class="arch-text-title">Subprocess</tspan>
     <tspan x="305" dy="14">AST Tracer</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-codemate);" x="380" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="425" y="98">
     <tspan x="425" dy="0" class="arch-text-title">Gemini AI</tspan>
     <tspan x="425" dy="14">Grading &amp; Hint</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-codemate);" x="500" y="75" width="80" height="50" rx="8" />
   <text class="arch-text" x="540" y="98">
     <tspan x="540" dy="0" class="arch-text-title">Supabase</tspan>
     <tspan x="540" dy="14">Mastery DB</tspan>
@@ -634,7 +634,7 @@ const projectArchitectures = {
     rationale: "Designed to run a robust dual-mode pipeline (SpaCy NER and Microsoft Presidio) that falls back to fast local patterns on resource-constrained platforms, coupled with Gemini 1.5 Flash cloud reporting for safety summaries.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="node-grad-drishtiai" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
       <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
     </linearGradient>
@@ -649,31 +649,31 @@ const projectArchitectures = {
   <path class="arch-edge arch-edge-active" marker-end="url(#arrow-drishti)" d="M 470,100 L 498,100" />
   
   <!-- Nodes -->
-  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-drishtiai);" x="20" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="65" y="98">
     <tspan x="65" dy="0" class="arch-text-title">Reddit/Twitter</tspan>
     <tspan x="65" dy="14">Streams</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-drishtiai);" x="140" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="185" y="98">
     <tspan x="185" dy="0" class="arch-text-title">SpaCy NER</tspan>
     <tspan x="185" dy="14">Clinical Entities</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-drishtiai);" x="260" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="305" y="98">
     <tspan x="305" dy="0" class="arch-text-title">Presidio &amp; Reg</tspan>
     <tspan x="305" dy="14">PII Masking</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-drishtiai);" x="380" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="425" y="98">
     <tspan x="425" dy="0" class="arch-text-title">Postgres/Redis</tspan>
     <tspan x="425" dy="14">Signal Ingestion</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-drishtiai);" x="500" y="75" width="80" height="50" rx="8" />
   <text class="arch-text" x="540" y="98">
     <tspan x="540" dy="0" class="arch-text-title">Gemini AI</tspan>
     <tspan x="540" dy="14">Safety Report</tspan>
@@ -687,7 +687,7 @@ const projectArchitectures = {
     rationale: "Designed to compute candidate rankings using a multi-factor weighted rubric rather than flat text searches, using normalized cosine similarity scores to prevent keyword-stuffing gaming.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="node-grad-recruitiq" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="var(--main-color)" stop-opacity="0.22" />
       <stop offset="100%" stop-color="#4facfe" stop-opacity="0.04" />
     </linearGradient>
@@ -702,31 +702,31 @@ const projectArchitectures = {
   <path class="arch-edge arch-edge-active" marker-end="url(#arrow-recruit)" d="M 470,100 L 498,100" />
   
   <!-- Nodes -->
-  <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-recruitiq);" x="20" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="65" y="98">
     <tspan x="65" dy="0" class="arch-text-title">PDF Resume</tspan>
     <tspan x="65" dy="14">Parsing</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-recruitiq);" x="140" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="185" y="98">
     <tspan x="185" dy="0" class="arch-text-title">miniLM</tspan>
     <tspan x="185" dy="14">Embeddings</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-recruitiq);" x="260" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="305" y="98">
     <tspan x="305" dy="0" class="arch-text-title">Cosine</tspan>
     <tspan x="305" dy="14">Similarity</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-recruitiq);" x="380" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="425" y="98">
     <tspan x="425" dy="0" class="arch-text-title">Quality &amp;</tspan>
     <tspan x="425" dy="14">Match Filters</tspan>
   </text>
   
-  <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
+  <rect class="arch-node arch-node-active" style="fill: url(#node-grad-recruitiq);" x="500" y="75" width="80" height="50" rx="8" />
   <text class="arch-text" x="540" y="98">
     <tspan x="540" dy="0" class="arch-text-title">Streamlit</tspan>
     <tspan x="540" dy="14">Dashboard</tspan>
