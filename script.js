@@ -621,9 +621,9 @@ const projectArchitectures = {
   },
   drishtiai: {
     title: "DrishtiAI",
-    desc: "Real-time pharmacovigilance adverse event detection pipeline. Ingests data streams, performs NLP classification and PII redaction, stores structured incidents, and serves them via a Next.js dashboard.",
-    tags: ["FastAPI", "Next.js", "PostgreSQL", "Redis", "scispaCy", "Docker"],
-    rationale: "Designed to achieve real-time stream ingestion and adverse event detection from raw patient discussions, automatically scrubbing personal identifiers (PII) before database storage to preserve patient anonymity.", 
+    desc: "Real-time pharmacovigilance adverse event detection pipeline. Ingests data streams, performs dual-mode clinical NER (SpaCy) & PII redaction (Presidio), saves signals to Postgres, and generates AI safety summaries via Gemini 1.5 Flash.",
+    tags: ["FastAPI", "Next.js", "PostgreSQL", "Redis", "SpaCy NER", "Microsoft Presidio", "Gemini API"],
+    rationale: "Designed to run a robust dual-mode pipeline (SpaCy NER and Microsoft Presidio) that falls back to fast local patterns on resource-constrained platforms, coupled with Gemini 1.5 Flash cloud reporting for safety summaries.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-drishti" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -639,39 +639,39 @@ const projectArchitectures = {
   <!-- Nodes -->
   <rect class="arch-node arch-node-active" x="20" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="65" y="98">
-    <tspan x="65" dy="0" class="arch-text-title">Twitter/Reddit</tspan>
+    <tspan x="65" dy="0" class="arch-text-title">Reddit/Twitter</tspan>
     <tspan x="65" dy="14">Streams</tspan>
   </text>
   
   <rect class="arch-node arch-node-active" x="140" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="185" y="98">
-    <tspan x="185" dy="0" class="arch-text-title">scispaCy</tspan>
-    <tspan x="185" dy="14">Classification</tspan>
+    <tspan x="185" dy="0" class="arch-text-title">SpaCy NER</tspan>
+    <tspan x="185" dy="14">Clinical Entities</tspan>
   </text>
   
   <rect class="arch-node arch-node-active" x="260" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="305" y="98">
-    <tspan x="305" dy="0" class="arch-text-title">Presidio</tspan>
-    <tspan x="305" dy="14">PII Redaction</tspan>
+    <tspan x="305" dy="0" class="arch-text-title">Presidio &amp; Reg</tspan>
+    <tspan x="305" dy="14">PII Masking</tspan>
   </text>
   
   <rect class="arch-node arch-node-active" x="380" y="75" width="90" height="50" rx="8" />
   <text class="arch-text" x="425" y="98">
-    <tspan x="425" dy="0" class="arch-text-title">PostgreSQL</tspan>
-    <tspan x="425" dy="14">&amp; Redis</tspan>
+    <tspan x="425" dy="0" class="arch-text-title">Postgres/Redis</tspan>
+    <tspan x="425" dy="14">Signal Ingestion</tspan>
   </text>
   
   <rect class="arch-node arch-node-active" x="500" y="75" width="80" height="50" rx="8" />
   <text class="arch-text" x="540" y="98">
-    <tspan x="540" dy="0" class="arch-text-title">Next.js</tspan>
-    <tspan x="540" dy="14">Dashboard</tspan>
+    <tspan x="540" dy="0" class="arch-text-title">Gemini AI</tspan>
+    <tspan x="540" dy="14">Safety Report</tspan>
   </text>
 </svg>`
   },
   recruitiq: {
     title: "RecruitIQ",
-    desc: "Automated recruitment ranking pipeline. Parses incoming PDF resumes, computes semantic embeddings, ranks candidates based on job description cosine similarity, and renders details via a real-time Streamlit dashboard.",
-    tags: ["Python", "Streamlit", "MiniLM-L6-v2", "Cosine Similarity", "NLP"],
+    desc: "Automated recruitment ranking pipeline built for the Redrob Hackathon. Parses incoming candidate JSONL/PDF files, computes semantic embeddings, ranks candidates based on a 5-factor scoring model, and renders rankings via Streamlit.",
+    tags: ["Python", "Streamlit", "MiniLM-L6-v2", "Cosine Similarity", "NLP", "Pandas"],
     rationale: "Designed to compute candidate rankings using a multi-factor weighted rubric rather than flat text searches, using normalized cosine similarity scores to prevent keyword-stuffing gaming.", 
     svg: `<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
